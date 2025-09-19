@@ -1,35 +1,60 @@
-<!-- Cart Drawer -->
 <div class="cart-drawer" id="cartDrawer">
-    <div class="cart-drawer__header">
-        <h2 class="cart-drawer__title">Your Cart</h2>
-        <button class="cart-drawer__close" id="cartClose">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-        </button>
-    </div>
-    <div class="cart-drawer__content" id="cartContent">
-        <div class="cart-drawer__empty" id="emptyCart">
-            <div class="cart-drawer__empty-icon">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
-                    <path d="M7 4V2C7 1.44772 7.44772 1 8 1H16C16.5523 1 17 1.44772 17 2V4M7 4H5C4.44772 4 4 4.44772 4 5V18C4 19.1046 4.89543 20 6 20H18C19.1046 20 20 19.1046 20 18V5C20 4.44772 19.5523 4 19 4H17M7 4H17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                </svg>
+    <div class="cart-drawer__content">
+        <!-- Left Column: Customers Also Bought -->
+        <div class="cart-drawer__left">
+            <div class="customers-also-bought">
+                <h3 class="customers-also-bought__title">Customers Also Bought</h3>
+                <div class="customers-also-bought__list" id="customersAlsoBought">
+                    <!-- Suggested products will be populated by JavaScript -->
+                </div>
             </div>
-            <p class="cart-drawer__empty-text">Your cart is empty</p>
-            <a href="/collections/all" class="btn btn--secondary">Continue Shopping</a>
         </div>
-    </div>
-    <div class="cart-drawer__footer" id="cartFooter" style="display: none;">
-        <div class="cart-drawer__subtotal">
-            <span class="cart-drawer__subtotal-label">Subtotal</span>
-            <span class="cart-drawer__subtotal-amount">$<span id="cartTotal">0.00</span></span>
-        </div>
-        <div class="cart-drawer__actions">
-            <button class="btn btn--primary btn--full">Checkout</button>
-            <a href="/cart" class="btn btn--secondary btn--full">View Cart</a>
+        
+        <!-- Right Column: Your Cart -->
+        <div class="cart-drawer__right">
+            <div class="cart-drawer__header">
+                <h2 class="cart-drawer__title">Your Cart</h2>
+                <button class="cart-drawer__close" id="cartClose">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="cart-drawer__info">
+                <div class="cart-info">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zm3.5 6L8 9.5 4.5 6l1-1L8 7.5 10.5 5l1 1z" fill="#3B82F6"/>
+                    </svg>
+                    <span>Fast shipping + easy returns</span>
+                </div>
+            </div>
+            
+            <div class="cart-items" id="cartItems">
+                <!-- Cart items will be populated by JavaScript -->
+            </div>
+            
+            <div class="cart-summary">
+                <div class="cart-summary__row">
+                    <span class="cart-summary__label">Shipping</span>
+                    <span class="cart-summary__value">Calculated at checkout</span>
+                </div>
+                <div class="cart-summary__row cart-summary__row--total">
+                    <span class="cart-summary__label">Subtotal</span>
+                    <span class="cart-summary__value" id="cartSubtotal">0₫</span>
+                </div>
+            </div>
+            
+            <div class="cart-actions">
+                <button class="btn btn--primary btn--full checkout-btn" id="checkoutBtn">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M2 3h12l-1 8H3L2 3zM2 3L1 1H0M4 6v6M8 6v6M12 6v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    CHECKOUT
+                </button>
+            </div>
         </div>
     </div>
 </div>
 
-<!-- Cart Overlay -->
 <div class="cart-drawer__overlay" id="cartOverlay"></div>
