@@ -306,13 +306,56 @@ class App {
                                 </div>
                             </form>
 
-                            <div class="demo-controls">
-                                <h3>Demo Controls:</h3>
-                                <div class="demo-buttons">
-                                    <button onclick="toggleSale()" class="demo-btn">Toggle Sale</button>
-                                    <button onclick="setOutOfStock()" class="demo-btn">Set Out of Stock</button>
-                                    <button onclick="setLowStock()" class="demo-btn">Set Low Stock</button>
-                                    <button onclick="resetStock()" class="demo-btn">Reset Stock</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Details Section -->
+                <div class="product-details">
+                    <div class="product-details__inner">
+                        <div class="product-details__left">
+                            <div class="product-features">
+                                <h3 class="product-features__title">Product Features</h3>
+                                <div class="product-features__divider"></div>
+                                <div class="product-features__content">
+                                    <div class="product-features__column">
+                                        <ul class="product-features__list">
+                                            <li class="product-features__item">Brandy Hand-Finished Full-Grain Leather</li>
+                                            <li class="product-features__item">Goodyear Welt Construction for Longevity</li>
+                                            <li class="product-features__item">Fully Lined Supple Glove Leather Interior</li>
+                                            <li class="product-features__item">Premium Flat Waxed Cotton Laces</li>
+                                            <li class="product-features__item">Custom Developed Reinforced Eyelets</li>
+                                        </ul>
+                                    </div>
+                                    <div class="product-features__column">
+                                        <ul class="product-features__list">
+                                            <li class="product-features__item">Poron® Antimicrobial Shock Absorbing Insoles</li>
+                                            <li class="product-features__item">Cork-Bed Midsoles that Form to Your Feet</li>
+                                            <li class="product-features__item">DuraEVA™ Comfort Strip</li>
+                                            <li class="product-features__item">Durable Studded Rubber Outsoles</li>
+                                            <li class="product-features__item">Handcrafted with Integrity</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="product-features__notes">
+                                    <span>Release Notes</span>
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                        <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zm3.5 6L8 9.5 4.5 6l1-1L8 7.5 10.5 5l1 1z" fill="#999"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="product-details__right">
+                            <div class="shipping-info">
+                                <h3 class="shipping-info__title">Shipping Info</h3>
+                                <div class="shipping-info__divider"></div>
+                                <ul class="shipping-info__list">
+                                    <li class="shipping-info__item">Free domestic U.S. ground shipping</li>
+                                    <li class="shipping-info__item">Free domestic U.S. returns. <a href="#" class="shipping-info__link">See our full policy</a></li>
+                                    <li class="shipping-info__item">International shipping available</li>
+                                    <li class="shipping-info__item">Expedited shipping options available at checkout</li>
+                                </ul>
                             </div>
                         </div>
                     </div>
