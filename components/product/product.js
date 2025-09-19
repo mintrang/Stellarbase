@@ -589,17 +589,9 @@ class Product {
             window.cart.addItem(window.productData, variant, this.quantity);
         }
         
-        // Show success feedback
-        const addToCartBtn = document.getElementById('addToCartBtn');
-        if (addToCartBtn) {
-            const originalText = addToCartBtn.innerHTML;
-            addToCartBtn.innerHTML = '<span class="btn__text">Added!</span>';
-            addToCartBtn.classList.add('btn--success');
-            
-            setTimeout(() => {
-                addToCartBtn.innerHTML = originalText;
-                addToCartBtn.classList.remove('btn--success');
-            }, 1500);
+        // Show cart drawer
+        if (window.cartDrawer) {
+            window.cartDrawer.toggle();
         }
     }
 }

@@ -71,45 +71,43 @@ class Cart {
         }
     }
 
+    formatPrice(price) {
+        return new Intl.NumberFormat('vi-VN', {
+            style: 'currency',
+            currency: 'VND',
+            minimumFractionDigits: 0
+        }).format(price);
+    }
+
     updateCartDisplay() {
         const cartCount = document.getElementById('cartCount');
-        const cartContent = document.getElementById('cartContent');
-        const cartFooter = document.getElementById('cartFooter');
-        const cartTotal = document.getElementById('cartTotal');
-        const emptyCart = document.getElementById('emptyCart');
+        const cartItems = document.getElementById('cartItems');
+        const cartSubtotal = document.getElementById('cartSubtotal');
 
         if (cartCount) {
             cartCount.textContent = this.getItemCount();
         }
 
-        if (this.items.length === 0) {
-            if (emptyCart) emptyCart.style.display = 'block';
-            if (cartFooter) cartFooter.style.display = 'none';
-            if (cartContent) {
-                cartContent.innerHTML = `
-                    <div class="cart-drawer__empty" id="emptyCart">
+        if (cartItems) {
+            if (this.items.length === 0) {
+                cartItems.innerHTML = `
+                    <div class="cart-drawer__empty">
                         <div class="cart-drawer__empty-icon">
                             <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
                                 <path d="M7 4V2C7 1.44772 7.44772 1 8 1H16C16.5523 1 17 1.44772 17 2V4M7 4H5C4.44772 4 4 4.44772 4 5V18C4 19.1046 4.89543 20 6 20H18C19.1046 20 20 19.1046 20 18V5C20 4.44772 19.5523 4 19 4H17M7 4H17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </div>
                         <p class="cart-drawer__empty-text">Your cart is empty</p>
-                        <a href="/collections/all" class="btn btn--secondary">Continue Shopping</a>
                     </div>
                 `;
-            }
-        } else {
-            if (emptyCart) emptyCart.style.display = 'none';
-            if (cartFooter) cartFooter.style.display = 'block';
-            
-            if (cartContent) {
-                cartContent.innerHTML = this.items.map((item, index) => `
-                    <div class="cart-item fade-in">
+            } else {
+                cartItems.innerHTML = this.items.map((item, index) => `
+                    <div class="cart-item">
                         <img src="${item.image}" alt="${item.title}" class="cart-item__image">
                         <div class="cart-item__details">
-                            <div class="cart-item__title">${item.title}</div>
-                            <div class="cart-item__variant">${item.color} - ${item.size}</div>
-                            <div class="cart-item__price">$${item.price.toFixed(2)}</div>
+                            <div class="cart-item__title">${item.title} | ${item.color}</div>
+                            <div class="cart-item__variant">Size: ${item.size}</div>
+                            <div class="cart-item__price">${this.formatPrice(item.price * item.quantity)}</div>
                         </div>
                         <div class="cart-item__controls">
                             <div class="cart-item__quantity">
@@ -123,11 +121,67 @@ class Cart {
                     </div>
                 `).join('');
             }
-
-            if (cartTotal) {
-                cartTotal.textContent = this.getTotal().toFixed(2);
-            }
         }
+
+        if (cartSubtotal) {
+            cartSubtotal.textContent = this.formatPrice(this.getTotal());
+        }
+    }
+
+    loadSuggestedProducts() {
+        const container = document.getElementById('customersAlsoBought');
+        if (!container || !window.suggestedProducts) return;
+
+        container.innerHTML = window.suggestedProducts.map(product => `
+            <div class="suggested-product">
+                <img src="${product.image}" alt="${product.name}" class="suggested-product__image">
+                <div class="suggested-product__content">
+                    <h4 class="suggested-product__name">${product.name}</h4>
+                    ${product.variant ? `<p class="suggested-product__variant">${product.variant}</p>` : ''}
+                    <p class="suggested-product__price">${this.formatPrice(product.price)}</p>
+                </div>
+                <div class="suggested-product__actions">
+                    ${product.sizes.length > 0 ? `
+                        <div class="suggested-product__size">
+                            <select class="suggested-product__size-select">
+                                ${product.sizes.map(size => `<option value="${size}">${size}</option>`).join('')}
+                            </select>
+                        </div>
+                    ` : ''}
+                    <button class="suggested-product__add-btn" onclick="window.cart.addSuggestedProduct('${product.id}')">
+                        Add To Cart
+                    </button>
+                    <a href="#" class="suggested-product__details">View more details</a>
+                </div>
+            </div>
+        `).join('');
+    }
+
+    addSuggestedProduct(productId) {
+        const product = window.suggestedProducts.find(p => p.id === productId);
+        if (!product) return;
+
+        const sizeSelect = document.querySelector(`[onclick="window.cart.addSuggestedProduct('${productId}')"]`)
+            ?.closest('.suggested-product')
+            ?.querySelector('.suggested-product__size-select');
+        
+        const selectedSize = sizeSelect ? sizeSelect.value : '';
+
+        this.items.push({
+            productId: product.id,
+            title: product.name,
+            color: product.variant || 'Default',
+            size: selectedSize || 'One Size',
+            price: product.price,
+            quantity: 1,
+            image: product.image
+        });
+
+        this.saveToStorage();
+        this.updateCartDisplay();
+        
+        // Keep cart drawer open when adding suggested products
+        // No need to toggle since drawer is already open
     }
 }
 
@@ -146,7 +200,6 @@ class CartDrawer {
     }
 
     setupEventListeners() {
-        // Cart close
         const cartClose = document.getElementById('cartClose');
         if (cartClose) {
             cartClose.addEventListener('click', () => {
@@ -154,14 +207,12 @@ class CartDrawer {
             });
         }
 
-        // Cart overlay
         if (this.overlay) {
             this.overlay.addEventListener('click', () => {
                 this.close();
             });
         }
 
-        // Escape key to close
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && this.isOpen) {
                 this.close();
@@ -176,6 +227,10 @@ class CartDrawer {
             if (this.drawer) this.drawer.classList.add('open');
             if (this.overlay) this.overlay.classList.add('active');
             document.body.style.overflow = 'hidden';
+            
+            if (window.cart) {
+                window.cart.loadSuggestedProducts();
+            }
         } else {
             if (this.drawer) this.drawer.classList.remove('open');
             if (this.overlay) this.overlay.classList.remove('active');

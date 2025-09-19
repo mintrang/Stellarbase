@@ -69,5 +69,42 @@ const productData = {
     ]
 };
 
+// Suggested Products Data
+const suggestedProducts = [
+    {
+        id: 'leather-belt-001',
+        name: "Men's Classic Leather Belt",
+        variant: 'Brandy',
+        price: 2174000,
+        image: 'https://images.unsplash.com/photo-1594223274512-ad4803739b7c?w=160&h=160&fit=crop',
+        sizes: ['30', '32', '34', '36', '38', '40']
+    },
+    {
+        id: 'leather-care-kit-001',
+        name: "Cobbler's Choice Essential Leather Kit",
+        variant: '',
+        price: 1494000,
+        image: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=160&h=160&fit=crop',
+        sizes: []
+    },
+    {
+        id: 'boot-socks-001',
+        name: "Men's Classic Boot Sock",
+        variant: '4-Pack',
+        price: 1413000,
+        image: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=160&h=160&fit=crop',
+        sizes: ['S', 'M', 'L', 'XL']
+    },
+    {
+        id: 'boot-trees-001',
+        name: "Men's Cedar Boot Tree",
+        variant: '',
+        price: 850000,
+        image: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=160&h=160&fit=crop',
+        sizes: ['S', 'M', 'L']
+    }
+];
+
 // Export for use in other modules
 window.productData = productData;
+window.suggestedProducts = suggestedProducts;
