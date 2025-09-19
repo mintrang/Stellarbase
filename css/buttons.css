@@ -1,0 +1,63 @@
+/* Button Styles */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md) var(--spacing-lg);
+    border: 1px solid transparent;
+    border-radius: var(--border-radius);
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition: var(--transition);
+    min-height: 48px;
+}
+
+.btn--primary {
+    background: var(--color-primary);
+    color: var(--color-white);
+    border-color: var(--color-primary);
+}
+
+.btn--primary:hover:not(:disabled) {
+    background: var(--color-gray-800);
+    border-color: var(--color-gray-800);
+}
+
+.btn--secondary {
+    background: var(--color-white);
+    color: var(--color-primary);
+    border-color: var(--color-gray-300);
+}
+
+.btn--secondary:hover {
+    background: var(--color-gray-100);
+    border-color: var(--color-gray-400);
+}
+
+.btn--full {
+    width: 100%;
+}
+
+.btn--success {
+    background: var(--color-success);
+    border-color: var(--color-success);
+}
+
+.btn--success:hover {
+    background: #218838;
+    border-color: #218838;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

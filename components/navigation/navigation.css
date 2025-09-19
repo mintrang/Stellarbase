@@ -1,0 +1,124 @@
+/* Breadcrumb Navigation */
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-xl);
+    font-size: var(--font-size-sm);
+    color: var(--color-gray-600);
+}
+
+.breadcrumb a {
+    color: var(--color-gray-600);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.breadcrumb a:hover {
+    color: var(--color-primary);
+}
+
+.breadcrumb-separator {
+    color: var(--color-gray-400);
+}
+
+/* Mobile Navigation */
+.mobile-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.mobile-nav.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.mobile-nav__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.mobile-nav__menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 300px;
+    height: 100%;
+    background: var(--color-white);
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+}
+
+.mobile-nav.open .mobile-nav__menu {
+    transform: translateX(0);
+}
+
+.mobile-nav__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-lg);
+    border-bottom: 1px solid var(--color-gray-200);
+}
+
+.mobile-nav__header h2 {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--color-primary);
+}
+
+.mobile-nav__close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--color-gray-600);
+    padding: var(--spacing-sm);
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+}
+
+.mobile-nav__close:hover {
+    background: var(--color-gray-100);
+    color: var(--color-primary);
+}
+
+.mobile-nav__content {
+    padding: var(--spacing-lg);
+}
+
+.mobile-nav__link {
+    display: block;
+    padding: var(--spacing-md) 0;
+    color: var(--color-gray-700);
+    text-decoration: none;
+    font-weight: 500;
+    border-bottom: 1px solid var(--color-gray-200);
+    transition: var(--transition);
+}
+
+.mobile-nav__link:hover {
+    color: var(--color-primary);
+    padding-left: var(--spacing-sm);
+}
+
+.mobile-nav__link:last-child {
+    border-bottom: none;
+}
+
+@media (min-width: 768px) {
+    .mobile-nav {
+        display: none;
+    }
+}

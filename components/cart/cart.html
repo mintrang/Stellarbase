@@ -1,0 +1,35 @@
+<!-- Cart Drawer -->
+<div class="cart-drawer" id="cartDrawer">
+    <div class="cart-drawer__header">
+        <h2 class="cart-drawer__title">Your Cart</h2>
+        <button class="cart-drawer__close" id="cartClose">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+    </div>
+    <div class="cart-drawer__content" id="cartContent">
+        <div class="cart-drawer__empty" id="emptyCart">
+            <div class="cart-drawer__empty-icon">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none">
+                    <path d="M7 4V2C7 1.44772 7.44772 1 8 1H16C16.5523 1 17 1.44772 17 2V4M7 4H5C4.44772 4 4 4.44772 4 5V18C4 19.1046 4.89543 20 6 20H18C19.1046 20 20 19.1046 20 18V5C20 4.44772 19.5523 4 19 4H17M7 4H17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+            <p class="cart-drawer__empty-text">Your cart is empty</p>
+            <a href="/collections/all" class="btn btn--secondary">Continue Shopping</a>
+        </div>
+    </div>
+    <div class="cart-drawer__footer" id="cartFooter" style="display: none;">
+        <div class="cart-drawer__subtotal">
+            <span class="cart-drawer__subtotal-label">Subtotal</span>
+            <span class="cart-drawer__subtotal-amount">$<span id="cartTotal">0.00</span></span>
+        </div>
+        <div class="cart-drawer__actions">
+            <button class="btn btn--primary btn--full">Checkout</button>
+            <a href="/cart" class="btn btn--secondary btn--full">View Cart</a>
+        </div>
+    </div>
+</div>
+
+<!-- Cart Overlay -->
+<div class="cart-drawer__overlay" id="cartOverlay"></div>
