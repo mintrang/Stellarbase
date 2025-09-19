@@ -61,6 +61,10 @@ class Product {
                             document.querySelectorAll('.product__media-thumbnail').forEach(t => t.classList.remove('active'));
                             thumbnail.classList.add('active');
                         }
+                    } else if (thumbnail.dataset.video) {
+                        // Handle video thumbnail click
+                        console.log('Video thumbnail clicked:', thumbnail.dataset.imageId);
+                        // You can implement video modal or redirect here
                     }
                 }
             });
@@ -78,6 +82,10 @@ class Product {
                             document.querySelectorAll('.product__media-thumbnail-mobile').forEach(t => t.classList.remove('active'));
                             thumbnail.classList.add('active');
                         }
+                    } else if (thumbnail.dataset.video) {
+                        // Handle video thumbnail click
+                        console.log('Video thumbnail clicked:', thumbnail.dataset.imageId);
+                        // You can implement video modal or redirect here
                     }
                 }
             });
@@ -209,18 +217,26 @@ class Product {
         // Update main image (left column)
         const mainImage = document.getElementById('mainImage');
         if (mainImage) {
-            const newImage = window.productData.images[this.currentVariant.color][0];
-            mainImage.src = newImage;
-            mainImage.alt = `${window.productData.title} - ${window.productData.variants.color[this.currentVariant.color].name}`;
+            const currentImages = window.productData.images[this.currentVariant.color];
+            const firstImage = currentImages.find(img => img.type === 'image') || currentImages[0];
+            mainImage.src = firstImage.url;
+            mainImage.alt = firstImage.alt;
         }
 
         // Update secondary image (right column)
         const secondaryImage = document.getElementById('secondaryImage');
         if (secondaryImage) {
-            const newImage = window.productData.images[this.currentVariant.color][1] || window.productData.images[this.currentVariant.color][0];
-            secondaryImage.src = newImage;
-            secondaryImage.alt = `${window.productData.title} - ${window.productData.variants.color[this.currentVariant.color].name} side view`;
+            const currentImages = window.productData.images[this.currentVariant.color];
+            const secondImage = currentImages.find((img, index) => img.type === 'image' && index > 0) || currentImages[0];
+            secondaryImage.src = secondImage.url;
+            secondaryImage.alt = secondImage.alt;
         }
+
+        // Update thumbnails
+        this.updateThumbnails();
+
+        // Update color options
+        this.updateColorOptions();
 
         // Update price display
         this.updatePriceDisplay();
@@ -293,6 +309,16 @@ class Product {
                 option.style.opacity = '1';
                 option.style.cursor = 'pointer';
             }
+
+            // Update color image
+            const colorImage = option.querySelector('.color-image');
+            if (colorImage && window.productData.images[color]) {
+                const firstImage = window.productData.images[color].find(img => img.type === 'image');
+                if (firstImage) {
+                    colorImage.src = firstImage.thumbnail;
+                    colorImage.alt = firstImage.alt;
+                }
+            }
         });
 
         // Update width options
@@ -342,13 +368,95 @@ class Product {
         }
     }
 
+    updateThumbnails() {
+        const currentImages = window.productData.images[this.currentVariant.color];
+        if (!currentImages) return;
+
+        // Update desktop thumbnails
+        const desktopThumbnails = document.querySelector('.product__media-thumbnails');
+        if (desktopThumbnails) {
+            desktopThumbnails.innerHTML = currentImages.map((image, index) => {
+                const isActive = index === 0;
+                if (image.type === 'video') {
+                    return `
+                        <button class="product__media-thumbnail product__media-thumbnail--video ${isActive ? 'active' : ''}" 
+                                data-video="true" data-image-id="${image.id}">
+                            <div class="video-thumbnail">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                    <path d="M8 5V19L19 12L8 5Z" fill="currentColor"/>
+                                </svg>
+                                <span>Watch Video</span>
+                            </div>
+                        </button>
+                    `;
+                } else {
+                    return `
+                        <button class="product__media-thumbnail ${isActive ? 'active' : ''}" 
+                                data-image="${image.url}" data-image-id="${image.id}">
+                            <img src="${image.thumbnail}" alt="${image.alt}">
+                        </button>
+                    `;
+                }
+            }).join('');
+        }
+
+        // Update mobile thumbnails
+        const mobileThumbnails = document.querySelector('.product__media-thumbnails-mobile');
+        if (mobileThumbnails) {
+            mobileThumbnails.innerHTML = currentImages.slice(0, 5).map((image, index) => {
+                const isActive = index === 0;
+                if (image.type === 'video') {
+                    return `
+                        <button class="product__media-thumbnail-mobile product__media-thumbnail-mobile--video ${isActive ? 'active' : ''}" 
+                                data-video="true" data-image-id="${image.id}">
+                            <div class="video-thumbnail">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                    <path d="M8 5V19L19 12L8 5Z" fill="currentColor"/>
+                                </svg>
+                                <span>Watch Video</span>
+                            </div>
+                        </button>
+                    `;
+                } else {
+                    return `
+                        <button class="product__media-thumbnail-mobile ${isActive ? 'active' : ''}" 
+                                data-image="${image.url}" data-image-id="${image.id}">
+                            <img src="${image.thumbnail}" alt="${image.alt}">
+                        </button>
+                    `;
+                }
+            }).join('');
+        }
+    }
+
+    updateColorOptions() {
+        const colorSelector = document.querySelector('.color-selector');
+        if (!colorSelector) return;
+
+        const colors = Object.keys(window.productData.variants.color);
+        colorSelector.innerHTML = colors.map(colorKey => {
+            const colorVariant = window.productData.variants.color[colorKey];
+            const colorImages = window.productData.images[colorKey];
+            const firstImage = colorImages ? colorImages.find(img => img.type === 'image') : null;
+            const isSelected = this.currentVariant.color === colorKey;
+            
+            return `
+                <div class="color-option ${isSelected ? 'color-option--selected' : ''}" data-color="${colorKey}">
+                    <img src="${firstImage ? firstImage.thumbnail : ''}" 
+                         alt="${firstImage ? firstImage.alt : colorVariant.name}" 
+                         class="color-image">
+                </div>
+            `;
+        }).join('');
+    }
+
     navigateImage(direction) {
         const currentImages = window.productData.images[this.currentVariant.color];
         const currentImage = document.getElementById('mainImage');
         if (!currentImage || !currentImages) return;
 
         const currentSrc = currentImage.src;
-        const currentIndex = currentImages.findIndex(img => img === currentSrc);
+        const currentIndex = currentImages.findIndex(img => img.url === currentSrc);
         
         let newIndex;
         if (direction === 1) {
@@ -358,14 +466,15 @@ class Product {
         }
 
         const newImage = currentImages[newIndex];
-        currentImage.src = newImage;
+        currentImage.src = newImage.url;
+        currentImage.alt = newImage.alt;
 
         // Update active thumbnails
         document.querySelectorAll('.product__media-thumbnail').forEach(t => t.classList.remove('active'));
         document.querySelectorAll('.product__media-thumbnail-mobile').forEach(t => t.classList.remove('active'));
         
-        const desktopThumbnail = document.querySelector(`[data-image="${newImage}"]`);
-        const mobileThumbnail = document.querySelector(`.product__media-thumbnail-mobile[data-image="${newImage}"]`);
+        const desktopThumbnail = document.querySelector(`[data-image-id="${newImage.id}"]`);
+        const mobileThumbnail = document.querySelector(`.product__media-thumbnail-mobile[data-image-id="${newImage.id}"]`);
         
         if (desktopThumbnail) desktopThumbnail.classList.add('active');
         if (mobileThumbnail) mobileThumbnail.classList.add('active');
