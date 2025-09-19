@@ -256,17 +256,46 @@ class App {
                                     <div class="size-guide-links">
                                         <a href="#" class="size-guide-link">Find my size</a>
                                     </div>
-                                    <div class="size-grid">
-                                        <button type="button" class="size-option" data-size="size-6">6</button>
-                                        <button type="button" class="size-option" data-size="size-6.5">6.5</button>
-                                        <button type="button" class="size-option" data-size="size-7">7</button>
-                                        <button type="button" class="size-option" data-size="size-7.5">7.5</button>
-                                        <button type="button" class="size-option" data-size="size-8">8</button>
-                                        <button type="button" class="size-option" data-size="size-8.5">8.5</button>
-                                        <button type="button" class="size-option" data-size="size-9">9</button>
-                                        <button type="button" class="size-option" data-size="size-9.5">9.5</button>
-                                        <button type="button" class="size-option" data-size="size-10">10</button>
-                                        <button type="button" class="size-option" data-size="size-10.5">10.5</button>
+                                    <div class="size-selector">
+                                        <button type="button" class="size-selector__button" id="sizeSelectButton">
+                                            <span class="size-selector__text">Choose a size</span>
+                                            <svg class="size-selector__arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                                <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
+                                        </button>
+                                        <div class="size-selector__overlay" id="sizeOverlay"></div>
+                                        <div class="size-selector__dropdown" id="sizeDropdown">
+                                            <div class="size-selector__header">
+                                                <h3 class="size-selector__title">Choose a size</h3>
+                                                <button class="size-selector__close" id="sizeCloseButton">
+                                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                                        <path d="M15 5L5 15M5 5L15 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            
+                                            <div class="size-selector__tips">
+                                                <div class="size-tip">
+                                                    <h4 class="size-tip__title">SIZING TIPS</h4>
+                                                    <p class="size-tip__text">True to size</p>
+                                                    <p class="size-tip__subtext">You can choose your usual size.</p>
+                                                </div>
+                                                <div class="size-tip">
+                                                    <h4 class="size-tip__title">FIND YOUR SIZE</h4>
+                                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                                        <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="size-selector__summary" id="sizeSummary">
+                                                <!-- Stock summary will be populated by JavaScript -->
+                                            </div>
+                                            
+                                            <div class="size-selector__options" id="sizeOptions">
+                                                <!-- Size options will be populated by JavaScript -->
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 

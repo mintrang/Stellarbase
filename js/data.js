@@ -50,16 +50,14 @@ const productData = {
             wide: { name: 'Wide (EE)', price: 0, stock: 8 }
         },
         size: {
-            'size-6': { name: '6', price: 0, stock: 2 },
-            'size-6.5': { name: '6.5', price: 0, stock: 4 },
-            'size-7': { name: '7', price: 0, stock: 6 },
-            'size-7.5': { name: '7.5', price: 0, stock: 8 },
-            'size-8': { name: '8', price: 0, stock: 10 },
-            'size-8.5': { name: '8.5', price: 0, stock: 8 },
-            'size-9': { name: '9', price: 0, stock: 6 },
-            'size-9.5': { name: '9.5', price: 0, stock: 4 },
-            'size-10': { name: '10', price: 0, stock: 2 },
-            'size-10.5': { name: '10.5', price: 0, stock: 1 }
+            'size-35': { name: '35', price: 0, stock: 0 },
+            'size-36': { name: '36', price: 0, stock: 2 },
+            'size-37': { name: '37', price: 0, stock: 3 },
+            'size-38': { name: '38', price: 0, stock: 8 },
+            'size-39': { name: '39', price: 0, stock: 10 },
+            'size-40': { name: '40', price: 0, stock: 6 },
+            'size-41': { name: '41', price: 0, stock: 2 },
+            'size-42': { name: '42', price: 0, stock: 1 }
         }
     },
     features: [

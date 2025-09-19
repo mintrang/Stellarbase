@@ -4,7 +4,7 @@ class Product {
         this.currentVariant = {
             color: 'brandy',
             width: 'wide',
-            size: 'size-8'
+            size: 'size-39'
         };
         this.quantity = 1;
         this.maxQuantity = 10;
@@ -101,6 +101,7 @@ class Product {
         // Size dropdown
         const sizeSelectButton = document.getElementById('sizeSelectButton');
         const sizeDropdown = document.getElementById('sizeDropdown');
+        const sizeOverlay = document.getElementById('sizeOverlay');
         const sizeCloseButton = document.getElementById('sizeCloseButton');
 
         if (sizeSelectButton) {
@@ -115,12 +116,11 @@ class Product {
             });
         }
 
-        // Close dropdown when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!e.target.closest('.size-selector')) {
+        if (sizeOverlay) {
+            sizeOverlay.addEventListener('click', () => {
                 this.closeSizeDropdown();
-            }
-        });
+            });
+        }
 
         // Quantity controls
         const decreaseBtn = document.getElementById('decreaseBtn');
@@ -230,6 +230,9 @@ class Product {
         
         // Update size button text
         this.updateSizeButtonText();
+        
+        // Update size dropdown
+        this.updateSizeDropdown();
     }
 
     updateSizeButtonText() {
@@ -370,13 +373,34 @@ class Product {
 
     updateSizeDropdown() {
         const sizeOptions = document.getElementById('sizeOptions');
-        if (!sizeOptions) return;
+        const sizeSummary = document.getElementById('sizeSummary');
+        
+        if (!sizeOptions) {
+            console.log('Size options container not found');
+            return;
+        }
+
+        console.log('Updating size dropdown...');
+        console.log('Product data:', window.productData);
+        console.log('Size variants:', window.productData?.variants?.size);
+
+        // Update stock summary
+        this.updateStockSummary();
 
         const sizes = Object.keys(window.productData.variants.size);
         sizeOptions.innerHTML = sizes.map(sizeKey => {
             const variant = window.productData.variants.size[sizeKey];
             const isSelected = this.currentVariant.size === sizeKey;
             const stockStatus = this.getStockStatus(variant.stock);
+            
+            let statusText = stockStatus.text;
+            if (variant.stock === 0) {
+                statusText = 'Out of stock | Waitlist';
+            } else if (variant.stock <= 3) {
+                statusText = `Only ${variant.stock} left!`;
+            } else {
+                statusText = `${variant.stock} in stock`;
+            }
             
             return `
                 <div class="size-option ${isSelected ? 'size-option--selected' : ''} ${variant.stock === 0 ? 'size-option--disabled' : ''}" 
@@ -385,12 +409,14 @@ class Product {
                         <span class="size-option__size">${variant.name}</span>
                         <div class="size-option__status">
                             <span class="size-option__dot size-option__dot--${stockStatus.type}"></span>
-                            <span class="size-option__text">${stockStatus.text}</span>
+                            <span class="size-option__text">${statusText}</span>
                         </div>
                     </div>
-                    <svg class="size-option__arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                        <path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
+                    ${variant.stock > 0 ? `
+                        <svg class="size-option__arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    ` : ''}
                 </div>
             `;
         }).join('');
@@ -407,27 +433,86 @@ class Product {
         });
     }
 
+    updateStockSummary() {
+        const sizeSummary = document.getElementById('sizeSummary');
+        if (!sizeSummary) return;
+
+        const sizes = Object.values(window.productData.variants.size);
+        let inStock = 0, lowStock = 0, outOfStock = 0;
+
+        sizes.forEach(variant => {
+            if (variant.stock === 0) {
+                outOfStock++;
+            } else if (variant.stock <= 3) {
+                lowStock++;
+            } else {
+                inStock++;
+            }
+        });
+
+        sizeSummary.innerHTML = `
+            <div class="size-summary__item">
+                <span class="size-summary__dot size-summary__dot--in"></span>
+                <span>${inStock} in stock</span>
+            </div>
+            <div class="size-summary__item">
+                <span class="size-summary__dot size-summary__dot--low"></span>
+                <span>${lowStock} few left</span>
+            </div>
+            <div class="size-summary__item">
+                <span class="size-summary__dot size-summary__dot--out"></span>
+                <span>${outOfStock} out of stock</span>
+            </div>
+        `;
+    }
+
     getStockStatus(stock) {
         if (stock === 0) {
-            return { type: 'out', text: 'Out of stock | Waitlist' };
+            return { type: 'out', text: 'Out of stock | Waitlist', count: 0 };
         } else if (stock <= 3) {
-            return { type: 'low', text: 'Only few left!' };
+            return { type: 'low', text: 'Only few left!', count: stock };
         } else {
-            return { type: 'in', text: 'In stock' };
+            return { type: 'in', text: 'In stock', count: stock };
         }
     }
 
     toggleSizeDropdown() {
         const dropdown = document.getElementById('sizeDropdown');
-        if (dropdown) {
-            dropdown.classList.toggle('size-selector__dropdown--open');
+        const overlay = document.getElementById('sizeOverlay');
+        
+        if (dropdown && overlay) {
+            const isOpen = dropdown.classList.contains('size-selector__dropdown--open');
+            
+            if (isOpen) {
+                this.closeSizeDropdown();
+            } else {
+                this.openSizeDropdown();
+            }
+        }
+    }
+
+    openSizeDropdown() {
+        const dropdown = document.getElementById('sizeDropdown');
+        const overlay = document.getElementById('sizeOverlay');
+        
+        if (dropdown && overlay) {
+            // Update dropdown content before opening
+            this.updateSizeDropdown();
+            
+            overlay.classList.add('size-selector__overlay--open');
+            dropdown.classList.add('size-selector__dropdown--open');
+            document.body.style.overflow = 'hidden';
         }
     }
 
     closeSizeDropdown() {
         const dropdown = document.getElementById('sizeDropdown');
-        if (dropdown) {
+        const overlay = document.getElementById('sizeOverlay');
+        
+        if (dropdown && overlay) {
+            overlay.classList.remove('size-selector__overlay--open');
             dropdown.classList.remove('size-selector__dropdown--open');
+            document.body.style.overflow = '';
         }
     }
 
