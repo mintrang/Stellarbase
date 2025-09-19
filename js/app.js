@@ -161,7 +161,40 @@ class App {
                                     <button class="product__media-enlarge" id="enlargeBtn">
                                         <span>Q ENLARGE</span>
                                     </button>
+                                    <button class="product__media-nav product__media-nav--prev" id="prevBtn">
+                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                            <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </button>
+                                    <button class="product__media-nav product__media-nav--next" id="nextBtn">
+                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                            <path d="M7.5 5L12.5 10L7.5 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </button>
                                 </div>
+                            </div>
+                            
+                            <div class="product__media-thumbnails-mobile">
+                                <button class="product__media-thumbnail-mobile active" data-image="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=800&h=800&fit=crop">
+                                    <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=100&h=100&fit=crop" alt="Captain boots front view">
+                                </button>
+                                <button class="product__media-thumbnail-mobile" data-image="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=800&h=800&fit=crop">
+                                    <img src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=100&h=100&fit=crop" alt="Captain boots side view">
+                                </button>
+                                <button class="product__media-thumbnail-mobile" data-image="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=800&h=800&fit=crop">
+                                    <img src="https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=100&h=100&fit=crop" alt="Captain boots top view">
+                                </button>
+                                <button class="product__media-thumbnail-mobile" data-image="https://images.unsplash.com/photo-1583394838336-acd977736f90?w=800&h=800&fit=crop">
+                                    <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?w=100&h=100&fit=crop" alt="Captain boots sole view">
+                                </button>
+                                <button class="product__media-thumbnail-mobile product__media-thumbnail-mobile--video" data-video="true">
+                                    <div class="video-thumbnail">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                            <path d="M8 5V19L19 12L8 5Z" fill="currentColor"/>
+                                        </svg>
+                                        <span>Watch Video</span>
+                                    </div>
+                                </button>
                             </div>
                         </div>
 
@@ -251,13 +284,27 @@ class App {
                                     <button onclick="setOutOfStock()" class="demo-btn">Set Out of Stock</button>
                                     <button onclick="setLowStock()" class="demo-btn">Set Low Stock</button>
                                     <button onclick="resetStock()" class="demo-btn">Reset Stock</button>
-                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            `;
-        }
+                
+                <div class="floating-actions">
+                    <button class="floating-action-btn floating-action-btn--purple" id="aiBtn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-5 0v-15A2.5 2.5 0 0 1 9.5 2z" fill="currentColor"/>
+                            <path d="M14.5 2A2.5 2.5 0 0 1 17 4.5v15a2.5 2.5 0 0 1-5 0v-15A2.5 2.5 0 0 1 14.5 2z" fill="currentColor"/>
+                        </svg>
+                    </button>
+                    <button class="floating-action-btn floating-action-btn--blue" id="helpBtn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z" fill="currentColor"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        `;
+    }
     }
 
     loadCart() {

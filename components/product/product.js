@@ -48,22 +48,55 @@ class Product {
             }
         });
 
-        // Thumbnail selectors
-        document.addEventListener('click', (e) => {
-            if (e.target.closest('.product__media-thumbnail')) {
-                const thumbnail = e.target.closest('.product__media-thumbnail');
-                if (thumbnail.dataset.image) {
-                    const mainImage = document.getElementById('mainImage');
-                    if (mainImage) {
-                        mainImage.src = thumbnail.dataset.image;
-                        
-                        // Update active thumbnail
-                        document.querySelectorAll('.product__media-thumbnail').forEach(t => t.classList.remove('active'));
-                        thumbnail.classList.add('active');
+            // Thumbnail selectors
+            document.addEventListener('click', (e) => {
+                if (e.target.closest('.product__media-thumbnail')) {
+                    const thumbnail = e.target.closest('.product__media-thumbnail');
+                    if (thumbnail.dataset.image) {
+                        const mainImage = document.getElementById('mainImage');
+                        if (mainImage) {
+                            mainImage.src = thumbnail.dataset.image;
+                            
+                            // Update active thumbnail
+                            document.querySelectorAll('.product__media-thumbnail').forEach(t => t.classList.remove('active'));
+                            thumbnail.classList.add('active');
+                        }
                     }
                 }
+            });
+
+            // Mobile thumbnail selectors
+            document.addEventListener('click', (e) => {
+                if (e.target.closest('.product__media-thumbnail-mobile')) {
+                    const thumbnail = e.target.closest('.product__media-thumbnail-mobile');
+                    if (thumbnail.dataset.image) {
+                        const mainImage = document.getElementById('mainImage');
+                        if (mainImage) {
+                            mainImage.src = thumbnail.dataset.image;
+                            
+                            // Update active mobile thumbnail
+                            document.querySelectorAll('.product__media-thumbnail-mobile').forEach(t => t.classList.remove('active'));
+                            thumbnail.classList.add('active');
+                        }
+                    }
+                }
+            });
+
+            // Navigation arrows
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            if (prevBtn) {
+                prevBtn.addEventListener('click', () => {
+                    this.navigateImage(-1);
+                });
             }
-        });
+            
+            if (nextBtn) {
+                nextBtn.addEventListener('click', () => {
+                    this.navigateImage(1);
+                });
+            }
 
         // Size dropdown
         const sizeSelectButton = document.getElementById('sizeSelectButton');
@@ -304,6 +337,35 @@ class Product {
             const sizeVariant = window.productData.variants.size[this.currentVariant.size];
             selectedSize.textContent = sizeVariant.name;
         }
+    }
+
+    navigateImage(direction) {
+        const currentImages = window.productData.images[this.currentVariant.color];
+        const currentImage = document.getElementById('mainImage');
+        if (!currentImage || !currentImages) return;
+
+        const currentSrc = currentImage.src;
+        const currentIndex = currentImages.findIndex(img => img === currentSrc);
+        
+        let newIndex;
+        if (direction === 1) {
+            newIndex = (currentIndex + 1) % currentImages.length;
+        } else {
+            newIndex = currentIndex === 0 ? currentImages.length - 1 : currentIndex - 1;
+        }
+
+        const newImage = currentImages[newIndex];
+        currentImage.src = newImage;
+
+        // Update active thumbnails
+        document.querySelectorAll('.product__media-thumbnail').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.product__media-thumbnail-mobile').forEach(t => t.classList.remove('active'));
+        
+        const desktopThumbnail = document.querySelector(`[data-image="${newImage}"]`);
+        const mobileThumbnail = document.querySelector(`.product__media-thumbnail-mobile[data-image="${newImage}"]`);
+        
+        if (desktopThumbnail) desktopThumbnail.classList.add('active');
+        if (mobileThumbnail) mobileThumbnail.classList.add('active');
     }
 
     updateSizeDropdown() {
