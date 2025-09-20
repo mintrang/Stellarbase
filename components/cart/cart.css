@@ -23,7 +23,7 @@
     display: flex;
     flex-direction: column;
     height: 100vh;
-    overflow: hidden;
+    overflow-y: auto;
 }
 
 .cart-drawer__main {
@@ -193,6 +193,14 @@
 
 .cart-item__quantity button:hover:not(:disabled) {
     background: #f8f9fa;
+}
+
+.cart-item__quantity button:focus {
+    outline: none;
+}
+
+.cart-item__quantity button:active {
+    outline: none;
 }
 
 .cart-item__quantity button:disabled {

@@ -56,6 +56,10 @@
     cursor: not-allowed;
 }
 
+.btn:focus {
+    outline: none;
+}
+
 .btn__icon {
     display: flex;
     align-items: center;

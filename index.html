@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Premium Wireless Headphones - Stellarbase</title>
     <meta name="description" content="High-quality wireless headphones with noise cancellation, premium sound, and comfortable design. Available in multiple colors and sizes.">
     <meta name="keywords" content="wireless headphones, noise cancellation, premium audio, bluetooth headphones">
+    <meta name="author" content="SneakerHub">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#000000">
     
     <!-- CSS Files -->
     <link rel="stylesheet" href="css/variables.css">
@@ -22,9 +25,14 @@
     <link rel="stylesheet" href="components/footer/footer.css">
     
     <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Skip to main content link -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
     <!-- Header Component -->
     <div id="header-container"></div>
     
@@ -32,7 +40,7 @@
     <div id="navigation-container"></div>
 
     <!-- Main Content -->
-    <main class="main-content">
+    <main id="main-content" class="main-content">
         <div class="page-width">
             <!-- Product Component -->
             <div id="product-container">
@@ -44,7 +52,7 @@
                             </div>
                             <div class="product__media-main">
                                 <div class="product__media-container">
-                                    <img id="mainImage" src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=800&h=800&fit=crop" alt="Captain boots" class="product__media-image">
+                                    <img id="mainImage" src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=800&h=800&fit=crop" alt="Captain boots" class="product__media-image" loading="eager">
                                 </div>
                             </div>
                         </div>
@@ -70,9 +78,9 @@
                                 <div class="product-form__group">
                                     <h3 class="product-form__section-title">Size: <span id="selectedSize">Choose a size</span></h3>
                                     <div class="size-selector">
-                                        <button type="button" class="size-selector__button" id="sizeSelectButton">
+                                        <button type="button" class="size-selector__button" id="sizeSelectButton" aria-label="Choose a size" aria-expanded="false" aria-haspopup="listbox">
                                             <span class="size-selector__text">Choose a size</span>
-                                            <svg class="size-selector__arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                            <svg class="size-selector__arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
                                                 <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                             </svg>
                                         </button>
@@ -80,8 +88,8 @@
                                 </div>
 
                                 <div class="product-form__actions">
-                                    <button type="submit" class="btn btn--primary btn--full" id="addToCartBtn">
-                                        <span class="btn__text">Add to cart - 5.406.000₫</span>
+                                    <button type="submit" class="btn btn--primary btn--full" id="addToCartBtn" aria-label="Add to cart">
+                                        <span class="btn__text">Add to cart</span>
                                     </button>
                                 </div>
                             </form>
@@ -97,6 +105,7 @@
     
     <!-- Footer Component -->
     <div id="footer-container"></div>
+
 
     <!-- JavaScript Files -->
     <script src="js/data.js"></script>

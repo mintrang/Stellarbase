@@ -208,13 +208,17 @@ class Cart {
                             <div class="cart-item__controls">
                                 <div class="cart-item__quantity">
                                     <button onclick="window.cart.updateQuantity(${index}, ${item.quantity - 1})" 
-                                            ${item.quantity <= 1 ? 'disabled' : ''}>-</button>
+                                            ${item.quantity <= 1 ? 'disabled' : ''} 
+                                            aria-label="Decrease quantity for ${item.title}">-</button>
                                     <input type="number" value="${item.quantity}" min="1" max="${maxQuantity}" 
-                                           onchange="window.cart.updateQuantity(${index}, parseInt(this.value))">
+                                           onchange="window.cart.updateQuantity(${index}, parseInt(this.value))" 
+                                           aria-label="Quantity for ${item.title}">
                                     <button onclick="window.cart.updateQuantity(${index}, ${item.quantity + 1})" 
-                                            ${isMaxReached ? 'disabled' : ''}>+</button>
+                                            ${isMaxReached ? 'disabled' : ''} 
+                                            aria-label="Increase quantity for ${item.title}">+</button>
                                 </div>
-                                <button class="cart-item__remove" onclick="window.cart.removeItem(${index})">Remove</button>
+                                <button class="cart-item__remove" onclick="window.cart.removeItem(${index})" 
+                                        aria-label="Remove ${item.title} from cart">Remove</button>
                             </div>
                         </div>
                     `;
@@ -308,6 +312,13 @@ class CartDrawer {
             });
         }
 
+        const checkoutBtn = document.getElementById('checkoutBtn');
+        if (checkoutBtn) {
+            checkoutBtn.addEventListener('click', () => {
+                this.handleCheckout();
+            });
+        }
+
         if (this.overlay) {
             this.overlay.addEventListener('click', () => {
                 this.close();
@@ -340,6 +351,23 @@ class CartDrawer {
         if (this.drawer) this.drawer.classList.remove('open');
         if (this.overlay) this.overlay.classList.remove('active');
         document.body.style.overflow = '';
+    }
+
+    handleCheckout() {
+        if (this.items.length === 0) {
+            if (window.Utils) {
+                window.Utils.showNotification('Your cart is empty', 'warning');
+            }
+            return;
+        }
+
+        // For now, just show a notification
+        if (window.Utils) {
+            window.Utils.showNotification('Checkout functionality coming soon!', 'info');
+        }
+        
+        // In a real app, you would redirect to checkout page
+        // window.location.href = '/checkout';
     }
 }
 

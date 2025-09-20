@@ -45,6 +45,16 @@
     border: none;
     cursor: pointer;
     padding: var(--spacing-sm);
+    border-radius: var(--border-radius);
+    transition: var(--transition);
+}
+
+.mobile-menu-toggle:focus {
+    outline: none;
+}
+
+.mobile-menu-toggle:active {
+    outline: none;
 }
 
 .mobile-menu-toggle span {
@@ -122,6 +132,16 @@
 .search-toggle:hover,
 .cart-toggle:hover {
     color: var(--color-primary);
+}
+
+.search-toggle:focus,
+.cart-toggle:focus {
+    outline: none;
+}
+
+.search-toggle:active,
+.cart-toggle:active {
+    outline: none;
 }
 
 .cart-count {
