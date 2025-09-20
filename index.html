@@ -43,60 +43,7 @@
     <main id="main-content" class="main-content">
         <div class="page-width">
             <!-- Product Component -->
-            <div id="product-container">
-                <div class="product">
-                    <div class="product__inner">
-                        <div class="product__media">
-                            <div class="product__media-thumbnails">
-                                <!-- Thumbnails will be rendered dynamically by JavaScript -->
-                            </div>
-                            <div class="product__media-main">
-                                <div class="product__media-container">
-                                    <img id="mainImage" src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=800&h=800&fit=crop" alt="Captain boots" class="product__media-image" loading="eager">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="product__info">
-                            <div class="product__header">
-                                <h1 class="product__title" id="productTitle">Captain</h1>
-                                <div class="product__price">
-                                    <span class="price__current" id="currentPrice">5.406.000₫</span>
-                                    <span class="price__original" id="originalPrice" style="display: none;">5.200.000₫</span>
-                                    <span class="price__discount" id="discountPercentage" style="display: none;">Save 10%</span>
-                                </div>
-                            </div>
-
-                            <form class="product-form" id="productForm">
-                                <div class="product-form__group">
-                                    <h3 class="product-form__section-title">Color: <span id="selectedColor">Black</span></h3>
-                                    <div class="color-selector">
-                                        <!-- Color options will be rendered dynamically by JavaScript -->
-                                    </div>
-                                </div>
-
-                                <div class="product-form__group">
-                                    <h3 class="product-form__section-title">Size: <span id="selectedSize">Choose a size</span></h3>
-                                    <div class="size-selector">
-                                        <button type="button" class="size-selector__button" id="sizeSelectButton" aria-label="Choose a size" aria-expanded="false" aria-haspopup="listbox">
-                                            <span class="size-selector__text">Choose a size</span>
-                                            <svg class="size-selector__arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                                                <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                </div>
-
-                                <div class="product-form__actions">
-                                    <button type="submit" class="btn btn--primary btn--full" id="addToCartBtn" aria-label="Add to cart">
-                                        <span class="btn__text">Add to cart</span>
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div id="product-container"></div>
         </div>
     </main>
 
