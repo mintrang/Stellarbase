@@ -5,7 +5,7 @@
     align-items: start;
     max-width: 1600px;
     margin: 0 auto;
-    padding: 0 8px;
+    padding: 0 20px;
 }
 
 .product__media {
@@ -1223,16 +1223,25 @@
 /* Product Details Section */
 .product-details {
     margin-top: 60px;
-    padding: 0 8px;
+    padding: 0 var(--spacing-md);
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .product-details__inner {
-    max-width: 1600px;
-    margin: 0 auto;
+    max-width: 100%;
+    margin: 0;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 60px;
     align-items: start;
+}
+
+@media (min-width: 768px) {
+    .product-details {
+        padding: 0 var(--spacing-xl);
+    }
 }
 
 .product-features__title,
@@ -1353,14 +1362,12 @@
 /* Product Information Section */
 .product-info-section {
     margin: 60px 0;
-    padding: 0 8px;
 }
 
 .product-info__container {
     position: relative;
-    max-width: 1600px;
+    max-width: 100vw;
     margin: 0 auto;
-    border-radius: 12px;
     overflow: hidden;
     background: #f8f9fa;
 }
@@ -1415,20 +1422,7 @@
     margin: 0;
 }
 
-.product-info__icon {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    width: 40px;
-    height: 40px;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #1a1a1a;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-}
+
 
 /* Product Info Section Responsive */
 @media (max-width: 1024px) {
@@ -1475,13 +1469,6 @@
     .product-info__description {
         font-size: 14px;
         line-height: 1.5;
-    }
-
-    .product-info__icon {
-        bottom: 15px;
-        right: 15px;
-        width: 35px;
-        height: 35px;
     }
 }
 
@@ -1549,13 +1536,6 @@
 
 .pricing-philosophy__description p {
     margin: 0;
-}
-
-.pricing-philosophy__selling-points {
-    background: #f1f3f4;
-    padding: 24px;
-    border-radius: 8px;
-    border: 1px solid #e9ecef;
 }
 
 .selling-points__list {
@@ -1659,10 +1639,6 @@
     
     .pricing-philosophy__description {
         font-size: 15px;
-    }
-    
-    .pricing-philosophy__selling-points {
-        padding: 20px;
     }
     
     .selling-points__item {

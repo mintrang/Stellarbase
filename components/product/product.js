@@ -486,14 +486,34 @@ class Product {
         const sellingPointsList = document.getElementById('sellingPointsList');
         const pricingReadMoreLink = document.getElementById('pricingReadMoreLink');
 
-        if (!pricingProductImage || !pricingPhilosophyTitle || !pricingPhilosophyDescription || !sellingPointsList || !pricingReadMoreLink) return;
+        console.log('Updating pricing philosophy...', {
+            pricingProductImage: !!pricingProductImage,
+            pricingPhilosophyTitle: !!pricingPhilosophyTitle,
+            pricingPhilosophyDescription: !!pricingPhilosophyDescription,
+            sellingPointsList: !!sellingPointsList,
+            pricingReadMoreLink: !!pricingReadMoreLink
+        });
+
+        if (!pricingProductImage || !pricingPhilosophyTitle || !pricingPhilosophyDescription) {
+            console.log('Essential elements not found, retrying in 500ms...');
+            setTimeout(() => this.updatePricingPhilosophy(), 500);
+            return;
+        }
 
         const pricingData = window.productData.pricingPhilosophy;
-        if (!pricingData) return;
+        if (!pricingData) {
+            console.log('Pricing data not found');
+            return;
+        }
+
+        console.log('Pricing data found:', pricingData);
 
         // Update product image
-        pricingProductImage.src = pricingData.productImage;
-        pricingProductImage.alt = 'Product';
+        if (pricingData.productImage) {
+            pricingProductImage.src = pricingData.productImage;
+            pricingProductImage.alt = 'Product';
+            console.log('Image updated:', pricingData.productImage);
+        }
 
         // Update title
         pricingPhilosophyTitle.textContent = pricingData.title;
@@ -501,13 +521,17 @@ class Product {
         // Update description
         pricingPhilosophyDescription.textContent = pricingData.description;
 
-        // Update selling points
-        sellingPointsList.innerHTML = pricingData.sellingPoints.map(point => 
-            `<div class="selling-points__item">${point}</div>`
-        ).join('');
+        // Update selling points if element exists
+        if (sellingPointsList && pricingData.sellingPoints) {
+            sellingPointsList.innerHTML = pricingData.sellingPoints.map(point => 
+                `<div class="selling-points__item">${point}</div>`
+            ).join('');
+        }
 
-        // Update read more link
-        pricingReadMoreLink.href = pricingData.readMoreLink;
+        // Update read more link if element exists
+        if (pricingReadMoreLink && pricingData.readMoreLink) {
+            pricingReadMoreLink.href = pricingData.readMoreLink;
+        }
     }
 
     updateSizeInfo() {
@@ -588,13 +612,7 @@ class Product {
                 'Expedited shipping options available at checkout'
             ];
             
-            // Add color and size specific shipping info
-            const specificShippingInfo = `${shippingInfo} for ${currentColorVariant.name} in size ${sizeVariant.name}`;
             
-            shippingInfoList.innerHTML = [
-                ...baseShippingItems,
-                `<li class="shipping-info__item shipping-info__item--specific">${specificShippingInfo}</li>`
-            ].map(item => `<li class="shipping-info__item">${item}</li>`).join('');
         }
     }
 
