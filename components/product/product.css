@@ -1504,89 +1504,6 @@
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
-/* Price Comparison Chart */
-.price-comparison {
-    width: 100%;
-}
-
-.price-comparison__chart {
-    position: relative;
-    margin-bottom: 20px;
-}
-
-.price-comparison__bar {
-    position: relative;
-    height: 8px;
-    background: #e9ecef;
-    border-radius: 4px;
-    margin-bottom: 30px;
-}
-
-.price-comparison__marker {
-    position: absolute;
-    top: -4px;
-    width: 16px;
-    height: 16px;
-    background: #1a1a1a;
-    border-radius: 50%;
-    transform: translateX(-50%);
-}
-
-.price-comparison__marker--cost {
-    left: 0%;
-}
-
-.price-comparison__marker--our-price {
-    left: 12.5%;
-    background: #007bff;
-}
-
-.price-comparison__marker--dtc {
-    left: 37.5%;
-    background: #ffc107;
-}
-
-.price-comparison__marker--retail {
-    left: 75%;
-    background: #dc3545;
-}
-
-.price-comparison__marker::after {
-    content: attr(data-label);
-    position: absolute;
-    top: 25px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 12px;
-    font-weight: 600;
-    color: #1a1a1a;
-    white-space: nowrap;
-}
-
-.price-comparison__scale {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 15px;
-}
-
-.price-comparison__scale-mark {
-    font-size: 14px;
-    font-weight: 600;
-    color: #666;
-}
-
-.price-comparison__arrow {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: #666;
-    font-size: 14px;
-    font-weight: 500;
-}
-
-.price-comparison__arrow-text {
-    margin-right: 8px;
-}
 
 /* Right Column */
 .pricing-philosophy__right {
@@ -1720,6 +1637,73 @@
     }
     
     .selling-points__item {
+        font-size: 13px;
+    }
+}
+
+/* Size-specific Features */
+.size-specific-features {
+    margin-top: 20px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+}
+
+.product__features-subtitle {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1a1a1a;
+    margin: 0 0 12px 0;
+}
+
+.size-features-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.size-features-list .product__feature-item {
+    font-size: 14px;
+    color: #4a4a4a;
+    margin-bottom: 8px;
+    padding-left: 20px;
+    position: relative;
+}
+
+.size-features-list .product__feature-item::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #007bff;
+    font-weight: bold;
+}
+
+.size-stock-info {
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 8px;
+}
+
+.size-stock-info:not(:empty) {
+    padding: 8px 12px;
+    background: #e3f2fd;
+    border-radius: 4px;
+    border-left: 3px solid #2196f3;
+}
+
+/* Size-specific Features Responsive */
+@media (max-width: 768px) {
+    .size-specific-features {
+        margin-top: 15px;
+        padding: 15px;
+    }
+    
+    .product__features-subtitle {
+        font-size: 15px;
+    }
+    
+    .size-features-list .product__feature-item {
         font-size: 13px;
     }
 }

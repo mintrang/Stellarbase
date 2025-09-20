@@ -2,8 +2,7 @@
 class Product {
     constructor() {
         this.currentVariant = {
-            color: 'brandy',
-            width: 'wide',
+            color: 'black',
             size: 'size-39'
         };
         this.quantity = 1;
@@ -204,9 +203,15 @@ class Product {
     }
 
     getMaxStock() {
-        const colorStock = window.productData.variants.color[this.currentVariant.color].stock;
-        const sizeStock = window.productData.variants.size[this.currentVariant.size].stock;
-        return Math.min(colorStock, sizeStock, this.maxQuantity);
+        const currentColorVariant = window.productData.variants.color[this.currentVariant.color];
+        const currentSizeVariant = window.productData.variants.size[this.currentVariant.size];
+        
+        if (currentColorVariant && currentSizeVariant) {
+            const colorStock = currentColorVariant.stock;
+            const sizeStock = currentSizeVariant.stock[this.currentVariant.color];
+            return Math.min(colorStock, sizeStock, this.maxQuantity);
+        }
+        return 0;
     }
 
     isVariantInStock() {
@@ -217,19 +222,23 @@ class Product {
         // Update main image (left column)
         const mainImage = document.getElementById('mainImage');
         if (mainImage) {
-            const currentImages = window.productData.images[this.currentVariant.color];
-            const firstImage = currentImages.find(img => img.type === 'image') || currentImages[0];
-            mainImage.src = firstImage.url;
-            mainImage.alt = firstImage.alt;
+            const currentColorVariant = window.productData.variants.color[this.currentVariant.color];
+            if (currentColorVariant && currentColorVariant.images) {
+                const firstImage = currentColorVariant.images.find(img => img.type === 'image') || currentColorVariant.images[0];
+                mainImage.src = firstImage.url;
+                mainImage.alt = firstImage.alt;
+            }
         }
 
         // Update secondary image (right column)
         const secondaryImage = document.getElementById('secondaryImage');
         if (secondaryImage) {
-            const currentImages = window.productData.images[this.currentVariant.color];
-            const secondImage = currentImages.find((img, index) => img.type === 'image' && index > 0) || currentImages[0];
-            secondaryImage.src = secondImage.url;
-            secondaryImage.alt = secondImage.alt;
+            const currentColorVariant = window.productData.variants.color[this.currentVariant.color];
+            if (currentColorVariant && currentColorVariant.images) {
+                const secondImage = currentColorVariant.images.find((img, index) => img.type === 'image' && index > 0) || currentColorVariant.images[0];
+                secondaryImage.src = secondImage.url;
+                secondaryImage.alt = secondImage.alt;
+            }
         }
 
         // Update thumbnails
@@ -242,7 +251,12 @@ class Product {
         this.updateProductInfo();
 
         // Update pricing philosophy
-        this.updatePricingPhilosophy();
+        setTimeout(() => {
+            this.updatePricingPhilosophy();
+        }, 100);
+
+        // Update size information
+        this.updateSizeInfo();
 
         // Update price display
         this.updatePriceDisplay();
@@ -275,22 +289,30 @@ class Product {
         const discountPercentage = document.getElementById('discountPercentage');
         const saleBadge = document.getElementById('saleBadge');
 
-        if (window.productData.onSale) {
-            if (currentPrice) currentPrice.textContent = window.Utils.formatPrice(window.productData.currentPrice);
-            if (originalPrice) {
-                originalPrice.textContent = window.Utils.formatPrice(window.productData.basePrice);
-                originalPrice.style.display = 'inline';
+        const currentColorVariant = window.productData.variants.color[this.currentVariant.color];
+        const currentSizeVariant = window.productData.variants.size[this.currentVariant.size];
+        
+        if (currentColorVariant && currentSizeVariant) {
+            const pricing = currentSizeVariant.pricing[this.currentVariant.color];
+            if (pricing) {
+                if (currentPrice) currentPrice.textContent = window.Utils.formatPrice(pricing.finalPrice);
+                
+                if (pricing.discount > 0) {
+                    if (originalPrice) {
+                        originalPrice.textContent = window.Utils.formatPrice(pricing.basePrice);
+                        originalPrice.style.display = 'inline';
+                    }
+                    if (discountPercentage) {
+                        discountPercentage.textContent = `Save ${pricing.discount}%`;
+                        discountPercentage.style.display = 'inline-block';
+                    }
+                    if (saleBadge) saleBadge.style.display = 'block';
+                } else {
+                    if (originalPrice) originalPrice.style.display = 'none';
+                    if (discountPercentage) discountPercentage.style.display = 'none';
+                    if (saleBadge) saleBadge.style.display = 'none';
+                }
             }
-            if (discountPercentage) {
-                discountPercentage.textContent = `Save ${window.productData.discountPercentage}%`;
-                discountPercentage.style.display = 'inline-block';
-            }
-            if (saleBadge) saleBadge.style.display = 'block';
-        } else {
-            if (currentPrice) currentPrice.textContent = window.Utils.formatPrice(window.productData.basePrice);
-            if (originalPrice) originalPrice.style.display = 'none';
-            if (discountPercentage) discountPercentage.style.display = 'none';
-            if (saleBadge) saleBadge.style.display = 'none';
         }
     }
 
@@ -375,8 +397,10 @@ class Product {
     }
 
     updateThumbnails() {
-        const currentImages = window.productData.images[this.currentVariant.color];
-        if (!currentImages) return;
+        const currentColorVariant = window.productData.variants.color[this.currentVariant.color];
+        if (!currentColorVariant || !currentColorVariant.images) return;
+        
+        const currentImages = currentColorVariant.images;
 
         // Update desktop thumbnails
         const desktopThumbnails = document.querySelector('.product__media-thumbnails');
@@ -442,8 +466,7 @@ class Product {
         const colors = Object.keys(window.productData.variants.color);
         colorSelector.innerHTML = colors.map(colorKey => {
             const colorVariant = window.productData.variants.color[colorKey];
-            const colorImages = window.productData.images[colorKey];
-            const firstImage = colorImages ? colorImages.find(img => img.type === 'image') : null;
+            const firstImage = colorVariant.images ? colorVariant.images.find(img => img.type === 'image') : null;
             const isSelected = this.currentVariant.color === colorKey;
             
             return `
@@ -504,30 +527,115 @@ class Product {
 
         // Update read more link
         pricingReadMoreLink.href = pricingData.readMoreLink;
-
-        // Update price comparison chart positions
-        this.updatePriceComparisonChart(pricingData.priceComparison);
     }
 
-    updatePriceComparisonChart(priceComparison) {
-        const markers = document.querySelectorAll('.price-comparison__marker');
+    updateSizeInfo() {
+        const currentSizeVariant = window.productData.variants.size[this.currentVariant.size];
+        const currentColorVariant = window.productData.variants.color[this.currentVariant.color];
+        if (!currentSizeVariant || !currentColorVariant) return;
+
+        // Update size description in product info section
+        const productInfoDescription = document.getElementById('productInfoDescription');
+        if (productInfoDescription && currentSizeVariant.description) {
+            // Get current product info
+            const productInfo = currentColorVariant.productInfo || window.productData.productInfo;
+            
+            if (productInfo) {
+                // Combine original description with size-specific info
+                const sizeInfo = `\n\nSize ${currentSizeVariant.name}: ${currentSizeVariant.description}`;
+                productInfoDescription.textContent = productInfo.description + sizeInfo;
+            }
+        }
+
+        // Update size features if available
+        const productFeatures = document.querySelector('.product__features-list');
+        if (productFeatures && currentSizeVariant.features) {
+            // Add size-specific features
+            const sizeFeatures = currentSizeVariant.features.map(feature => 
+                `<li class="product__feature-item">${feature}</li>`
+            ).join('');
+            
+            // Check if size features already exist
+            let sizeFeaturesContainer = document.querySelector('.size-specific-features');
+            if (!sizeFeaturesContainer) {
+                sizeFeaturesContainer = document.createElement('div');
+                sizeFeaturesContainer.className = 'size-specific-features';
+                sizeFeaturesContainer.innerHTML = `
+                    <h4 class="product__features-subtitle">Size ${currentSizeVariant.name} Features:</h4>
+                    <ul class="product__features-list size-features-list">${sizeFeatures}</ul>
+                `;
+                productFeatures.parentNode.appendChild(sizeFeaturesContainer);
+            } else {
+                // Update existing size features
+                const subtitle = sizeFeaturesContainer.querySelector('.product__features-subtitle');
+                const featuresList = sizeFeaturesContainer.querySelector('.size-features-list');
+                if (subtitle) subtitle.textContent = `Size ${currentSizeVariant.name} Features:`;
+                if (featuresList) featuresList.innerHTML = sizeFeatures;
+            }
+        }
+
+        // Update stock information for current size
+        this.updateSizeStockInfo(currentSizeVariant);
         
-        // Update marker positions based on data
-        const costMarker = document.querySelector('.price-comparison__marker--cost');
-        const ourPriceMarker = document.querySelector('.price-comparison__marker--our-price');
-        const dtcMarker = document.querySelector('.price-comparison__marker--dtc');
-        const retailMarker = document.querySelector('.price-comparison__marker--retail');
-
-        if (costMarker) costMarker.style.left = '0%';
-        if (ourPriceMarker) ourPriceMarker.style.left = `${(priceComparison.ourPrice / 5) * 100}%`;
-        if (dtcMarker) dtcMarker.style.left = `${(priceComparison.typicalDTC / 5) * 100}%`;
-        if (retailMarker) retailMarker.style.left = `${(priceComparison.traditionalRetail / 5) * 100}%`;
+        // Update shipping information
+        this.updateShippingInfo(currentSizeVariant);
     }
+
+    updateShippingInfo(sizeVariant) {
+        const currentColorVariant = window.productData.variants.color[this.currentVariant.color];
+        if (!sizeVariant || !currentColorVariant) return;
+
+        const shippingInfo = sizeVariant.shipping[this.currentVariant.color];
+        if (shippingInfo) {
+            // Update or create shipping info element
+            let shippingElement = document.querySelector('.shipping-info');
+            if (!shippingElement) {
+                shippingElement = document.createElement('div');
+                shippingElement.className = 'shipping-info product__stock-text';
+                const stockInfo = document.querySelector('.product__stock-info');
+                if (stockInfo) {
+                    stockInfo.appendChild(shippingElement);
+                }
+            }
+            shippingElement.textContent = shippingInfo;
+        }
+    }
+
+    updateSizeStockInfo(sizeVariant) {
+        const stockInfo = document.querySelector('.product__stock-info');
+        if (stockInfo && sizeVariant) {
+            const currentColorVariant = window.productData.variants.color[this.currentVariant.color];
+            if (!currentColorVariant) return;
+
+            const stock = sizeVariant.stock[this.currentVariant.color];
+            let stockText = '';
+            if (stock === 0) {
+                stockText = 'Out of stock | Waitlist available';
+            } else if (stock <= 3) {
+                stockText = `Only ${stock} left in size ${sizeVariant.name}`;
+            } else {
+                stockText = `${stock} available in size ${sizeVariant.name}`;
+            }
+            
+            // Update or create stock info element
+            let stockElement = document.querySelector('.size-stock-info');
+            if (!stockElement) {
+                stockElement = document.createElement('div');
+                stockElement.className = 'size-stock-info product__stock-text';
+                stockInfo.appendChild(stockElement);
+            }
+            stockElement.textContent = stockText;
+        }
+    }
+
 
     navigateImage(direction) {
-        const currentImages = window.productData.images[this.currentVariant.color];
+        const currentColorVariant = window.productData.variants.color[this.currentVariant.color];
+        if (!currentColorVariant || !currentColorVariant.images) return;
+        
+        const currentImages = currentColorVariant.images;
         const currentImage = document.getElementById('mainImage');
-        if (!currentImage || !currentImages) return;
+        if (!currentImage) return;
 
         const currentSrc = currentImage.src;
         const currentIndex = currentImages.findIndex(img => img.url === currentSrc);
