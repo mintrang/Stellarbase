@@ -2,7 +2,7 @@
 const Utils = {
     // Format price
     formatPrice(price) {
-        return `$${price.toFixed(2)}`;
+        return `${price.toLocaleString('vi-VN')}₫`;
     },
 
     // Validate quantity

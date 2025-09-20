@@ -74,6 +74,7 @@ class App {
                 const response = await fetch('components/product/product.html');
                 const html = await response.text();
                 container.innerHTML = html;
+                console.log('Product HTML loaded successfully');
             } catch (error) {
                 console.error('Error loading product:', error);
             }
@@ -107,25 +108,42 @@ class App {
     }
 
     initializeComponents() {
-        // Initialize cart
-        this.cart = new Cart();
-        window.cart = this.cart;
-        
-        // Initialize cart drawer
-        this.cartDrawer = new CartDrawer();
-        window.cartDrawer = this.cartDrawer;
-        
-        // Initialize product
-        this.product = new Product();
-        window.product = this.product;
-        
-        // Initialize header
-        this.header = new Header();
-        window.header = this.header;
-        
-        // Initialize navigation
-        this.navigation = new Navigation();
-        window.navigation = this.navigation;
+        try {
+            // Initialize cart
+            if (typeof Cart !== 'undefined') {
+                this.cart = new Cart();
+                window.cart = this.cart;
+            }
+            
+            // Initialize cart drawer
+            if (typeof CartDrawer !== 'undefined') {
+                this.cartDrawer = new CartDrawer();
+                window.cartDrawer = this.cartDrawer;
+            }
+            
+            // Initialize product
+            if (typeof Product !== 'undefined') {
+                this.product = new Product();
+                window.product = this.product;
+                console.log('Product initialized successfully');
+            } else {
+                console.error('Product class not found');
+            }
+            
+            // Initialize header
+            if (typeof Header !== 'undefined') {
+                this.header = new Header();
+                window.header = this.header;
+            }
+            
+            // Initialize navigation
+            if (typeof Navigation !== 'undefined') {
+                this.navigation = new Navigation();
+                window.navigation = this.navigation;
+            }
+        } catch (error) {
+            console.error('Error initializing components:', error);
+        }
     }
 
     setupGlobalEventListeners() {

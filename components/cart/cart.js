@@ -12,17 +12,50 @@ class Cart {
             item.size === variant.size
         );
 
+        // Get current stock for this item
+        const maxQuantity = this.getMaxQuantity({
+            productId: product.id,
+            color: variant.color,
+            size: variant.size
+        });
+
         if (existingItem) {
-            existingItem.quantity += quantity;
+            const newQuantity = existingItem.quantity + quantity;
+            if (newQuantity > maxQuantity) {
+                if (window.Utils) {
+                    window.Utils.showNotification(`Only ${maxQuantity} items available in stock`, 'warning');
+                }
+                existingItem.quantity = maxQuantity;
+            } else {
+                existingItem.quantity = newQuantity;
+            }
         } else {
+            // Check if we can add this quantity
+            if (quantity > maxQuantity) {
+                if (window.Utils) {
+                    window.Utils.showNotification(`Only ${maxQuantity} items available in stock`, 'warning');
+                }
+                quantity = maxQuantity;
+            }
+
+            // Get price from size variant pricing
+            const sizeVariant = product.variants.size[variant.size];
+            const pricing = sizeVariant.pricing[variant.color];
+            const price = pricing ? pricing.finalPrice : 0;
+            
+            // Get image from color variant
+            const colorVariant = product.variants.color[variant.color];
+            const firstImage = colorVariant.images ? colorVariant.images.find(img => img.type === 'image') : null;
+            const image = firstImage ? firstImage.url : '';
+            
             this.items.push({
                 productId: product.id,
                 title: product.title,
                 color: variant.color,
                 size: variant.size,
-                price: product.currentPrice,
+                price: price,
                 quantity: quantity,
-                image: product.images[variant.color][0]
+                image: image
             });
         }
 
@@ -45,11 +78,36 @@ class Cart {
     updateQuantity(index, quantity) {
         if (quantity <= 0) {
             this.removeItem(index);
-        } else {
-            this.items[index].quantity = quantity;
-            this.saveToStorage();
-            this.updateCartDisplay();
+            return;
         }
+
+        const item = this.items[index];
+        if (!item) return;
+
+        // Get current stock for this item
+        const maxQuantity = this.getMaxQuantity(item);
+        
+        if (quantity > maxQuantity) {
+            quantity = maxQuantity;
+            if (window.Utils) {
+                window.Utils.showNotification(`Only ${maxQuantity} items available in stock`, 'warning');
+            }
+        }
+
+        this.items[index].quantity = quantity;
+        this.saveToStorage();
+        this.updateCartDisplay();
+    }
+
+    getMaxQuantity(item) {
+        // Get stock from productData
+        if (window.productData && window.productData.variants) {
+            const sizeVariant = window.productData.variants.size[item.size];
+            if (sizeVariant && sizeVariant.stock) {
+                return sizeVariant.stock[item.color] || 0;
+            }
+        }
+        return 10; // Default max if no stock data
     }
 
     getTotal() {
@@ -67,7 +125,29 @@ class Cart {
     loadFromStorage() {
         const stored = localStorage.getItem('cart');
         if (stored) {
-            this.items = JSON.parse(stored);
+            try {
+                this.items = JSON.parse(stored);
+                // Clean up any invalid items
+                this.items = this.items.filter(item => 
+                    item.title && 
+                    item.color && 
+                    item.size && 
+                    item.price && 
+                    item.quantity
+                );
+            } catch (error) {
+                console.error('Error loading cart from storage:', error);
+                this.items = [];
+            }
+        }
+    }
+
+    clearCart() {
+        this.items = [];
+        this.saveToStorage();
+        this.updateCartDisplay();
+        if (window.Utils) {
+            window.Utils.showNotification('Cart cleared', 'info');
         }
     }
 
@@ -101,25 +181,33 @@ class Cart {
                     </div>
                 `;
             } else {
-                cartItems.innerHTML = this.items.map((item, index) => `
-                    <div class="cart-item">
-                        <img src="${item.image}" alt="${item.title}" class="cart-item__image">
-                        <div class="cart-item__details">
-                            <div class="cart-item__title">${item.title} | ${item.color}</div>
-                            <div class="cart-item__variant">Size: ${item.size}</div>
-                            <div class="cart-item__price">${this.formatPrice(item.price * item.quantity)}</div>
-                        </div>
-                        <div class="cart-item__controls">
-                            <div class="cart-item__quantity">
-                                <button onclick="window.cart.updateQuantity(${index}, ${item.quantity - 1})">-</button>
-                                <input type="number" value="${item.quantity}" min="1" max="10" 
-                                       onchange="window.cart.updateQuantity(${index}, parseInt(this.value))">
-                                <button onclick="window.cart.updateQuantity(${index}, ${item.quantity + 1})">+</button>
+                cartItems.innerHTML = this.items.map((item, index) => {
+                    const maxQuantity = this.getMaxQuantity(item);
+                    const isMaxReached = item.quantity >= maxQuantity;
+                    
+                    return `
+                        <div class="cart-item">
+                            <img src="${item.image || ''}" alt="${item.title || 'Product'}" class="cart-item__image">
+                            <div class="cart-item__details">
+                                <div class="cart-item__title">${item.title || 'Product'} | ${item.color || 'Default'}</div>
+                                <div class="cart-item__variant">Size: ${item.size || 'One Size'}</div>
+                                <div class="cart-item__price">${this.formatPrice(item.price * item.quantity)}</div>
+                                ${maxQuantity > 0 ? `<div class="cart-item__stock">${maxQuantity} in stock</div>` : ''}
                             </div>
-                            <button class="cart-item__remove" onclick="window.cart.removeItem(${index})">Remove</button>
+                            <div class="cart-item__controls">
+                                <div class="cart-item__quantity">
+                                    <button onclick="window.cart.updateQuantity(${index}, ${item.quantity - 1})" 
+                                            ${item.quantity <= 1 ? 'disabled' : ''}>-</button>
+                                    <input type="number" value="${item.quantity}" min="1" max="${maxQuantity}" 
+                                           onchange="window.cart.updateQuantity(${index}, parseInt(this.value))">
+                                    <button onclick="window.cart.updateQuantity(${index}, ${item.quantity + 1})" 
+                                            ${isMaxReached ? 'disabled' : ''}>+</button>
+                                </div>
+                                <button class="cart-item__remove" onclick="window.cart.removeItem(${index})">Remove</button>
+                            </div>
                         </div>
-                    </div>
-                `).join('');
+                    `;
+                }).join('');
             }
         }
 
@@ -128,61 +216,9 @@ class Cart {
         }
     }
 
-    loadSuggestedProducts() {
-        const container = document.getElementById('customersAlsoBought');
-        if (!container || !window.suggestedProducts) return;
+    // Removed loadSuggestedProducts - no longer needed
 
-        container.innerHTML = window.suggestedProducts.map(product => `
-            <div class="suggested-product">
-                <img src="${product.image}" alt="${product.name}" class="suggested-product__image">
-                <div class="suggested-product__content">
-                    <h4 class="suggested-product__name">${product.name}</h4>
-                    ${product.variant ? `<p class="suggested-product__variant">${product.variant}</p>` : ''}
-                    <p class="suggested-product__price">${this.formatPrice(product.price)}</p>
-                </div>
-                <div class="suggested-product__actions">
-                    ${product.sizes.length > 0 ? `
-                        <div class="suggested-product__size">
-                            <select class="suggested-product__size-select">
-                                ${product.sizes.map(size => `<option value="${size}">${size}</option>`).join('')}
-                            </select>
-                        </div>
-                    ` : ''}
-                    <button class="suggested-product__add-btn" onclick="window.cart.addSuggestedProduct('${product.id}')">
-                        Add To Cart
-                    </button>
-                    <a href="#" class="suggested-product__details">View more details</a>
-                </div>
-            </div>
-        `).join('');
-    }
-
-    addSuggestedProduct(productId) {
-        const product = window.suggestedProducts.find(p => p.id === productId);
-        if (!product) return;
-
-        const sizeSelect = document.querySelector(`[onclick="window.cart.addSuggestedProduct('${productId}')"]`)
-            ?.closest('.suggested-product')
-            ?.querySelector('.suggested-product__size-select');
-        
-        const selectedSize = sizeSelect ? sizeSelect.value : '';
-
-        this.items.push({
-            productId: product.id,
-            title: product.name,
-            color: product.variant || 'Default',
-            size: selectedSize || 'One Size',
-            price: product.price,
-            quantity: 1,
-            image: product.image
-        });
-
-        this.saveToStorage();
-        this.updateCartDisplay();
-        
-        // Keep cart drawer open when adding suggested products
-        // No need to toggle since drawer is already open
-    }
+    // Removed addSuggestedProduct - no longer needed
 }
 
 // Cart Drawer Management
@@ -227,10 +263,6 @@ class CartDrawer {
             if (this.drawer) this.drawer.classList.add('open');
             if (this.overlay) this.overlay.classList.add('active');
             document.body.style.overflow = 'hidden';
-            
-            if (window.cart) {
-                window.cart.loadSuggestedProducts();
-            }
         } else {
             if (this.drawer) this.drawer.classList.remove('open');
             if (this.overlay) this.overlay.classList.remove('active');

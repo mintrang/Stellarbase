@@ -20,7 +20,7 @@ class Product {
     }
 
     setupEventListeners() {
-        // Color swatch selectors
+        // Color selectors
         document.addEventListener('click', (e) => {
             if (e.target.closest('.color-option')) {
                 const colorOption = e.target.closest('.color-option');
@@ -29,23 +29,7 @@ class Product {
             }
         });
 
-        // Width selectors
-        document.addEventListener('click', (e) => {
-            if (e.target.closest('.width-option')) {
-                const widthOption = e.target.closest('.width-option');
-                const width = widthOption.dataset.width;
-                this.updateVariant('width', width);
-            }
-        });
-
-        // Size selectors
-        document.addEventListener('click', (e) => {
-            if (e.target.closest('.size-option')) {
-                const sizeOption = e.target.closest('.size-option');
-                const size = sizeOption.dataset.size;
-                this.updateVariant('size', size);
-            }
-        });
+        // Size selectors - removed duplicate, handled in updateSizeDropdown()
 
             // Thumbnail selectors
             document.addEventListener('click', (e) => {
@@ -130,18 +114,18 @@ class Product {
         }
 
         // Quantity controls
-        const decreaseBtn = document.getElementById('decreaseBtn');
-        const increaseBtn = document.getElementById('increaseBtn');
+        const quantityMinusBtn = document.getElementById('quantityMinusBtn');
+        const quantityPlusBtn = document.getElementById('quantityPlusBtn');
         const quantityInput = document.getElementById('quantityInput');
 
-        if (decreaseBtn) {
-            decreaseBtn.addEventListener('click', () => {
+        if (quantityMinusBtn) {
+            quantityMinusBtn.addEventListener('click', () => {
                 this.updateQuantity(this.quantity - 1);
             });
         }
 
-        if (increaseBtn) {
-            increaseBtn.addEventListener('click', () => {
+        if (quantityPlusBtn) {
+            quantityPlusBtn.addEventListener('click', () => {
                 this.updateQuantity(this.quantity + 1);
             });
         }
@@ -288,6 +272,7 @@ class Product {
         const originalPrice = document.getElementById('originalPrice');
         const discountPercentage = document.getElementById('discountPercentage');
         const saleBadge = document.getElementById('saleBadge');
+        const addToCartBtn = document.getElementById('addToCartBtn');
 
         const currentColorVariant = window.productData.variants.color[this.currentVariant.color];
         const currentSizeVariant = window.productData.variants.size[this.currentVariant.size];
@@ -296,6 +281,14 @@ class Product {
             const pricing = currentSizeVariant.pricing[this.currentVariant.color];
             if (pricing) {
                 if (currentPrice) currentPrice.textContent = window.Utils.formatPrice(pricing.finalPrice);
+                
+                // Update Add to Cart button text with current price
+                if (addToCartBtn) {
+                    const btnText = addToCartBtn.querySelector('.btn__text');
+                    if (btnText) {
+                        btnText.textContent = `Add to cart - ${window.Utils.formatPrice(pricing.finalPrice)}`;
+                    }
+                }
                 
                 if (pricing.discount > 0) {
                     if (originalPrice) {
@@ -340,23 +333,12 @@ class Product {
 
             // Update color image
             const colorImage = option.querySelector('.color-image');
-            if (colorImage && window.productData.images[color]) {
-                const firstImage = window.productData.images[color].find(img => img.type === 'image');
+            if (colorImage && variant.images) {
+                const firstImage = variant.images.find(img => img.type === 'image');
                 if (firstImage) {
                     colorImage.src = firstImage.thumbnail;
                     colorImage.alt = firstImage.alt;
                 }
-            }
-        });
-
-        // Update width options
-        const widthOptions = document.querySelectorAll('.width-option');
-        widthOptions.forEach(option => {
-            const width = option.dataset.width;
-            if (this.currentVariant.width === width) {
-                option.classList.add('width-option--selected');
-            } else {
-                option.classList.remove('width-option--selected');
             }
         });
 
@@ -376,14 +358,8 @@ class Product {
     }
 
     updateSelectedText() {
-        const selectedWidth = document.getElementById('selectedWidth');
         const selectedColor = document.getElementById('selectedColor');
         const selectedSize = document.getElementById('selectedSize');
-
-        if (selectedWidth) {
-            const widthVariant = window.productData.variants.width[this.currentVariant.width];
-            selectedWidth.textContent = widthVariant.name;
-        }
 
         if (selectedColor) {
             const colorVariant = window.productData.variants.color[this.currentVariant.color];
@@ -586,18 +562,24 @@ class Product {
         if (!sizeVariant || !currentColorVariant) return;
 
         const shippingInfo = sizeVariant.shipping[this.currentVariant.color];
-        if (shippingInfo) {
-            // Update or create shipping info element
-            let shippingElement = document.querySelector('.shipping-info');
-            if (!shippingElement) {
-                shippingElement = document.createElement('div');
-                shippingElement.className = 'shipping-info product__stock-text';
-                const stockInfo = document.querySelector('.product__stock-info');
-                if (stockInfo) {
-                    stockInfo.appendChild(shippingElement);
-                }
-            }
-            shippingElement.textContent = shippingInfo;
+        const shippingInfoList = document.getElementById('shippingInfoList');
+        
+        if (shippingInfo && shippingInfoList) {
+            // Update shipping info list with color and size specific information
+            const baseShippingItems = [
+                'Free domestic U.S. ground shipping',
+                'Free domestic U.S. returns. <a href="#" class="shipping-info__link">See our full policy</a>',
+                'International shipping available',
+                'Expedited shipping options available at checkout'
+            ];
+            
+            // Add color and size specific shipping info
+            const specificShippingInfo = `${shippingInfo} for ${currentColorVariant.name} in size ${sizeVariant.name}`;
+            
+            shippingInfoList.innerHTML = [
+                ...baseShippingItems,
+                `<li class="shipping-info__item shipping-info__item--specific">${specificShippingInfo}</li>`
+            ].map(item => `<li class="shipping-info__item">${item}</li>`).join('');
         }
     }
 
@@ -682,20 +664,24 @@ class Product {
         sizeOptions.innerHTML = sizes.map(sizeKey => {
             const variant = window.productData.variants.size[sizeKey];
             const isSelected = this.currentVariant.size === sizeKey;
-            const stockStatus = this.getStockStatus(variant.stock);
+            
+            // Get stock for current color
+            const currentColor = this.currentVariant.color;
+            const stock = variant.stock[currentColor] || 0;
+            const stockStatus = this.getStockStatus(stock);
             
             let statusText = stockStatus.text;
-            if (variant.stock === 0) {
+            if (stock === 0) {
                 statusText = 'Out of stock | Waitlist';
-            } else if (variant.stock <= 3) {
-                statusText = `Only ${variant.stock} left!`;
+            } else if (stock <= 3) {
+                statusText = `Only ${stock} left!`;
             } else {
-                statusText = `${variant.stock} in stock`;
+                statusText = `${stock} in stock`;
             }
             
             return `
-                <div class="size-option ${isSelected ? 'size-option--selected' : ''} ${variant.stock === 0 ? 'size-option--disabled' : ''}" 
-                     data-size="${sizeKey}" ${variant.stock === 0 ? 'data-disabled="true"' : ''}>
+                <div class="size-option ${isSelected ? 'size-option--selected' : ''} ${stock === 0 ? 'size-option--disabled' : ''}" 
+                     data-size="${sizeKey}" ${stock === 0 ? 'data-disabled="true"' : ''}>
                     <div class="size-option__content">
                         <span class="size-option__size">${variant.name}</span>
                         <div class="size-option__status">
@@ -703,7 +689,7 @@ class Product {
                             <span class="size-option__text">${statusText}</span>
                         </div>
                     </div>
-                    ${variant.stock > 0 ? `
+                    ${stock > 0 ? `
                         <svg class="size-option__arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
                             <path d="M6 4L10 8L6 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
@@ -730,11 +716,13 @@ class Product {
 
         const sizes = Object.values(window.productData.variants.size);
         let inStock = 0, lowStock = 0, outOfStock = 0;
+        const currentColor = this.currentVariant.color;
 
         sizes.forEach(variant => {
-            if (variant.stock === 0) {
+            const stock = variant.stock[currentColor] || 0;
+            if (stock === 0) {
                 outOfStock++;
-            } else if (variant.stock <= 3) {
+            } else if (stock <= 3) {
                 lowStock++;
             } else {
                 inStock++;
@@ -827,8 +815,9 @@ class Product {
 
     updateQuantityDisplay() {
         const quantityInput = document.getElementById('quantityInput');
-        const decreaseBtn = document.getElementById('decreaseBtn');
-        const increaseBtn = document.getElementById('increaseBtn');
+        const quantityMinusBtn = document.getElementById('quantityMinusBtn');
+        const quantityPlusBtn = document.getElementById('quantityPlusBtn');
+        const quantityInfo = document.getElementById('quantityInfo');
         const maxStock = this.getMaxStock();
 
         if (quantityInput) {
@@ -836,8 +825,17 @@ class Product {
             quantityInput.max = maxStock;
         }
         
-        if (decreaseBtn) decreaseBtn.disabled = this.quantity <= 1;
-        if (increaseBtn) increaseBtn.disabled = this.quantity >= maxStock || maxStock === 0;
+        if (quantityMinusBtn) quantityMinusBtn.disabled = this.quantity <= 1;
+        if (quantityPlusBtn) quantityPlusBtn.disabled = this.quantity >= maxStock || maxStock === 0;
+        
+        // Update quantity info text
+        if (quantityInfo) {
+            const quantityText = quantityInfo.querySelector('.quantity-info__text');
+            if (quantityText) {
+                const itemText = this.quantity === 1 ? 'item' : 'items';
+                quantityText.textContent = `${this.quantity} ${itemText} selected`;
+            }
+        }
     }
 
     updateAddToCartButton() {
@@ -846,6 +844,16 @@ class Product {
         
         const isInStock = this.isVariantInStock();
         const maxStock = this.getMaxStock();
+        const currentColorVariant = window.productData.variants.color[this.currentVariant.color];
+        const currentSizeVariant = window.productData.variants.size[this.currentVariant.size];
+        
+        let currentPrice = 0;
+        if (currentColorVariant && currentSizeVariant) {
+            const pricing = currentSizeVariant.pricing[this.currentVariant.color];
+            if (pricing) {
+                currentPrice = pricing.finalPrice;
+            }
+        }
 
         if (!isInStock || maxStock === 0) {
             addToCartBtn.disabled = true;
@@ -856,7 +864,7 @@ class Product {
         } else {
             addToCartBtn.disabled = false;
             addToCartBtn.innerHTML = `
-                <span class="btn__text">Add to Cart</span>
+                <span class="btn__text">Add to cart - ${window.Utils.formatPrice(currentPrice)}</span>
                 <span class="btn__icon">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                         <path d="M6 2L6 1C6 0.447715 6.44772 0 7 0H9C9.55228 0 10 0.447715 10 1V2M6 2H4C3.44772 2 3 2.44772 3 3V14C3 15.1046 3.89543 16 5 16H11C12.1046 16 13 15.1046 13 14V3C13 2.44772 12.5523 2 12 2H10M6 2H10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
