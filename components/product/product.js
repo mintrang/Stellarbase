@@ -238,6 +238,12 @@ class Product {
         // Update color options
         this.updateColorOptions();
 
+        // Update product information
+        this.updateProductInfo();
+
+        // Update pricing philosophy
+        this.updatePricingPhilosophy();
+
         // Update price display
         this.updatePriceDisplay();
         
@@ -448,6 +454,74 @@ class Product {
                 </div>
             `;
         }).join('');
+    }
+
+    updateProductInfo() {
+        const productInfoImage = document.getElementById('productInfoImage');
+        const productInfoTitle = document.getElementById('productInfoTitle');
+        const productInfoDescription = document.getElementById('productInfoDescription');
+
+        if (!productInfoImage || !productInfoTitle || !productInfoDescription) return;
+
+        // Get product info for current color variant
+        const currentColorVariant = window.productData.variants.color[this.currentVariant.color];
+        const productInfo = currentColorVariant.productInfo || window.productData.productInfo;
+
+        if (productInfo) {
+            productInfoImage.src = productInfo.image;
+            productInfoImage.alt = productInfo.title;
+            productInfoTitle.textContent = productInfo.title;
+            productInfoDescription.textContent = productInfo.description;
+        }
+    }
+
+    updatePricingPhilosophy() {
+        const pricingProductImage = document.getElementById('pricingProductImage');
+        const pricingPhilosophyTitle = document.getElementById('pricingPhilosophyTitle');
+        const pricingPhilosophyDescription = document.getElementById('pricingPhilosophyDescription');
+        const sellingPointsList = document.getElementById('sellingPointsList');
+        const pricingReadMoreLink = document.getElementById('pricingReadMoreLink');
+
+        if (!pricingProductImage || !pricingPhilosophyTitle || !pricingPhilosophyDescription || !sellingPointsList || !pricingReadMoreLink) return;
+
+        const pricingData = window.productData.pricingPhilosophy;
+        if (!pricingData) return;
+
+        // Update product image
+        pricingProductImage.src = pricingData.productImage;
+        pricingProductImage.alt = 'Product';
+
+        // Update title
+        pricingPhilosophyTitle.textContent = pricingData.title;
+
+        // Update description
+        pricingPhilosophyDescription.textContent = pricingData.description;
+
+        // Update selling points
+        sellingPointsList.innerHTML = pricingData.sellingPoints.map(point => 
+            `<div class="selling-points__item">${point}</div>`
+        ).join('');
+
+        // Update read more link
+        pricingReadMoreLink.href = pricingData.readMoreLink;
+
+        // Update price comparison chart positions
+        this.updatePriceComparisonChart(pricingData.priceComparison);
+    }
+
+    updatePriceComparisonChart(priceComparison) {
+        const markers = document.querySelectorAll('.price-comparison__marker');
+        
+        // Update marker positions based on data
+        const costMarker = document.querySelector('.price-comparison__marker--cost');
+        const ourPriceMarker = document.querySelector('.price-comparison__marker--our-price');
+        const dtcMarker = document.querySelector('.price-comparison__marker--dtc');
+        const retailMarker = document.querySelector('.price-comparison__marker--retail');
+
+        if (costMarker) costMarker.style.left = '0%';
+        if (ourPriceMarker) ourPriceMarker.style.left = `${(priceComparison.ourPrice / 5) * 100}%`;
+        if (dtcMarker) dtcMarker.style.left = `${(priceComparison.typicalDTC / 5) * 100}%`;
+        if (retailMarker) retailMarker.style.left = `${(priceComparison.traditionalRetail / 5) * 100}%`;
     }
 
     navigateImage(direction) {

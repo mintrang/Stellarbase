@@ -185,9 +185,36 @@ const productData = {
     },
     variants: {
         color: {
-            brandy: { name: 'Brandy', price: 0, stock: 8 },
-            black: { name: 'Black', price: 0, stock: 12 },
-            brown: { name: 'Brown', price: 0, stock: 6 }
+            brandy: { 
+                name: 'Brandy', 
+                price: 0, 
+                stock: 8,
+                productInfo: {
+                    title: "Classic Brandy Leather Edition",
+                    description: "Crafted from premium brandy-colored leather, this edition offers timeless elegance with exceptional durability. The rich brown hue develops a beautiful patina over time, telling the story of your adventures. Features our signature Goodyear welt construction and premium leather lining for all-day comfort.",
+                    image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=800&h=600&fit=crop"
+                }
+            },
+            black: { 
+                name: 'Black', 
+                price: 0, 
+                stock: 12,
+                productInfo: {
+                    title: "Rugged & Resilient™ StormKing® Outsole Edition",
+                    description: "Built for the men who wear their boots hard. The Rugged & Resilient matte leather upper, sourced exclusively from Tier 1 USA cattle hides, was custom created to look great with years of hard wear and minimal care. This Captain also features our proprietary StormKing® rubber lug outsole for added traction and durability. From the Kevlar® blend laces to the durable steel shank, every material was carefully created so that you can go the extra mile with confidence.",
+                    image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=800&h=600&fit=crop"
+                }
+            },
+            brown: { 
+                name: 'Brown', 
+                price: 0, 
+                stock: 6,
+                productInfo: {
+                    title: "Heritage Brown Full-Grain Edition",
+                    description: "Inspired by classic work boots, this brown edition combines traditional craftsmanship with modern comfort. Made from full-grain leather that ages beautifully, featuring our signature cap-toe design and durable rubber sole. Perfect for both work and weekend adventures.",
+                    image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=800&h=600&fit=crop"
+                }
+            }
         },
         width: {
             standard: { name: 'Standard', price: 0, stock: 10 },
@@ -210,7 +237,30 @@ const productData = {
         'Durable welt construction',
         'Comfortable fit',
         'Classic styling'
-    ]
+    ],
+    productInfo: {
+        title: "Rugged & Resilient™ StormKing® Outsole Edition",
+        description: "Built for the men who wear their boots hard. The Rugged & Resilient matte leather upper, sourced exclusively from Tier 1 USA cattle hides, was custom created to look great with years of hard wear and minimal care. This Captain also features our proprietary StormKing® rubber lug outsole for added traction and durability. From the Kevlar® blend laces to the durable steel shank, every material was carefully created so that you can go the extra mile with confidence.",
+        image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=800&h=600&fit=crop",
+        icon: "boot-icon"
+    },
+    pricingPhilosophy: {
+        title: "Highest Quality. Honest Prices.",
+        description: "Our products are handcrafted alongside similar products from other brands that charge customers 2-3x more. We make zero compromises in terms of quality materials, manufacturing, or business ethics, and we price our products honestly year-round. We simply believe that offering customers a great value is the foundation to long-term business success and is the right thing to do.",
+        productImage: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&h=300&fit=crop",
+        priceComparison: {
+            cost: 1.0,
+            ourPrice: 1.5,
+            typicalDTC: 2.5,
+            traditionalRetail: 4.0
+        },
+        sellingPoints: [
+            "No discount tricks or promo codes",
+            "No holiday sales", 
+            "Best price offered year-round"
+        ],
+        readMoreLink: "#"
+    }
 };
 
 // Suggested Products Data
