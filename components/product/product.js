@@ -29,49 +29,47 @@ class Product {
             }
         });
 
-        // Size selectors - removed duplicate, handled in updateSizeDropdown()
-
-            // Thumbnail selectors
-            document.addEventListener('click', (e) => {
-                if (e.target.closest('.product__media-thumbnail')) {
-                    const thumbnail = e.target.closest('.product__media-thumbnail');
-                    if (thumbnail.dataset.image) {
-                        const mainImage = document.getElementById('mainImage');
-                        if (mainImage) {
-                            mainImage.src = thumbnail.dataset.image;
-                            
-                            // Update active thumbnail
-                            document.querySelectorAll('.product__media-thumbnail').forEach(t => t.classList.remove('active'));
-                            thumbnail.classList.add('active');
-                        }
-                    } else if (thumbnail.dataset.video) {
-                        // Handle video thumbnail click
-                        console.log('Video thumbnail clicked:', thumbnail.dataset.imageId);
-                        // You can implement video modal or redirect here
+        // Thumbnail selectors
+        document.addEventListener('click', (e) => {
+            if (e.target.closest('.product__media-thumbnail')) {
+                const thumbnail = e.target.closest('.product__media-thumbnail');
+                if (thumbnail.dataset.image) {
+                    const mainImage = document.getElementById('mainImage');
+                    if (mainImage) {
+                        mainImage.src = thumbnail.dataset.image;
+                        
+                        // Update active thumbnail
+                        document.querySelectorAll('.product__media-thumbnail').forEach(t => t.classList.remove('active'));
+                        thumbnail.classList.add('active');
                     }
+                } else if (thumbnail.dataset.video) {
+                    // Handle video thumbnail click
+                    console.log('Video thumbnail clicked:', thumbnail.dataset.imageId);
+                    // You can implement video modal or redirect here
                 }
-            });
+            }
+        });
 
-            // Mobile thumbnail selectors
-            document.addEventListener('click', (e) => {
-                if (e.target.closest('.product__media-thumbnail-mobile')) {
-                    const thumbnail = e.target.closest('.product__media-thumbnail-mobile');
-                    if (thumbnail.dataset.image) {
-                        const mainImage = document.getElementById('mainImage');
-                        if (mainImage) {
-                            mainImage.src = thumbnail.dataset.image;
-                            
-                            // Update active mobile thumbnail
-                            document.querySelectorAll('.product__media-thumbnail-mobile').forEach(t => t.classList.remove('active'));
-                            thumbnail.classList.add('active');
-                        }
-                    } else if (thumbnail.dataset.video) {
-                        // Handle video thumbnail click
-                        console.log('Video thumbnail clicked:', thumbnail.dataset.imageId);
-                        // You can implement video modal or redirect here
+        // Mobile thumbnail selectors
+        document.addEventListener('click', (e) => {
+            if (e.target.closest('.product__media-thumbnail-mobile')) {
+                const thumbnail = e.target.closest('.product__media-thumbnail-mobile');
+                if (thumbnail.dataset.image) {
+                    const mainImage = document.getElementById('mainImage');
+                    if (mainImage) {
+                        mainImage.src = thumbnail.dataset.image;
+                        
+                        // Update active mobile thumbnail
+                        document.querySelectorAll('.product__media-thumbnail-mobile').forEach(t => t.classList.remove('active'));
+                        thumbnail.classList.add('active');
                     }
+                } else if (thumbnail.dataset.video) {
+                    // Handle video thumbnail click
+                    console.log('Video thumbnail clicked:', thumbnail.dataset.imageId);
+                    // You can implement video modal or redirect here
                 }
-            });
+            }
+        });
 
             // Navigation arrows
             const prevBtn = document.getElementById('prevBtn');
@@ -146,20 +144,6 @@ class Product {
             });
         }
 
-        // Thumbnail images
-        document.addEventListener('click', (e) => {
-            if (e.target.closest('.product__media-thumbnail')) {
-                const thumbnail = e.target.closest('.product__media-thumbnail');
-                const mainImage = document.getElementById('mainImage');
-                if (mainImage && thumbnail.dataset.image) {
-                    mainImage.src = thumbnail.dataset.image;
-                    
-                    // Update active thumbnail
-                    document.querySelectorAll('.product__media-thumbnail').forEach(t => t.classList.remove('active'));
-                    thumbnail.classList.add('active');
-                }
-            }
-        });
 
         // Prevent form submission on quantity input
         if (quantityInput) {
@@ -910,46 +894,6 @@ class Product {
     }
 }
 
-// Demo Functions
-function toggleSale() {
-    window.productData.onSale = !window.productData.onSale;
-    if (window.product) {
-        window.product.updatePriceDisplay();
-    }
-}
-
-function setOutOfStock() {
-    window.productData.variants.color.black.stock = 0;
-    window.productData.variants.color.white.stock = 0;
-    window.productData.variants.color.blue.stock = 0;
-    if (window.product) {
-        window.product.updateVariantOptions();
-        window.product.updateStockInfo();
-        window.product.updateAddToCartButton();
-    }
-}
-
-function setLowStock() {
-    window.productData.variants.color.black.stock = 2;
-    window.productData.variants.color.white.stock = 1;
-    window.productData.variants.color.blue.stock = 3;
-    if (window.product) {
-        window.product.updateVariantOptions();
-        window.product.updateStockInfo();
-        window.product.updateAddToCartButton();
-    }
-}
-
-function resetStock() {
-    window.productData.variants.color.black.stock = 10;
-    window.productData.variants.color.white.stock = 2;
-    window.productData.variants.color.blue.stock = 0;
-    if (window.product) {
-        window.product.updateVariantOptions();
-        window.product.updateStockInfo();
-        window.product.updateAddToCartButton();
-    }
-}
 
 // Export for use in main application
 window.Product = Product;

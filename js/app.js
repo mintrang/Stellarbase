@@ -39,8 +39,6 @@ class App {
         
         // Load footer
         await this.loadFooter();
-        
-        // Load scroll to top
     }
 
     async loadHeader() {
@@ -107,7 +105,6 @@ class App {
             }
         }
     }
-
 
     initializeComponents() {
         try {

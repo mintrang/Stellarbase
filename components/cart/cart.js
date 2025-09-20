@@ -285,9 +285,6 @@ class Cart {
         }
     }
 
-    // Removed loadSuggestedProducts - no longer needed
-
-    // Removed addSuggestedProduct - no longer needed
 }
 
 // Cart Drawer Management
