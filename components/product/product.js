@@ -486,33 +486,20 @@ class Product {
         const sellingPointsList = document.getElementById('sellingPointsList');
         const pricingReadMoreLink = document.getElementById('pricingReadMoreLink');
 
-        console.log('Updating pricing philosophy...', {
-            pricingProductImage: !!pricingProductImage,
-            pricingPhilosophyTitle: !!pricingPhilosophyTitle,
-            pricingPhilosophyDescription: !!pricingPhilosophyDescription,
-            sellingPointsList: !!sellingPointsList,
-            pricingReadMoreLink: !!pricingReadMoreLink
-        });
-
         if (!pricingProductImage || !pricingPhilosophyTitle || !pricingPhilosophyDescription) {
-            console.log('Essential elements not found, retrying in 500ms...');
             setTimeout(() => this.updatePricingPhilosophy(), 500);
             return;
         }
 
         const pricingData = window.productData.pricingPhilosophy;
         if (!pricingData) {
-            console.log('Pricing data not found');
             return;
         }
-
-        console.log('Pricing data found:', pricingData);
 
         // Update product image
         if (pricingData.productImage) {
             pricingProductImage.src = pricingData.productImage;
             pricingProductImage.alt = 'Product';
-            console.log('Image updated:', pricingData.productImage);
         }
 
         // Update title
@@ -682,13 +669,8 @@ class Product {
         const sizeSummary = document.getElementById('sizeSummary');
         
         if (!sizeOptions) {
-            console.log('Size options container not found');
             return;
         }
-
-        console.log('Updating size dropdown...');
-        console.log('Product data:', window.productData);
-        console.log('Size variants:', window.productData?.variants?.size);
 
         // Update stock summary
         this.updateStockSummary();

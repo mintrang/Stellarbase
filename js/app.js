@@ -74,7 +74,6 @@ class App {
                 const response = await fetch('components/product/product.html');
                 const html = await response.text();
                 container.innerHTML = html;
-                console.log('Product HTML loaded successfully');
             } catch (error) {
                 console.error('Error loading product:', error);
             }
@@ -125,7 +124,6 @@ class App {
             if (typeof Product !== 'undefined') {
                 this.product = new Product();
                 window.product = this.product;
-                console.log('Product initialized successfully');
             } else {
                 console.error('Product class not found');
             }
