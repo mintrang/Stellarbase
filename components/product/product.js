@@ -174,9 +174,14 @@ class Product {
 
     updateVariant(type, value) {
         this.currentVariant[type] = value;
-        this.updateDisplay();
-        this.updateStockInfo();
-        this.updateAddToCartButton();
+        
+        if (type === 'color') {
+            // When color changes, update everything including images
+            this.updateDisplay();
+        } else if (type === 'size') {
+            // When size changes, only update size-related info, not images
+            this.updateSizeOnly();
+        }
     }
 
     updateQuantity(quantity) {
@@ -555,6 +560,16 @@ class Product {
         
         // Update shipping information
         this.updateShippingInfo(currentSizeVariant);
+    }
+
+    updateSizeOnly() {
+        // Only update size-related information without touching images
+        this.updateSizeButtonText();
+        this.updatePriceDisplay();
+        this.updateStockInfo();
+        this.updateQuantityDisplay();
+        this.updateAddToCartButton();
+        this.updateSizeInfo();
     }
 
     updateShippingInfo(sizeVariant) {

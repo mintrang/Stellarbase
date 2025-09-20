@@ -69,7 +69,15 @@ class Cart {
     removeItem(index) {
         this.items.splice(index, 1);
         this.saveToStorage();
-        this.updateCartDisplay();
+        
+        // If cart is empty, show empty state
+        if (this.items.length === 0) {
+            this.updateCartDisplay();
+        } else {
+            // Otherwise, just update totals and re-render items to fix indices
+            this.updateCartDisplay();
+        }
+        
         if (window.Utils) {
             window.Utils.showNotification('Item removed from cart', 'info');
         }
@@ -96,7 +104,10 @@ class Cart {
 
         this.items[index].quantity = quantity;
         this.saveToStorage();
-        this.updateCartDisplay();
+        
+        // Only update the specific item and totals, not the entire cart
+        this.updateCartItem(index);
+        this.updateCartTotals();
     }
 
     getMaxQuantity(item) {
@@ -186,7 +197,7 @@ class Cart {
                     const isMaxReached = item.quantity >= maxQuantity;
                     
                     return `
-                        <div class="cart-item">
+                        <div class="cart-item" data-item-index="${index}">
                             <img src="${item.image || ''}" alt="${item.title || 'Product'}" class="cart-item__image">
                             <div class="cart-item__details">
                                 <div class="cart-item__title">${item.title || 'Product'} | ${item.color || 'Default'}</div>
@@ -209,6 +220,60 @@ class Cart {
                     `;
                 }).join('');
             }
+        }
+
+        if (cartSubtotal) {
+            cartSubtotal.textContent = this.formatPrice(this.getTotal());
+        }
+    }
+
+    updateCartItem(index) {
+        const item = this.items[index];
+        if (!item) return;
+
+        const cartItem = document.querySelector(`[data-item-index="${index}"]`);
+        if (!cartItem) return;
+
+        const maxQuantity = this.getMaxQuantity(item);
+        const isMaxReached = item.quantity >= maxQuantity;
+
+        // Update price
+        const priceElement = cartItem.querySelector('.cart-item__price');
+        if (priceElement) {
+            priceElement.textContent = this.formatPrice(item.price * item.quantity);
+        }
+
+        // Update quantity input
+        const quantityInput = cartItem.querySelector('input[type="number"]');
+        if (quantityInput) {
+            quantityInput.value = item.quantity;
+            quantityInput.max = maxQuantity;
+        }
+
+        // Update buttons
+        const minusBtn = cartItem.querySelector('button[onclick*="updateQuantity"][onclick*="-"]');
+        const plusBtn = cartItem.querySelector('button[onclick*="updateQuantity"][onclick*="+"]');
+        
+        if (minusBtn) {
+            minusBtn.disabled = item.quantity <= 1;
+        }
+        if (plusBtn) {
+            plusBtn.disabled = isMaxReached;
+        }
+
+        // Update stock info
+        const stockElement = cartItem.querySelector('.cart-item__stock');
+        if (stockElement && maxQuantity > 0) {
+            stockElement.textContent = `${maxQuantity} in stock`;
+        }
+    }
+
+    updateCartTotals() {
+        const cartCount = document.getElementById('cartCount');
+        const cartSubtotal = document.getElementById('cartSubtotal');
+
+        if (cartCount) {
+            cartCount.textContent = this.getItemCount();
         }
 
         if (cartSubtotal) {
