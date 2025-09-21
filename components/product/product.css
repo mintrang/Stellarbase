@@ -13,7 +13,7 @@
     top: 20px;
     display: grid;
     grid-template-columns: 100px 1fr;
-    gap: 50px;
+    gap: 30px;
     align-items: start;
 }
 
@@ -1058,8 +1058,11 @@
         overflow-x: auto;
         background: #fff;
         border-bottom: 1px solid #f0f0f0;
-        max-height: 100px;
+        min-height: 100px;
         align-items: center;
+        flex-wrap: nowrap;
+        scroll-behavior: smooth;
+        -webkit-overflow-scrolling: touch;
     }
     
     .product__media-thumbnails-mobile::-webkit-scrollbar {
@@ -1090,6 +1093,8 @@
         transition: all 0.2s ease;
         background: #fff;
         flex-shrink: 0;
+        flex-grow: 0;
+        flex-basis: 60px;
     }
     
     .product__media-thumbnail-mobile:hover {

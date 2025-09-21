@@ -445,7 +445,7 @@ class Product {
         // Update mobile thumbnails
         const mobileThumbnails = document.querySelector('.product__media-thumbnails-mobile');
         if (mobileThumbnails) {
-            mobileThumbnails.innerHTML = currentImages.slice(0, 5).map((image, index) => {
+            mobileThumbnails.innerHTML = currentImages.map((image, index) => {
                 const isActive = index === 0;
                 if (image.type === 'video') {
                     return `
