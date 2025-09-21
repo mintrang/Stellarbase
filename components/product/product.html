@@ -51,7 +51,13 @@
 
             <form class="product-form" id="productForm">
                 <div class="product-form__group">
-                    <h2 class="product-form__section-title">Color: <span id="selectedColor"></span></h2>
+                    <h2 class="product-form__section-title">
+                        Color: 
+                        <span class="color-display" id="selectedColorDisplay">
+                            <span class="color-swatch" id="selectedColorSwatch"></span>
+                            <span class="color-name" id="selectedColorName">Choose a color</span>
+                        </span>
+                    </h2>
                     <div class="color-selector">
                         <!-- Color options will be rendered dynamically by JavaScript -->
                     </div>
@@ -86,15 +92,10 @@
                                 </div>
                                 <div class="size-tip">
                                     <h3 class="size-tip__title">FIND YOUR SIZE</h3>
-                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                                        <path d="M4 6L8 10L12 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                    </svg>
+                    
                                 </div>
                             </div>
-                            
-                            <div class="size-selector__summary" id="sizeSummary">
-                                <!-- Stock summary will be populated by JavaScript -->
-                            </div>
+        
                             
                             <div class="size-selector__options" id="sizeOptions">
                                 <!-- Size options will be populated by JavaScript -->
@@ -118,6 +119,11 @@
                                     <path d="M8 4V12M4 8H12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                                 </svg>
                             </button>
+                        </div>
+                        <div class="stock-display">
+                            <span class="stock-count" id="stockCount"></span>
+                            <span class="stock-text"></span>
+                            
                         </div>
                     </div>
                 </div>
@@ -193,7 +199,7 @@
             <!-- Right Column: Description & Selling Points -->
             <div class="pricing-philosophy__right">
                 <div class="pricing-philosophy__description">
-                    <p id="pricingPhilosophyDescription">Our products are handcrafted alongside similar products from other brands that charge customers 2-3x more. We make zero compromises in terms of quality materials, manufacturing, or business ethics, and we price our products honestly year-round. We simply believe that offering customers a great value is the foundation to long-term business success and is the right thing to do.</p>
+                    <p id="pricingPhilosophyDescription"></p>
                 </div>
             </div>
         </div>

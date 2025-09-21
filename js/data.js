@@ -1,4 +1,3 @@
-// Product Data Structure
 const productData = {
     id: 'captain-boots-001',
     title: 'Captain Boots - Premium Leather Sneakers',
@@ -579,5 +578,4 @@ const productData = {
     }
 };
 
-// Make data available globally
 window.productData = productData;

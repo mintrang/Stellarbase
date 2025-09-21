@@ -1,4 +1,3 @@
-// Navigation Component JavaScript
 class Navigation {
     constructor() {
         this.mobileNav = document.getElementById('mobileNav');
@@ -15,28 +14,24 @@ class Navigation {
     }
 
     setupEventListeners() {
-        // Mobile menu toggle
         if (this.mobileMenuToggle) {
             this.mobileMenuToggle.addEventListener('click', () => {
                 this.openMobileNav();
             });
         }
 
-        // Mobile nav close
         if (this.mobileNavClose) {
             this.mobileNavClose.addEventListener('click', () => {
                 this.closeMobileNav();
             });
         }
 
-        // Overlay click to close
         if (this.mobileNavOverlay) {
             this.mobileNavOverlay.addEventListener('click', () => {
                 this.closeMobileNav();
             });
         }
 
-        // Escape key to close
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && this.isOpen) {
                 this.closeMobileNav();
@@ -61,5 +56,4 @@ class Navigation {
     }
 }
 
-// Export for use in main application
 window.Navigation = Navigation;

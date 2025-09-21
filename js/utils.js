@@ -1,15 +1,10 @@
-// Utility Functions
 const Utils = {
 
-
-    // Show notification
     showNotification(message, type = 'info') {
-        // Create notification element
         const notification = document.createElement('div');
         notification.className = `notification notification--${type}`;
         notification.textContent = message;
         
-        // Add styles
         notification.style.cssText = `
             position: fixed;
             top: 20px;
@@ -25,33 +20,41 @@ const Utils = {
         
         document.body.appendChild(notification);
         
-        // Remove after 3 seconds
         setTimeout(() => {
             notification.remove();
         }, 3000);
     },
 
-    // Handle image loading errors
     handleImageError(img) {
         img.src = 'https://via.placeholder.com/800x800/f8f9fa/666?text=Image+Not+Available';
     },
 
-    // Format price for display
     formatPrice(price) {
         if (typeof price !== 'number' || isNaN(price)) {
             return '$0.00';
         }
         
-        // Convert to USD format
         return new Intl.NumberFormat('en-US', {
             style: 'currency',
             currency: 'USD',
             minimumFractionDigits: 2,
             maximumFractionDigits: 2
         }).format(price);
+    },
+
+    async loadTemplate(templatePath) {
+        try {
+            const response = await fetch(templatePath);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return await response.text();
+        } catch (error) {
+            console.error(`Error loading template from ${templatePath}:`, error);
+            return null;
+        }
     }
 };
 
-// Export for use in other modules
 window.Utils = Utils;
 

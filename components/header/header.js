@@ -1,4 +1,3 @@
-// Header Component JavaScript
 class Header {
     constructor() {
         this.mobileMenuToggle = document.getElementById('mobileMenuToggle');
@@ -14,21 +13,18 @@ class Header {
     }
 
     setupEventListeners() {
-        // Mobile menu toggle
         if (this.mobileMenuToggle) {
             this.mobileMenuToggle.addEventListener('click', () => {
                 this.toggleMobileMenu();
             });
         }
 
-        // Search toggle
         if (this.searchToggle) {
             this.searchToggle.addEventListener('click', () => {
                 this.toggleSearch();
             });
         }
 
-        // Cart toggle
         if (this.cartToggle) {
             this.cartToggle.addEventListener('click', () => {
                 this.toggleCart();
@@ -37,20 +33,16 @@ class Header {
     }
 
     toggleMobileMenu() {
-        // Mobile menu functionality - delegate to Navigation component
         if (window.navigation) {
             window.navigation.openMobileNav();
         }
     }
 
     toggleSearch() {
-        // Search functionality
         console.log('Search toggled');
-        // Implementation for search
     }
 
     toggleCart() {
-        // Cart functionality - delegate to CartDrawer component
         if (window.cartDrawer) {
             window.cartDrawer.toggle();
         }
@@ -63,5 +55,4 @@ class Header {
     }
 }
 
-// Export for use in main application
 window.Header = Header;

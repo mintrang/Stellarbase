@@ -1,18 +1,95 @@
-// Cart Component JavaScript
 class Cart {
     constructor() {
         this.items = [];
-        this.loadFromStorage();
+        this.cartItemTemplate = null;
+        this.loadTemplate();
+        this.setupEventListeners();
     }
 
+    async loadTemplate() {
+        this.cartItemTemplate = await window.Utils.loadTemplate('components/cart/cart-item.html');
+    }
+
+    setupEventListeners() {
+        document.addEventListener('click', (e) => {
+            if (e.target.matches('.quantity-btn')) {
+                const action = e.target.dataset.action;
+                const index = parseInt(e.target.dataset.index);
+                
+                if (action === 'decrease') {
+                    this.decreaseQuantity(index);
+                } else if (action === 'increase') {
+                    this.increaseQuantity(index);
+                }
+            } else if (e.target.matches('.cart-item__remove')) {
+                const index = parseInt(e.target.dataset.index);
+                this.removeItem(index);
+            }
+        });
+
+        document.addEventListener('change', (e) => {
+            if (e.target.matches('.quantity-input')) {
+                const index = parseInt(e.target.dataset.index);
+                const quantity = parseInt(e.target.value) || 0;
+                this.updateQuantity(index, quantity);
+            }
+        });
+
+        document.addEventListener('input', (e) => {
+            if (e.target.matches('.quantity-input')) {
+                e.target.value = e.target.value.replace(/[^0-9]/g, '');
+                if (e.target.value === '') e.target.value = '0';
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.target.matches('.quantity-input')) {
+                if (['-', '+', 'e', 'E', '.'].includes(e.key)) {
+                    e.preventDefault();
+                }
+            }
+        });
+
+        document.addEventListener('paste', (e) => {
+            if (e.target.matches('.quantity-input')) {
+                setTimeout(() => {
+                    const index = parseInt(e.target.dataset.index);
+                    const quantity = parseInt(e.target.value) || 0;
+                    this.updateQuantity(index, quantity);
+                }, 0);
+            }
+        });
+    }
+
+    renderCartItem(item, index) {
+        if (!this.cartItemTemplate) {
+        }
+
+        const maxQuantity = this.getMaxQuantity(item);
+        const isMaxReached = item.quantity >= maxQuantity;
+        
+        return this.cartItemTemplate
+            .replace(/\{\{index\}\}/g, index)
+            .replace(/\{\{image\}\}/g, item.image || '')
+            .replace(/\{\{title\}\}/g, item.title || 'Product')
+            .replace(/\{\{colorName\}\}/g, item.colorName || item.color || 'Default')
+            .replace(/\{\{sizeName\}\}/g, item.sizeName || item.size || 'One Size')
+            .replace(/\{\{price\}\}/g, this.formatPrice(item.price * item.quantity))
+            .replace(/\{\{stockInfo\}\}/g, maxQuantity > 0 ? `<div class="cart-item__stock">${maxQuantity} in stock</div>` : '')
+            .replace(/\{\{quantity\}\}/g, item.quantity)
+            .replace(/\{\{maxQuantity\}\}/g, maxQuantity)
+            .replace(/\{\{disabled\}\}/g, isMaxReached ? 'disabled' : '');
+    }
+
+
     addItem(product, variant, quantity) {
+        console.log('Adding item to cart...');
         const existingItem = this.items.find(item => 
             item.productId === product.id && 
             item.color === variant.color && 
             item.size === variant.size
         );
 
-        // Get current stock for this item
         const maxQuantity = this.getMaxQuantity({
             productId: product.id,
             color: variant.color,
@@ -30,7 +107,6 @@ class Cart {
                 existingItem.quantity = newQuantity;
             }
             
-            // Update image and names to match current color selection
             const colorVariant = product.variants.color[variant.color];
             const sizeVariant = product.variants.size[variant.size];
             const firstImage = colorVariant.images ? colorVariant.images.find(img => img.type === 'image') : null;
@@ -44,7 +120,6 @@ class Cart {
                 existingItem.sizeName = sizeVariant.name;
             }
         } else {
-            // Check if we can add this quantity
             if (quantity > maxQuantity) {
                 if (window.Utils) {
                     window.Utils.showNotification(`Only ${maxQuantity} items available in stock`, 'warning');
@@ -52,17 +127,14 @@ class Cart {
                 quantity = maxQuantity;
             }
 
-            // Get price from size variant pricing
             const sizeVariant = product.variants.size[variant.size];
             const pricing = sizeVariant.pricing[variant.color];
             const price = pricing ? pricing.finalPrice : 0;
             
-            // Get image from color variant
             const colorVariant = product.variants.color[variant.color];
             const firstImage = colorVariant.images ? colorVariant.images.find(img => img.type === 'image') : null;
             const image = firstImage ? firstImage.url : '';
             
-            // Get color and size names
             const colorName = colorVariant ? colorVariant.name : variant.color;
             const sizeName = sizeVariant ? sizeVariant.name : variant.size;
             
@@ -79,20 +151,16 @@ class Cart {
             });
         }
 
-        this.saveToStorage();
         this.updateCartDisplay();
  
     }
 
     removeItem(index) {
         this.items.splice(index, 1);
-        this.saveToStorage();
         
-        // If cart is empty, show empty state
         if (this.items.length === 0) {
             this.updateCartDisplay();
         } else {
-            // Otherwise, just update totals and re-render items to fix indices
             this.updateCartDisplay();
         }
         
@@ -101,9 +169,28 @@ class Cart {
         }
     }
 
+    increaseQuantity(index) {
+        const item = this.items[index];
+        if (!item) return;
+        
+        const newQuantity = item.quantity + 1;
+        this.updateQuantity(index, newQuantity);
+    }
+
+    decreaseQuantity(index) {
+        const item = this.items[index];
+        if (!item) return;
+        
+        const newQuantity = item.quantity - 1;
+        this.updateQuantity(index, newQuantity);
+    }
+
     updateQuantity(index, quantity) {
-        // Ensure quantity is a valid positive number
-        quantity = parseInt(quantity) || 1;
+        quantity = parseInt(quantity);
+        
+        if (isNaN(quantity)) {
+            quantity = 0;
+        }
         
         if (quantity <= 0) {
             this.removeItem(index);
@@ -113,10 +200,11 @@ class Cart {
         const item = this.items[index];
         if (!item) return;
 
-        // Get current stock for this item
         const maxQuantity = this.getMaxQuantity(item);
+        console.log('Updating quantity for item:', item, 'new quantity:', quantity, 'max allowed:', maxQuantity);
         
         if (quantity > maxQuantity) {
+            console.log('Quantity exceeds max, limiting to:', maxQuantity);
             quantity = maxQuantity;
             if (window.Utils) {
                 window.Utils.showNotification(`Only ${maxQuantity} items available in stock`, 'warning');
@@ -124,21 +212,22 @@ class Cart {
         }
 
         this.items[index].quantity = quantity;
-        this.saveToStorage();
+        console.log('Updated item quantity to:', this.items[index].quantity);
         
-        // Only update the specific item and totals, not the entire cart
         this.updateCartItem(index);
         this.updateCartTotals();
     }
 
     getMaxQuantity(item) {
-        // Get stock from productData
         if (window.productData && window.productData.variants) {
             const sizeVariant = window.productData.variants.size[item.size];
             if (sizeVariant && sizeVariant.stock) {
-                return sizeVariant.stock[item.color] || 0;
+                const stock = sizeVariant.stock[item.color];
+                console.log('Stock for', item.color, item.size, ':', stock); // Debug log
+                return stock || 0;
             }
         }
+        console.log('No stock data found, using default 10'); // Debug log
         return 10; // Default max if no stock data
     }
 
@@ -150,33 +239,9 @@ class Cart {
         return this.items.reduce((count, item) => count + item.quantity, 0);
     }
 
-    saveToStorage() {
-        localStorage.setItem('cart', JSON.stringify(this.items));
-    }
-
-    loadFromStorage() {
-        const stored = localStorage.getItem('cart');
-        if (stored) {
-            try {
-                this.items = JSON.parse(stored);
-                // Clean up any invalid items
-                this.items = this.items.filter(item => 
-                    item.title && 
-                    item.color && 
-                    item.size && 
-                    item.price && 
-                    item.quantity
-                );
-            } catch (error) {
-                console.error('Error loading cart from storage:', error);
-                this.items = [];
-            }
-        }
-    }
 
     clearCart() {
         this.items = [];
-        this.saveToStorage();
         this.updateCartDisplay();
         if (window.Utils) {
             window.Utils.showNotification('Cart cleared', 'info');
@@ -215,38 +280,8 @@ class Cart {
                 `;
             } else {
                 cartItems.innerHTML = this.items.map((item, index) => {
-                    const maxQuantity = this.getMaxQuantity(item);
-                    const isMaxReached = item.quantity >= maxQuantity;
-                    
-                    return `
-                        <div class="cart-item" data-item-index="${index}">
-                            <img src="${item.image || ''}" alt="${item.title || 'Product'}" class="cart-item__image">
-                            <div class="cart-item__details">
-                                <div class="cart-item__title">${item.title || 'Product'} | ${item.colorName || item.color || 'Default'}</div>
-                                <div class="cart-item__variant">Size: ${item.sizeName || item.size || 'One Size'}</div>
-                                <div class="cart-item__price">${this.formatPrice(item.price * item.quantity)}</div>
-                                ${maxQuantity > 0 ? `<div class="cart-item__stock">${maxQuantity} in stock</div>` : ''}
-                            </div>
-                            <div class="cart-item__controls">
-                                <div class="cart-item__quantity">
-                                    <button onclick="window.cart.updateQuantity(${index}, ${item.quantity - 1})" 
-                                            ${item.quantity <= 1 ? 'disabled' : ''} 
-                                            aria-label="Decrease quantity for ${item.title}">-</button>
-                                    <input type="number" value="${item.quantity}" min="1" max="${maxQuantity}" 
-                                           onchange="window.cart.updateQuantity(${index}, parseInt(this.value))" 
-                                           oninput="this.value = this.value.replace(/[^0-9]/g, ''); if(this.value === '' || this.value === '0') this.value = '1';"
-                                           onkeydown="if(event.key === '-' || event.key === '+' || event.key === 'e' || event.key === 'E') event.preventDefault();"
-                                           onpaste="setTimeout(() => { let val = parseInt(this.value) || 1; if(val < 1) { this.value = 1; window.cart.updateQuantity(${index}, 1); } }, 0);"
-                                           aria-label="Quantity for ${item.title}">
-                                    <button onclick="window.cart.updateQuantity(${index}, ${item.quantity + 1})" 
-                                            ${isMaxReached ? 'disabled' : ''} 
-                                            aria-label="Increase quantity for ${item.title}">+</button>
-                                </div>
-                                <button class="cart-item__remove" onclick="window.cart.removeItem(${index})" 
-                                        aria-label="Remove ${item.title} from cart">Remove</button>
-                            </div>
-                        </div>
-                    `;
+                    console.log('Rendering cart item:', item.color, item.size, 'quantity:', item.quantity);
+                    return this.renderCartItem(item, index);
                 }).join('');
             }
         }
@@ -266,31 +301,27 @@ class Cart {
         const maxQuantity = this.getMaxQuantity(item);
         const isMaxReached = item.quantity >= maxQuantity;
 
-        // Update price
         const priceElement = cartItem.querySelector('.cart-item__price');
         if (priceElement) {
             priceElement.textContent = this.formatPrice(item.price * item.quantity);
         }
 
-        // Update quantity input
         const quantityInput = cartItem.querySelector('input[type="number"]');
         if (quantityInput) {
             quantityInput.value = item.quantity;
             quantityInput.max = maxQuantity;
         }
 
-        // Update buttons
         const minusBtn = cartItem.querySelector('button[onclick*="updateQuantity"][onclick*="-"]');
         const plusBtn = cartItem.querySelector('button[onclick*="updateQuantity"][onclick*="+"]');
         
         if (minusBtn) {
-            minusBtn.disabled = item.quantity <= 1;
+            minusBtn.disabled = false; // Allow decreasing to 0
         }
         if (plusBtn) {
             plusBtn.disabled = isMaxReached;
         }
 
-        // Update stock info
         const stockElement = cartItem.querySelector('.cart-item__stock');
         if (stockElement && maxQuantity > 0) {
             stockElement.textContent = `${maxQuantity} in stock`;
@@ -312,7 +343,6 @@ class Cart {
 
 }
 
-// Cart Drawer Management
 class CartDrawer {
     constructor() {
         this.isOpen = false;
@@ -383,16 +413,12 @@ class CartDrawer {
             return;
         }
 
-        // For now, just show a notification
         if (window.Utils) {
             window.Utils.showNotification('Checkout functionality coming soon!', 'info');
         }
         
-        // In a real app, you would redirect to checkout page
-        // window.location.href = '/checkout';
     }
 }
 
-// Export for use in main application
 window.Cart = Cart;
 window.CartDrawer = CartDrawer;

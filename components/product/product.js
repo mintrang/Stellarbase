@@ -1,4 +1,3 @@
-// Product Component JavaScript
 class Product {
     constructor() {
         this.currentVariant = {
@@ -12,6 +11,7 @@ class Product {
     }
 
     init() {
+        console.log('Initializing product...');
         this.loadProductData();
         this.setupEventListeners();
         this.updateDisplay();
@@ -21,19 +21,16 @@ class Product {
     }
 
     loadProductData() {
-        // Load product title
         const productTitle = document.getElementById('productTitle');
         if (productTitle && window.productData) {
             productTitle.textContent = window.productData.title;
         }
 
-        // Load product description
         const productDescription = document.getElementById('productDescription');
         if (productDescription && window.productData) {
             productDescription.textContent = window.productData.description;
         }
 
-        // Load main image
         const mainImage = document.getElementById('mainImage');
         if (mainImage && window.productData) {
             const firstColorVariant = window.productData.variants.color[this.currentVariant.color];
@@ -46,16 +43,8 @@ class Product {
             }
         }
 
-        // Load initial color
-        const selectedColor = document.getElementById('selectedColor');
-        if (selectedColor && window.productData) {
-            const currentColorVariant = window.productData.variants.color[this.currentVariant.color];
-            if (currentColorVariant) {
-                selectedColor.textContent = currentColorVariant.name;
-            }
-        }
+        this.updateColorDisplay();
 
-        // Load initial size
         const selectedSize = document.getElementById('selectedSize');
         if (selectedSize && window.productData) {
             const currentSizeVariant = window.productData.variants.size[this.currentVariant.size];
@@ -65,10 +54,8 @@ class Product {
         }
 
 
-        // Load product features
         this.loadProductFeatures();
         
-        // Load shipping info
         this.loadShippingInfo();
     }
 
@@ -77,10 +64,8 @@ class Product {
         
         const featuresList = document.querySelector('.product-features__list');
         if (featuresList) {
-            // Clear existing content
             featuresList.innerHTML = '';
             
-            // Add features from data
             window.productData.features.forEach(feature => {
                 const li = document.createElement('li');
                 li.className = 'product-features__item';
@@ -95,10 +80,8 @@ class Product {
         
         const shippingList = document.getElementById('shippingInfoList');
         if (shippingList) {
-            // Clear existing content
             shippingList.innerHTML = '';
             
-            // Add shipping info from data
             Object.values(window.productData.shipping).forEach(info => {
                 const li = document.createElement('li');
                 li.className = 'shipping-info__item';
@@ -109,7 +92,6 @@ class Product {
     }
 
     setupEventListeners() {
-        // Color selectors
         document.addEventListener('click', (e) => {
             if (e.target.closest('.color-option')) {
                 const colorOption = e.target.closest('.color-option');
@@ -118,7 +100,6 @@ class Product {
             }
         });
 
-        // Thumbnail selectors
         document.addEventListener('click', (e) => {
             console.log('Click detected on:', e.target);
             if (e.target.closest('.product__media-thumbnail')) {
@@ -127,26 +108,22 @@ class Product {
                 console.log('Thumbnail dataset:', thumbnail.dataset);
                 
                 if (thumbnail.dataset.image) {
-                    // Show image and hide video if playing
                     this.showImageInMain();
                     
                     const mainImage = document.getElementById('mainImage');
                     if (mainImage) {
                         mainImage.src = thumbnail.dataset.image;
                         
-                        // Update active thumbnail
                         document.querySelectorAll('.product__media-thumbnail').forEach(t => t.classList.remove('active'));
                         thumbnail.classList.add('active');
                     }
                 } else if (thumbnail.dataset.video) {
-                    // Handle video thumbnail click - show video in main area
                     console.log('Video thumbnail clicked, calling showVideoInMain');
                     this.showVideoInMain();
                 }
             }
         });
 
-        // Mobile thumbnail selectors
         document.addEventListener('click', (e) => {
             console.log('Mobile click detected on:', e.target);
             if (e.target.closest('.product__media-thumbnail-mobile')) {
@@ -155,26 +132,22 @@ class Product {
                 console.log('Mobile thumbnail dataset:', thumbnail.dataset);
                 
                 if (thumbnail.dataset.image) {
-                    // Show image and hide video if playing
                     this.showImageInMain();
                     
                     const mainImage = document.getElementById('mainImage');
                     if (mainImage) {
                         mainImage.src = thumbnail.dataset.image;
                         
-                        // Update active mobile thumbnail
                         document.querySelectorAll('.product__media-thumbnail-mobile').forEach(t => t.classList.remove('active'));
                         thumbnail.classList.add('active');
                     }
                 } else if (thumbnail.dataset.video) {
-                    // Handle video thumbnail click - show video in main area
                     console.log('Mobile video thumbnail clicked, calling showVideoInMain');
                     this.showVideoInMain();
                 }
             }
         });
 
-            // Navigation arrows
             const prevBtn = document.getElementById('prevBtn');
             const nextBtn = document.getElementById('nextBtn');
             
@@ -190,7 +163,6 @@ class Product {
                 });
             }
 
-        // Size dropdown
         const sizeSelectButton = document.getElementById('sizeSelectButton');
         const sizeDropdown = document.getElementById('sizeDropdown');
         const sizeOverlay = document.getElementById('sizeOverlay');
@@ -214,7 +186,6 @@ class Product {
             });
         }
 
-        // Quantity controls
         const quantityMinusBtn = document.getElementById('quantityMinusBtn');
         const quantityPlusBtn = document.getElementById('quantityPlusBtn');
         const quantityInput = document.getElementById('quantityInput');
@@ -235,7 +206,6 @@ class Product {
             quantityInput.addEventListener('change', (e) => {
                 let quantity = parseInt(e.target.value) || 1;
                 
-                // Prevent negative numbers
                 if (quantity < 1) {
                     quantity = 1;
                     e.target.value = 1;
@@ -244,14 +214,11 @@ class Product {
                 this.updateQuantity(quantity);
             });
             
-            // Prevent typing negative numbers
             quantityInput.addEventListener('input', (e) => {
                 let value = e.target.value;
                 
-                // Remove any non-numeric characters except digits
                 value = value.replace(/[^0-9]/g, '');
                 
-                // If empty or starts with 0, set to 1
                 if (value === '' || value === '0') {
                     value = '1';
                 }
@@ -259,7 +226,6 @@ class Product {
                 e.target.value = value;
             });
             
-            // Prevent pasting negative numbers
             quantityInput.addEventListener('paste', (e) => {
                 setTimeout(() => {
                     let value = parseInt(e.target.value) || 1;
@@ -271,7 +237,6 @@ class Product {
             });
         }
 
-        // Add to cart button
         const addToCartBtn = document.getElementById('addToCartBtn');
         if (addToCartBtn) {
             addToCartBtn.addEventListener('click', (e) => {
@@ -281,7 +246,6 @@ class Product {
         }
 
 
-        // Prevent form submission and negative input on quantity input
         if (quantityInput) {
             quantityInput.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter') {
@@ -289,7 +253,6 @@ class Product {
                     e.target.blur();
                 }
                 
-                // Prevent typing minus sign, plus sign, or 'e' (scientific notation)
                 if (e.key === '-' || e.key === '+' || e.key === 'e' || e.key === 'E') {
                     e.preventDefault();
                 }
@@ -301,10 +264,8 @@ class Product {
         this.currentVariant[type] = value;
         
         if (type === 'color') {
-            // When color changes, update everything including images
             this.updateDisplay();
         } else if (type === 'size') {
-            // When size changes, only update size-related info, not images
             this.updateSizeOnly();
         }
     }
@@ -333,10 +294,8 @@ class Product {
     }
 
     updateDisplay() {
-        // Ensure we're showing image, not video when variant changes
         this.showImageInMain();
 
-        // Update secondary image (right column)
         const secondaryImage = document.getElementById('secondaryImage');
         if (secondaryImage) {
             const currentColorVariant = window.productData.variants.color[this.currentVariant.color];
@@ -347,36 +306,26 @@ class Product {
             }
         }
 
-        // Update thumbnails
         this.updateThumbnails();
 
-        // Update color options
         this.updateColorOptions();
 
-        // Update product information
         this.updateProductInfo();
 
-        // Update pricing philosophy
         setTimeout(() => {
             this.updatePricingPhilosophy();
         }, 100);
 
-        // Update size information
         this.updateSizeInfo();
 
-        // Update price display
         this.updatePriceDisplay();
         
-        // Update variant options
         this.updateVariantOptions();
         
-        // Update size button text
         this.updateSizeButtonText();
         
-        // Update size dropdown
         this.updateSizeDropdown();
         
-        // Update stock display
         this.updateStockDisplay();
     }
 
@@ -407,7 +356,6 @@ class Product {
             if (pricing) {
                 if (currentPrice) currentPrice.textContent = window.Utils.formatPrice(pricing.finalPrice);
                 
-                // Update Add to Cart button text with current price
                 if (addToCartBtn) {
                     const btnText = addToCartBtn.querySelector('.btn__text');
                     if (btnText) {
@@ -435,7 +383,6 @@ class Product {
     }
 
     updateVariantOptions() {
-        // Update color swatches
         const colorOptions = document.querySelectorAll('.color-option');
         colorOptions.forEach(option => {
             const color = option.dataset.color;
@@ -447,7 +394,6 @@ class Product {
                 option.classList.remove('color-option--selected');
             }
             
-            // Disable out of stock colors
             if (variant.stock === 0) {
                 option.style.opacity = '0.5';
                 option.style.cursor = 'not-allowed';
@@ -456,7 +402,6 @@ class Product {
                 option.style.cursor = 'pointer';
             }
 
-            // Update color image
             const colorImage = option.querySelector('.color-image');
             if (colorImage && variant.images) {
                 const firstImage = variant.images.find(img => img.type === 'image');
@@ -467,7 +412,6 @@ class Product {
             }
         });
 
-        // Update size options
         const sizeOptions = document.querySelectorAll('.size-option');
         sizeOptions.forEach(option => {
             const size = option.dataset.size;
@@ -478,18 +422,44 @@ class Product {
             }
         });
 
-        // Update selected text
         this.updateSelectedText();
     }
 
-    updateSelectedText() {
-        const selectedColor = document.getElementById('selectedColor');
-        const selectedSize = document.getElementById('selectedSize');
-
-        if (selectedColor) {
+    updateColorDisplay() {
+        const selectedColorSwatch = document.getElementById('selectedColorSwatch');
+        const selectedColorName = document.getElementById('selectedColorName');
+        
+        if (selectedColorSwatch && selectedColorName && window.productData) {
             const colorVariant = window.productData.variants.color[this.currentVariant.color];
-            selectedColor.textContent = colorVariant.name;
+            if (colorVariant) {
+                const colorCode = colorVariant.colorCode || this.getColorCode(this.currentVariant.color);
+                
+                selectedColorSwatch.style.backgroundColor = colorCode;
+                selectedColorSwatch.style.borderColor = colorCode;
+                
+                selectedColorSwatch.classList.remove('white');
+                if (this.currentVariant.color === 'white') {
+                    selectedColorSwatch.classList.add('white');
+                }
+                
+                selectedColorName.textContent = colorVariant.name;
+            }
         }
+    }
+
+    getColorCode(colorName) {
+        const colorMap = {
+            'black': '#000000',
+            'pink': '#ff69b4',
+            'yellow': '#ffd700',
+            'white': '#ffffff'
+        };
+        return colorMap[colorName] || '#f0f0f0';
+    }
+
+    updateSelectedText() {
+        this.updateColorDisplay();
+        const selectedSize = document.getElementById('selectedSize');
 
         if (selectedSize) {
             const sizeVariant = window.productData.variants.size[this.currentVariant.size];
@@ -503,7 +473,6 @@ class Product {
         
         const currentImages = currentColorVariant.images;
 
-        // Update desktop thumbnails
         const desktopThumbnails = document.querySelector('.product__media-thumbnails');
         if (desktopThumbnails) {
             desktopThumbnails.innerHTML = currentImages.map((image, index) => {
@@ -531,7 +500,6 @@ class Product {
             }).join('');
         }
 
-        // Update mobile thumbnails
         const mobileThumbnails = document.querySelector('.product__media-thumbnails-mobile');
         if (mobileThumbnails) {
             mobileThumbnails.innerHTML = currentImages.map((image, index) => {
@@ -587,12 +555,10 @@ class Product {
 
         if (!productInfoImage || !productInfoTitle || !productInfoDescription) return;
 
-        // Get product info for current color variant
         const currentColorVariant = window.productData.variants.color[this.currentVariant.color];
         const productInfo = currentColorVariant.productInfo || window.productData.productInfo;
 
         if (productInfo) {
-            // Use image from current color variant instead of fixed image
             if (currentColorVariant && currentColorVariant.images) {
                 const firstImage = currentColorVariant.images.find(img => img.type === 'image') || currentColorVariant.images[0];
                 if (firstImage) {
@@ -626,7 +592,6 @@ class Product {
             return;
         }
 
-        // Update product image - use current color variant image
         const currentColorVariant = window.productData.variants.color[this.currentVariant.color];
         if (currentColorVariant && currentColorVariant.images) {
             const firstImage = currentColorVariant.images.find(img => img.type === 'image') || currentColorVariant.images[0];
@@ -639,20 +604,16 @@ class Product {
             pricingProductImage.alt = 'Product';
         }
 
-        // Update title
         pricingPhilosophyTitle.textContent = pricingData.title;
 
-        // Update description
         pricingPhilosophyDescription.textContent = pricingData.description;
 
-        // Update selling points if element exists
         if (sellingPointsList && pricingData.sellingPoints) {
             sellingPointsList.innerHTML = pricingData.sellingPoints.map(point => 
                 `<div class="selling-points__item">${point}</div>`
             ).join('');
         }
 
-        // Update read more link if element exists
         if (pricingReadMoreLink && pricingData.readMoreLink) {
             pricingReadMoreLink.href = pricingData.readMoreLink;
         }
@@ -663,28 +624,22 @@ class Product {
         const currentColorVariant = window.productData.variants.color[this.currentVariant.color];
         if (!currentSizeVariant || !currentColorVariant) return;
 
-        // Update size description in product info section
         const productInfoDescription = document.getElementById('productInfoDescription');
         if (productInfoDescription && currentSizeVariant.description) {
-            // Get current product info
             const productInfo = currentColorVariant.productInfo || window.productData.productInfo;
             
             if (productInfo) {
-                // Combine original description with size-specific info
                 const sizeInfo = `\n\nSize ${currentSizeVariant.name}: ${currentSizeVariant.description}`;
                 productInfoDescription.textContent = productInfo.description + sizeInfo;
             }
         }
 
-        // Update size features if available
         const productFeatures = document.querySelector('.product__features-list');
         if (productFeatures && currentSizeVariant.features) {
-            // Add size-specific features
             const sizeFeatures = currentSizeVariant.features.map(feature => 
                 `<li class="product__feature-item">${feature}</li>`
             ).join('');
             
-            // Check if size features already exist
             let sizeFeaturesContainer = document.querySelector('.size-specific-features');
             if (!sizeFeaturesContainer) {
                 sizeFeaturesContainer = document.createElement('div');
@@ -695,7 +650,6 @@ class Product {
                 `;
                 productFeatures.parentNode.appendChild(sizeFeaturesContainer);
             } else {
-                // Update existing size features
                 const subtitle = sizeFeaturesContainer.querySelector('.product__features-subtitle');
                 const featuresList = sizeFeaturesContainer.querySelector('.size-features-list');
                 if (subtitle) subtitle.textContent = `Size ${currentSizeVariant.name} Features:`;
@@ -703,15 +657,12 @@ class Product {
             }
         }
 
-        // Update stock information for current size
         this.updateSizeStockInfo(currentSizeVariant);
         
-        // Update shipping information
         this.updateShippingInfo(currentSizeVariant);
     }
 
     updateSizeOnly() {
-        // Only update size-related information without touching images
         this.updateSizeButtonText();
         this.updatePriceDisplay();
         this.updateStockInfo();
@@ -729,7 +680,6 @@ class Product {
         const shippingInfoList = document.getElementById('shippingInfoList');
         
         if (shippingInfo && shippingInfoList) {
-            // Update shipping info list with color and size specific information
             const baseShippingItems = [
                 'Free domestic U.S. ground shipping',
                 'Free domestic U.S. returns. <a href="#" class="shipping-info__link">See our full policy</a>',
@@ -757,7 +707,6 @@ class Product {
                 stockText = `${stock} available in size ${sizeVariant.name}`;
             }
             
-            // Update or create stock info element
             let stockElement = document.querySelector('.size-stock-info');
             if (!stockElement) {
                 stockElement = document.createElement('div');
@@ -791,7 +740,6 @@ class Product {
         currentImage.src = newImage.url;
         currentImage.alt = newImage.alt;
 
-        // Update active thumbnails
         document.querySelectorAll('.product__media-thumbnail').forEach(t => t.classList.remove('active'));
         document.querySelectorAll('.product__media-thumbnail-mobile').forEach(t => t.classList.remove('active'));
         
@@ -810,7 +758,6 @@ class Product {
             return;
         }
 
-        // Update stock summary
         this.updateStockSummary();
 
         const sizes = Object.keys(window.productData.variants.size);
@@ -818,7 +765,6 @@ class Product {
             const variant = window.productData.variants.size[sizeKey];
             const isSelected = this.currentVariant.size === sizeKey;
             
-            // Get stock for current color
             const currentColor = this.currentVariant.color;
             const stock = variant.stock[currentColor] || 0;
             const stockStatus = this.getStockStatus(stock);
@@ -851,7 +797,6 @@ class Product {
             `;
         }).join('');
 
-        // Add click listeners to size options
         sizeOptions.querySelectorAll('.size-option').forEach(option => {
             option.addEventListener('click', (e) => {
                 if (!option.dataset.disabled) {
@@ -928,7 +873,6 @@ class Product {
         const overlay = document.getElementById('sizeOverlay');
         
         if (dropdown && overlay) {
-            // Update dropdown content before opening
             this.updateSizeDropdown();
             
             overlay.classList.add('size-selector__overlay--open');
@@ -979,12 +923,11 @@ class Product {
         
         if (quantityMinusBtn) quantityMinusBtn.disabled = this.quantity <= 1;
         if (quantityPlusBtn) quantityPlusBtn.disabled = this.quantity >= maxStock || maxStock === 0;
-        // Update stock display
         this.updateStockDisplay();
     }
 
     updateStockDisplay() {
-        const stockDisplay = document.getElementById('stockDisplay');
+        const stockDisplay = document.querySelector('.stock-display');
         const stockCount = document.getElementById('stockCount');
         const stockText = document.querySelector('.stock-text');
         
@@ -992,10 +935,8 @@ class Product {
 
         const maxStock = this.getMaxStock();
         
-        // Update stock count
         stockCount.textContent = maxStock;
         
-        // Update stock status and styling
         stockDisplay.classList.remove('low-stock', 'out-of-stock');
         
         if (maxStock === 0) {
@@ -1012,7 +953,6 @@ class Product {
     showVideoInMain() {
         console.log('showVideoInMain called');
         
-        // Find the video data
         const currentColorVariant = window.productData.variants.color[this.currentVariant.color];
         console.log('currentColorVariant:', currentColorVariant);
         
@@ -1029,7 +969,6 @@ class Product {
             return;
         }
 
-        // Get main image container
         const mainImageContainer = document.getElementById('mainImageContainer');
         const mainImage = document.getElementById('mainImage');
         
@@ -1040,10 +979,8 @@ class Product {
             return;
         }
 
-        // Try local video first
         console.log('Trying local video:', videoData.url);
         
-        // Create video element
         const video = document.createElement('video');
         video.src = videoData.url;
         video.controls = true;
@@ -1056,26 +993,21 @@ class Product {
         video.style.borderRadius = '8px';
         video.style.backgroundColor = '#000';
         
-        // Add event listeners
         video.addEventListener('loadstart', () => console.log('Video load started'));
         video.addEventListener('loadeddata', () => console.log('Video data loaded'));
         video.addEventListener('canplay', () => console.log('Video can play'));
         video.addEventListener('error', (e) => console.error('Video error:', e));
         
-        // Replace image with video
         mainImage.style.display = 'none';
         mainImageContainer.appendChild(video);
         
-        // Hide navigation arrows when video is playing
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
         if (prevBtn) prevBtn.style.display = 'none';
         if (nextBtn) nextBtn.style.display = 'none';
         
-        // Store reference
         this.currentVideo = video;
         
-        // Add close button
         const closeBtn = document.createElement('button');
         closeBtn.className = 'video-close-btn';
         closeBtn.innerHTML = '✕';
@@ -1107,28 +1039,23 @@ class Product {
         
         if (!mainImageContainer || !mainImage) return;
 
-        // Remove video/iframe if exists
         if (this.currentVideo) {
             this.currentVideo.remove();
             this.currentVideo = null;
         }
 
-        // Remove close button if exists
         const closeBtn = mainImageContainer.querySelector('.video-close-btn');
         if (closeBtn) {
             closeBtn.remove();
         }
 
-        // Show image
         mainImage.style.display = 'block';
 
-        // Show navigation arrows again
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
         if (prevBtn) prevBtn.style.display = 'block';
         if (nextBtn) nextBtn.style.display = 'block';
 
-        // Update main image with current variant
         const currentColorVariant = window.productData.variants.color[this.currentVariant.color];
         if (currentColorVariant && currentColorVariant.images) {
             const firstImage = currentColorVariant.images.find(img => img.type === 'image') || currentColorVariant.images[0];
@@ -1184,7 +1111,6 @@ class Product {
             window.cart.addItem(window.productData, variant, this.quantity);
         }
         
-        // Show cart drawer
         if (window.cartDrawer) {
             window.cartDrawer.toggle();
         }
@@ -1192,5 +1118,4 @@ class Product {
 }
 
 
-// Export for use in main application
 window.Product = Product;
