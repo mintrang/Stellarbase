@@ -275,7 +275,7 @@ class Product {
                 if (addToCartBtn) {
                     const btnText = addToCartBtn.querySelector('.btn__text');
                     if (btnText) {
-                        btnText.textContent = `Add to cart - ${window.Utils.formatPrice(pricing.finalPrice)}`;
+                        btnText.textContent = `Add to cart`;
                     }
                 }
                 
@@ -863,12 +863,7 @@ class Product {
         } else {
             addToCartBtn.disabled = false;
             addToCartBtn.innerHTML = `
-                <span class="btn__text">Add to cart - ${window.Utils.formatPrice(currentPrice)}</span>
-                <span class="btn__icon">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                        <path d="M6 2L6 1C6 0.447715 6.44772 0 7 0H9C9.55228 0 10 0.447715 10 1V2M6 2H4C3.44772 2 3 2.44772 3 3V14C3 15.1046 3.89543 16 5 16H11C12.1046 16 13 15.1046 13 14V3C13 2.44772 12.5523 2 12 2H10M6 2H10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </span>
+                <span class="btn__text">Add to cart</span>
             `;
         }
     }

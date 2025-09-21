@@ -61,9 +61,7 @@ class Cart {
 
         this.saveToStorage();
         this.updateCartDisplay();
-        if (window.Utils) {
-            window.Utils.showNotification('Item added to cart!', 'success');
-        }
+ 
     }
 
     removeItem(index) {
