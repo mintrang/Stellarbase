@@ -1,6 +1,6 @@
 const productData = {
     id: 'captain-boots-001',
-    title: 'Captain Boots - Premium Leather Sneakers',
+    title: 'Captain Boots',
     description: 'Discover the Captain Boots collection - premium unisex leather sneakers that combine timeless style with modern comfort. Perfect for both men and women, crafted from the finest materials and built to last with exceptional attention to detail.',
     features: [
         'Premium full-grain leather upper',
@@ -83,7 +83,7 @@ const productData = {
                     }
                 ],
                 productInfo: {
-                    title: "Captain Boots - Black Leather Sneakers",
+                    title: "Captain Boots",
                     description: "The classic black Captain Boots feature premium full-grain leather construction with a sophisticated cap-toe design. Perfect for both professional and casual settings, these sneakers offer exceptional comfort and durability. The rich black leather develops a beautiful patina over time, making each pair uniquely yours.",
                     image: "https://plus.unsplash.com/premium_photo-1695603437800-a679762b893e?w=800&h=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGJsYWNrJTIwc25lYWslMjBzaG9lc3xlbnwwfHwwfHx8MA%3D%3D"
                 },
@@ -218,7 +218,7 @@ const productData = {
                     }
                 ],
                 productInfo: {
-                    title: "Captain Boots - Yellow Leather Sneakers",
+                    title: "Captain Boots",
                     description: "Brighten up your wardrobe with our vibrant yellow Captain Boots. Made from premium yellow leather, these sneakers are perfect for those who love to make a statement. The eye-catching yellow hue adds energy to any outfit while providing the same exceptional comfort and durability as all Captain Boots.",
                     image: "https://images.unsplash.com/photo-1657196084373-8dd49a33a2a1?w=800&h=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjd8fHllbGxvdyUyMHNuZWFrJTIwc2hvZXN8ZW58MHx8MHx8fDA%3D"
                 }
@@ -285,7 +285,7 @@ const productData = {
                     }
                 ],
                 productInfo: {
-                    title: "Captain Boots - White Leather Sneakers",
+                    title: "Captain Boots",
                     description: "Achieve clean, sophisticated style with our white Captain Boots. Made from premium white leather, these sneakers offer a fresh, modern look that pairs perfectly with any outfit. The pristine white hue creates a timeless appeal while maintaining the same exceptional quality and comfort as all Captain Boots.",
                     image: "https://images.unsplash.com/photo-1627361673902-c80df14aecdd?w=800&h=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8d2hpdGUlMjBzbmVhayUyMHNob2VzfGVufDB8fDB8fHww"
                 }

@@ -1026,6 +1026,10 @@ class Product {
 
         if (window.cart) {
             window.cart.addItem(window.productData, variant, this.quantity);
+            
+            if (window.cartDrawer) {
+                window.cartDrawer.toggle();
+            }
         }
     }
 }
