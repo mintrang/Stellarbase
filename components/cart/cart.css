@@ -220,6 +220,17 @@
     color: #333;
 }
 
+/* Hide number input spinners in cart */
+.cart-item__quantity input::-webkit-outer-spin-button,
+.cart-item__quantity input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.cart-item__quantity input[type=number] {
+    -moz-appearance: textfield;
+}
+
 .cart-item__remove {
     background: none;
     color: #dc3545;

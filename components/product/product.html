@@ -105,18 +105,24 @@
 
                 <div class="product-form__group">
                     <h2 class="product-form__section-title">Quantity</h2>
-                    <div class="quantity-selector">
-                        <button type="button" class="quantity-selector__button quantity-selector__button--minus" id="quantityMinusBtn" aria-label="Decrease quantity">
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                                <path d="M4 8H12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </button>
-                        <input type="number" class="quantity-selector__input" id="quantityInput" value="1" min="1" max="10" aria-label="Quantity">
-                        <button type="button" class="quantity-selector__button quantity-selector__button--plus" id="quantityPlusBtn" aria-label="Increase quantity">
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-                                <path d="M8 4V12M4 8H12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </button>
+                    <div class="quantity-section">
+                        <div class="quantity-selector">
+                            <button type="button" class="quantity-selector__button quantity-selector__button--minus" id="quantityMinusBtn" aria-label="Decrease quantity">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                    <path d="M4 8H12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                            <input type="number" class="quantity-selector__input" id="quantityInput" value="1" min="1" max="10" aria-label="Quantity">
+                            <button type="button" class="quantity-selector__button quantity-selector__button--plus" id="quantityPlusBtn" aria-label="Increase quantity">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+                                    <path d="M8 4V12M4 8H12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="stock-display" id="stockDisplay">
+                            <span class="stock-text">In Stock</span>
+                            <span class="stock-count" id="stockCount">10</span>
+                        </div>
                     </div>
                 </div>
 

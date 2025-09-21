@@ -82,6 +82,9 @@ class Cart {
     }
 
     updateQuantity(index, quantity) {
+        // Ensure quantity is a valid positive number
+        quantity = parseInt(quantity) || 1;
+        
         if (quantity <= 0) {
             this.removeItem(index);
             return;
@@ -210,6 +213,9 @@ class Cart {
                                             aria-label="Decrease quantity for ${item.title}">-</button>
                                     <input type="number" value="${item.quantity}" min="1" max="${maxQuantity}" 
                                            onchange="window.cart.updateQuantity(${index}, parseInt(this.value))" 
+                                           oninput="this.value = this.value.replace(/[^0-9]/g, ''); if(this.value === '' || this.value === '0') this.value = '1';"
+                                           onkeydown="if(event.key === '-' || event.key === '+' || event.key === 'e' || event.key === 'E') event.preventDefault();"
+                                           onpaste="setTimeout(() => { let val = parseInt(this.value) || 1; if(val < 1) { this.value = 1; window.cart.updateQuantity(${index}, 1); } }, 0);"
                                            aria-label="Quantity for ${item.title}">
                                     <button onclick="window.cart.updateQuantity(${index}, ${item.quantity + 1})" 
                                             ${isMaxReached ? 'disabled' : ''} 

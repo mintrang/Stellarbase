@@ -130,8 +130,41 @@ class Product {
 
         if (quantityInput) {
             quantityInput.addEventListener('change', (e) => {
-                const quantity = parseInt(e.target.value) || 1;
+                let quantity = parseInt(e.target.value) || 1;
+                
+                // Prevent negative numbers
+                if (quantity < 1) {
+                    quantity = 1;
+                    e.target.value = 1;
+                }
+                
                 this.updateQuantity(quantity);
+            });
+            
+            // Prevent typing negative numbers
+            quantityInput.addEventListener('input', (e) => {
+                let value = e.target.value;
+                
+                // Remove any non-numeric characters except digits
+                value = value.replace(/[^0-9]/g, '');
+                
+                // If empty or starts with 0, set to 1
+                if (value === '' || value === '0') {
+                    value = '1';
+                }
+                
+                e.target.value = value;
+            });
+            
+            // Prevent pasting negative numbers
+            quantityInput.addEventListener('paste', (e) => {
+                setTimeout(() => {
+                    let value = parseInt(e.target.value) || 1;
+                    if (value < 1) {
+                        e.target.value = 1;
+                        this.updateQuantity(1);
+                    }
+                }, 0);
             });
         }
 
@@ -145,12 +178,17 @@ class Product {
         }
 
 
-        // Prevent form submission on quantity input
+        // Prevent form submission and negative input on quantity input
         if (quantityInput) {
             quantityInput.addEventListener('keydown', (e) => {
                 if (e.key === 'Enter') {
                     e.preventDefault();
                     e.target.blur();
+                }
+                
+                // Prevent typing minus sign, plus sign, or 'e' (scientific notation)
+                if (e.key === '-' || e.key === '+' || e.key === 'e' || e.key === 'E') {
+                    e.preventDefault();
                 }
             });
         }
@@ -242,6 +280,9 @@ class Product {
         
         // Update size dropdown
         this.updateSizeDropdown();
+        
+        // Update stock display
+        this.updateStockDisplay();
     }
 
     updateSizeButtonText() {
@@ -565,6 +606,7 @@ class Product {
         this.updateQuantityDisplay();
         this.updateAddToCartButton();
         this.updateSizeInfo();
+        this.updateStockDisplay();
     }
 
     updateShippingInfo(sizeVariant) {
@@ -834,6 +876,35 @@ class Product {
                 const itemText = this.quantity === 1 ? 'item' : 'items';
                 quantityText.textContent = `${this.quantity} ${itemText} selected`;
             }
+        }
+
+        // Update stock display
+        this.updateStockDisplay();
+    }
+
+    updateStockDisplay() {
+        const stockDisplay = document.getElementById('stockDisplay');
+        const stockCount = document.getElementById('stockCount');
+        const stockText = document.querySelector('.stock-text');
+        
+        if (!stockDisplay || !stockCount || !stockText) return;
+
+        const maxStock = this.getMaxStock();
+        
+        // Update stock count
+        stockCount.textContent = maxStock;
+        
+        // Update stock status and styling
+        stockDisplay.classList.remove('low-stock', 'out-of-stock');
+        
+        if (maxStock === 0) {
+            stockText.textContent = 'Out of Stock';
+            stockDisplay.classList.add('out-of-stock');
+        } else if (maxStock <= 3) {
+            stockText.textContent = 'Low Stock';
+            stockDisplay.classList.add('low-stock');
+        } else {
+            stockText.textContent = 'In Stock';
         }
     }
 

@@ -55,6 +55,19 @@ body {
     outline-offset: 2px;
 }
 
+/* Remove focus outline for specific elements */
+.breadcrumb a:focus,
+.product__media-thumbnail:focus,
+.product__media-thumbnail-mobile:focus,
+.mobile-nav__link:focus,
+.color-option:focus,
+.size-option:focus,
+.size-selector__button:focus,
+.quantity-selector__button:focus,
+.quantity-selector__input:focus {
+    outline: none;
+}
+
 /* High Contrast Mode Support */
 @media (prefers-contrast: high) {
     :root {
