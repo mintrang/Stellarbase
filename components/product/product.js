@@ -970,7 +970,6 @@ class Product {
         const quantityInput = document.getElementById('quantityInput');
         const quantityMinusBtn = document.getElementById('quantityMinusBtn');
         const quantityPlusBtn = document.getElementById('quantityPlusBtn');
-        const quantityInfo = document.getElementById('quantityInfo');
         const maxStock = this.getMaxStock();
 
         if (quantityInput) {
@@ -980,16 +979,6 @@ class Product {
         
         if (quantityMinusBtn) quantityMinusBtn.disabled = this.quantity <= 1;
         if (quantityPlusBtn) quantityPlusBtn.disabled = this.quantity >= maxStock || maxStock === 0;
-        
-        // Update quantity info text
-        if (quantityInfo) {
-            const quantityText = quantityInfo.querySelector('.quantity-info__text');
-            if (quantityText) {
-                const itemText = this.quantity === 1 ? 'item' : 'items';
-                quantityText.textContent = `${this.quantity} ${itemText} selected`;
-            }
-        }
-
         // Update stock display
         this.updateStockDisplay();
     }

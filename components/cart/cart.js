@@ -30,11 +30,18 @@ class Cart {
                 existingItem.quantity = newQuantity;
             }
             
-            // Update image to match current color selection
+            // Update image and names to match current color selection
             const colorVariant = product.variants.color[variant.color];
+            const sizeVariant = product.variants.size[variant.size];
             const firstImage = colorVariant.images ? colorVariant.images.find(img => img.type === 'image') : null;
             if (firstImage) {
                 existingItem.image = firstImage.url;
+            }
+            if (colorVariant) {
+                existingItem.colorName = colorVariant.name;
+            }
+            if (sizeVariant) {
+                existingItem.sizeName = sizeVariant.name;
             }
         } else {
             // Check if we can add this quantity
@@ -55,11 +62,17 @@ class Cart {
             const firstImage = colorVariant.images ? colorVariant.images.find(img => img.type === 'image') : null;
             const image = firstImage ? firstImage.url : '';
             
+            // Get color and size names
+            const colorName = colorVariant ? colorVariant.name : variant.color;
+            const sizeName = sizeVariant ? sizeVariant.name : variant.size;
+            
             this.items.push({
                 productId: product.id,
                 title: product.title,
                 color: variant.color,
+                colorName: colorName,
                 size: variant.size,
+                sizeName: sizeName,
                 price: price,
                 quantity: quantity,
                 image: image
@@ -208,8 +221,8 @@ class Cart {
                         <div class="cart-item" data-item-index="${index}">
                             <img src="${item.image || ''}" alt="${item.title || 'Product'}" class="cart-item__image">
                             <div class="cart-item__details">
-                                <div class="cart-item__title">${item.title || 'Product'} | ${item.color || 'Default'}</div>
-                                <div class="cart-item__variant">Size: ${item.size || 'One Size'}</div>
+                                <div class="cart-item__title">${item.title || 'Product'} | ${item.colorName || item.color || 'Default'}</div>
+                                <div class="cart-item__variant">Size: ${item.sizeName || item.size || 'One Size'}</div>
                                 <div class="cart-item__price">${this.formatPrice(item.price * item.quantity)}</div>
                                 ${maxQuantity > 0 ? `<div class="cart-item__stock">${maxQuantity} in stock</div>` : ''}
                             </div>

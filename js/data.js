@@ -78,7 +78,7 @@ const productData = {
                     },
                     {
                         id: 'product-video',
-                        url: './assets/videos/sample_video.mp4',
+                        url: './assets/videos/sample_video.mp4?v=' + Date.now(),
                         thumbnail: 'https://plus.unsplash.com/premium_photo-1674770380314-d1639a2d4b77?w=100&h=100&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmxhY2slMjBzbmVhayUyMHNob2VzfGVufDB8fDB8fHww',
                         alt: 'Captain boots video',
                         type: 'video'
@@ -161,7 +161,7 @@ const productData = {
                     },
                     {
                         id: 'product-video',
-                        url: './assets/videos/sample_video.mp4',
+                        url: './assets/videos/sample_video.mp4?v=' + Date.now(),
                         thumbnail: 'https://plus.unsplash.com/premium_photo-1673716788828-52948c8fd974?w=100&h=100&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cGluayUyMHNuZWFrJTIwc2hvZXN8ZW58MHx8MHx8fDA%3D',
                         alt: 'Captain boots video',
                         type: 'video'
@@ -244,7 +244,7 @@ const productData = {
                     },
                     {
                         id: 'product-video',
-                        url: './assets/videos/sample_video.mp4',
+                        url: './assets/videos/sample_video.mp4?v=' + Date.now(),
                         thumbnail: 'https://images.unsplash.com/photo-1657196084362-fa1ec1b97da5?w=100&h=100&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHllbGxvdyUyMHNuZWFrJTIwc2hvZXN8ZW58MHx8MHx8fDA%3D',
                         alt: 'Captain boots video',
                         type: 'video'
@@ -327,7 +327,7 @@ const productData = {
                     },
                     {
                         id: 'product-video',
-                        url: './assets/videos/sample_video.mp4',
+                        url: './assets/videos/sample_video.mp4?v=' + Date.now(),
                         thumbnail: 'https://images.unsplash.com/photo-1641188721482-d6da1d5b87bf?w=100&h=100&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8d2hpdGUlMjBzbmVhayUyMHNob2VzfGVufDB8fDB8fHww',
                         alt: 'Captain boots video',
                         type: 'video'
@@ -429,7 +429,7 @@ const productData = {
                 name: '38', 
                 stock: {
                     black: 8,
-                    brown: 6,
+                    pink: 6,
                     yellow: 4,
                     white: 2
                 },
@@ -452,7 +452,7 @@ const productData = {
                 name: '39', 
                 stock: {
                     black: 10,
-                    brown: 8,
+                    pink: 8,
                     yellow: 6,
                     white: 3
                 },
@@ -475,7 +475,7 @@ const productData = {
                 name: '40', 
                 stock: {
                     black: 6,
-                    brown: 4,
+                    pink: 4,
                     yellow: 3,
                     white: 1
                 },
@@ -574,38 +574,5 @@ const productData = {
     }
 };
 
-// Suggested Products Data
-const suggestedProducts = [
-    {
-        id: 'leather-belt-001',
-        title: 'Leather Belt',
-        price: 890000,
-        image: 'https://images.unsplash.com/photo-1594223274512-ad4803739b7c?w=300&h=300&fit=crop',
-        sizes: ['30', '32', '34', '36', '38', '40']
-    },
-    {
-        id: 'leather-care-kit-001',
-        title: 'Leather Care Kit',
-        price: 450000,
-        image: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=300&h=300&fit=crop',
-        sizes: []
-    },
-    {
-        id: 'boot-socks-001',
-        title: 'Boot Socks',
-        price: 120000,
-        image: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=300&h=300&fit=crop',
-        sizes: ['S', 'M', 'L', 'XL']
-    },
-    {
-        id: 'boot-trees-001',
-        title: 'Boot Trees',
-        price: 350000,
-        image: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=300&h=300&fit=crop',
-        sizes: ['S', 'M', 'L']
-    }
-];
-
 // Make data available globally
 window.productData = productData;
-window.suggestedProducts = suggestedProducts;
