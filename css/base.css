@@ -64,7 +64,9 @@ body {
 .size-option:focus,
 .size-selector__button:focus,
 .quantity-selector__button:focus,
-.quantity-selector__input:focus {
+.quantity-selector__input:focus,
+.product__media-video:focus,
+.video-close-btn:focus {
     outline: none;
 }
 

@@ -64,10 +64,10 @@ const productData = {
                         type: 'image'
                     },
                     {
-                        id: 'black-video',
-                        url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+                        id: 'product-video',
+                        url: './assets/videos/sample_video.mp4',
                         thumbnail: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=100&h=100&fit=crop',
-                        alt: 'Captain boots video - Black',
+                        alt: 'Captain boots video',
                         type: 'video'
                     }
                 ],
@@ -147,10 +147,10 @@ const productData = {
                         type: 'image'
                     },
                     {
-                        id: 'brown-video',
-                        url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+                        id: 'product-video',
+                        url: './assets/videos/sample_video.mp4',
                         thumbnail: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=100&h=100&fit=crop&sat=-30&hue=30',
-                        alt: 'Captain boots video - Brown',
+                        alt: 'Captain boots video',
                         type: 'video'
                     }
                 ],
@@ -230,10 +230,10 @@ const productData = {
                         type: 'image'
                     },
                     {
-                        id: 'gray-video',
-                        url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+                        id: 'product-video',
+                        url: './assets/videos/sample_video.mp4',
                         thumbnail: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=100&h=100&fit=crop&sat=-40&hue=0',
-                        alt: 'Captain boots video - Gray',
+                        alt: 'Captain boots video',
                         type: 'video'
                     }
                 ],
@@ -313,10 +313,10 @@ const productData = {
                         type: 'image'
                     },
                     {
-                        id: 'navy-video',
-                        url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+                        id: 'product-video',
+                        url: './assets/videos/sample_video.mp4',
                         thumbnail: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=100&h=100&fit=crop&sat=-20&hue=240',
-                        alt: 'Captain boots video - Navy',
+                        alt: 'Captain boots video',
                         type: 'video'
                     }
                 ],
@@ -396,10 +396,10 @@ const productData = {
                         type: 'image'
                     },
                     {
-                        id: 'white-video',
-                        url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+                        id: 'product-video',
+                        url: './assets/videos/sample_video.mp4',
                         thumbnail: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=100&h=100&fit=crop&sat=0&hue=0&brightness=110',
-                        alt: 'Captain boots video - White',
+                        alt: 'Captain boots video',
                         type: 'video'
                     }
                 ],
