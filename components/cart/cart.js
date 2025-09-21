@@ -62,111 +62,86 @@ class Cart {
     }
 
     renderCartItem(item, index) {
-        if (!this.cartItemTemplate) {
-        }
+        if (!this.cartItemTemplate) return '';
 
         const maxQuantity = this.getMaxQuantity(item);
-        const isMaxReached = item.quantity >= maxQuantity;
+        const replacements = {
+            '{{index}}': index,
+            '{{image}}': item.image || '',
+            '{{title}}': item.title || 'Product',
+            '{{colorName}}': item.colorName || item.color || 'Default',
+            '{{sizeName}}': item.sizeName || item.size || 'One Size',
+            '{{price}}': this.formatPrice(item.price * item.quantity),
+            '{{stockInfo}}': maxQuantity > 0 ? `<div class="cart-item__stock">${maxQuantity} in stock</div>` : '',
+            '{{quantity}}': item.quantity,
+            '{{maxQuantity}}': maxQuantity,
+            '{{disabled}}': item.quantity >= maxQuantity ? 'disabled' : ''
+        };
         
-        return this.cartItemTemplate
-            .replace(/\{\{index\}\}/g, index)
-            .replace(/\{\{image\}\}/g, item.image || '')
-            .replace(/\{\{title\}\}/g, item.title || 'Product')
-            .replace(/\{\{colorName\}\}/g, item.colorName || item.color || 'Default')
-            .replace(/\{\{sizeName\}\}/g, item.sizeName || item.size || 'One Size')
-            .replace(/\{\{price\}\}/g, this.formatPrice(item.price * item.quantity))
-            .replace(/\{\{stockInfo\}\}/g, maxQuantity > 0 ? `<div class="cart-item__stock">${maxQuantity} in stock</div>` : '')
-            .replace(/\{\{quantity\}\}/g, item.quantity)
-            .replace(/\{\{maxQuantity\}\}/g, maxQuantity)
-            .replace(/\{\{disabled\}\}/g, isMaxReached ? 'disabled' : '');
+        return Object.entries(replacements).reduce((template, [key, value]) => 
+            template.replace(new RegExp(key, 'g'), value), this.cartItemTemplate);
     }
 
 
     addItem(product, variant, quantity) {
-        console.log('Adding item to cart...');
         const existingItem = this.items.find(item => 
             item.productId === product.id && 
             item.color === variant.color && 
             item.size === variant.size
         );
 
-        const maxQuantity = this.getMaxQuantity({
-            productId: product.id,
-            color: variant.color,
-            size: variant.size
-        });
+        const maxQuantity = this.getMaxQuantity({ productId: product.id, color: variant.color, size: variant.size });
+        const finalQuantity = Math.min(existingItem ? existingItem.quantity + quantity : quantity, maxQuantity);
+        
+        if (finalQuantity < (existingItem ? existingItem.quantity + quantity : quantity)) {
+            window.Utils?.showNotification(`Only ${maxQuantity} items available in stock`, 'warning');
+        }
 
         if (existingItem) {
-            const newQuantity = existingItem.quantity + quantity;
-            if (newQuantity > maxQuantity) {
-                if (window.Utils) {
-                    window.Utils.showNotification(`Only ${maxQuantity} items available in stock`, 'warning');
-                }
-                existingItem.quantity = maxQuantity;
-            } else {
-                existingItem.quantity = newQuantity;
-            }
-            
-            const colorVariant = product.variants.color[variant.color];
-            const sizeVariant = product.variants.size[variant.size];
-            const firstImage = colorVariant.images ? colorVariant.images.find(img => img.type === 'image') : null;
-            if (firstImage) {
-                existingItem.image = firstImage.url;
-            }
-            if (colorVariant) {
-                existingItem.colorName = colorVariant.name;
-            }
-            if (sizeVariant) {
-                existingItem.sizeName = sizeVariant.name;
-            }
+            existingItem.quantity = finalQuantity;
+            this.updateItemDetails(existingItem, product, variant);
         } else {
-            if (quantity > maxQuantity) {
-                if (window.Utils) {
-                    window.Utils.showNotification(`Only ${maxQuantity} items available in stock`, 'warning');
-                }
-                quantity = maxQuantity;
-            }
-
-            const sizeVariant = product.variants.size[variant.size];
-            const pricing = sizeVariant.pricing[variant.color];
-            const price = pricing ? pricing.finalPrice : 0;
-            
-            const colorVariant = product.variants.color[variant.color];
-            const firstImage = colorVariant.images ? colorVariant.images.find(img => img.type === 'image') : null;
-            const image = firstImage ? firstImage.url : '';
-            
-            const colorName = colorVariant ? colorVariant.name : variant.color;
-            const sizeName = sizeVariant ? sizeVariant.name : variant.size;
-            
-            this.items.push({
-                productId: product.id,
-                title: product.title,
-                color: variant.color,
-                colorName: colorName,
-                size: variant.size,
-                sizeName: sizeName,
-                price: price,
-                quantity: quantity,
-                image: image
-            });
+            this.items.push(this.createCartItem(product, variant, finalQuantity));
         }
 
         this.updateCartDisplay();
- 
+    }
+
+    updateItemDetails(item, product, variant) {
+        const colorVariant = product.variants.color[variant.color];
+        const sizeVariant = product.variants.size[variant.size];
+        
+        if (colorVariant?.images) {
+            const firstImage = colorVariant.images.find(img => img.type === 'image');
+            if (firstImage) item.image = firstImage.url;
+        }
+        if (colorVariant) item.colorName = colorVariant.name;
+        if (sizeVariant) item.sizeName = sizeVariant.name;
+    }
+
+    createCartItem(product, variant, quantity) {
+        const sizeVariant = product.variants.size[variant.size];
+        const colorVariant = product.variants.color[variant.color];
+        const pricing = sizeVariant.pricing[variant.color];
+        const firstImage = colorVariant?.images?.find(img => img.type === 'image');
+        
+        return {
+            productId: product.id,
+            title: product.title,
+            color: variant.color,
+            colorName: colorVariant?.name || variant.color,
+            size: variant.size,
+            sizeName: sizeVariant?.name || variant.size,
+            price: pricing?.finalPrice || 0,
+            quantity,
+            image: firstImage?.url || ''
+        };
     }
 
     removeItem(index) {
         this.items.splice(index, 1);
-        
-        if (this.items.length === 0) {
-            this.updateCartDisplay();
-        } else {
-            this.updateCartDisplay();
-        }
-        
-        if (window.Utils) {
-            window.Utils.showNotification('Item removed from cart', 'info');
-        }
+        this.updateCartDisplay();
+        window.Utils?.showNotification('Item removed from cart', 'info');
     }
 
     increaseQuantity(index) {
@@ -186,11 +161,7 @@ class Cart {
     }
 
     updateQuantity(index, quantity) {
-        quantity = parseInt(quantity);
-        
-        if (isNaN(quantity)) {
-            quantity = 0;
-        }
+        quantity = parseInt(quantity) || 0;
         
         if (quantity <= 0) {
             this.removeItem(index);
@@ -201,34 +172,20 @@ class Cart {
         if (!item) return;
 
         const maxQuantity = this.getMaxQuantity(item);
-        console.log('Updating quantity for item:', item, 'new quantity:', quantity, 'max allowed:', maxQuantity);
+        const finalQuantity = Math.min(quantity, maxQuantity);
         
-        if (quantity > maxQuantity) {
-            console.log('Quantity exceeds max, limiting to:', maxQuantity);
-            quantity = maxQuantity;
-            if (window.Utils) {
-                window.Utils.showNotification(`Only ${maxQuantity} items available in stock`, 'warning');
-            }
+        if (finalQuantity < quantity) {
+            window.Utils?.showNotification(`Only ${maxQuantity} items available in stock`, 'warning');
         }
 
-        this.items[index].quantity = quantity;
-        console.log('Updated item quantity to:', this.items[index].quantity);
-        
+        this.items[index].quantity = finalQuantity;
         this.updateCartItem(index);
         this.updateCartTotals();
     }
 
     getMaxQuantity(item) {
-        if (window.productData && window.productData.variants) {
-            const sizeVariant = window.productData.variants.size[item.size];
-            if (sizeVariant && sizeVariant.stock) {
-                const stock = sizeVariant.stock[item.color];
-                console.log('Stock for', item.color, item.size, ':', stock); // Debug log
-                return stock || 0;
-            }
-        }
-        console.log('No stock data found, using default 10'); // Debug log
-        return 10; // Default max if no stock data
+        const sizeVariant = window.productData?.variants?.size?.[item.size];
+        return sizeVariant?.stock?.[item.color] || 10;
     }
 
     getTotal() {
@@ -243,9 +200,7 @@ class Cart {
     clearCart() {
         this.items = [];
         this.updateCartDisplay();
-        if (window.Utils) {
-            window.Utils.showNotification('Cart cleared', 'info');
-        }
+        window.Utils?.showNotification('Cart cleared', 'info');
     }
 
     formatPrice(price) {
@@ -279,10 +234,7 @@ class Cart {
                     </div>
                 `;
             } else {
-                cartItems.innerHTML = this.items.map((item, index) => {
-                    console.log('Rendering cart item:', item.color, item.size, 'quantity:', item.quantity);
-                    return this.renderCartItem(item, index);
-                }).join('');
+                cartItems.innerHTML = this.items.map((item, index) => this.renderCartItem(item, index)).join('');
             }
         }
 

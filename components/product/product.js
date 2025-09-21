@@ -331,10 +331,8 @@ class Product {
     }
 
     updateSizeButtonText() {
-        const sizeButton = document.getElementById('sizeSelectButton');
         const sizeText = document.querySelector('.size-selector__text');
-        
-        if (sizeButton && sizeText) {
+        if (sizeText) {
             const currentSize = window.productData.variants.size[this.currentVariant.size];
             if (currentSize) {
                 sizeText.textContent = currentSize.name;
@@ -461,7 +459,6 @@ class Product {
     updateSelectedText() {
         this.updateColorDisplay();
         const selectedSize = document.getElementById('selectedSize');
-
         if (selectedSize) {
             const sizeVariant = window.productData.variants.size[this.currentVariant.size];
             selectedSize.textContent = sizeVariant.name;
@@ -847,17 +844,15 @@ class Product {
         if (!stockInfo) return;
         
         const maxStock = this.getMaxStock();
+        const stockTexts = {
+            0: { text: 'Out of Stock', class: 'out-of-stock' },
+            low: { text: `Only ${maxStock} left in stock!`, class: 'low-stock' },
+            normal: { text: `In Stock (${maxStock} available)`, class: '' }
+        };
         
-        if (maxStock === 0) {
-            stockInfo.textContent = 'Out of Stock';
-            stockInfo.className = 'product-form__stock out-of-stock';
-        } else if (maxStock <= 3) {
-            stockInfo.textContent = `Only ${maxStock} left in stock!`;
-            stockInfo.className = 'product-form__stock low-stock';
-        } else {
-            stockInfo.textContent = `In Stock (${maxStock} available)`;
-            stockInfo.className = 'product-form__stock';
-        }
+        const stockType = maxStock === 0 ? '0' : maxStock <= 3 ? 'low' : 'normal';
+        stockInfo.textContent = stockTexts[stockType].text;
+        stockInfo.className = `product-form__stock ${stockTexts[stockType].class}`;
     }
 
     updateQuantityDisplay() {
@@ -884,109 +879,84 @@ class Product {
         if (!stockDisplay || !stockCount || !stockText) return;
 
         const maxStock = this.getMaxStock();
-        
         stockCount.textContent = maxStock;
-        
         stockDisplay.classList.remove('low-stock', 'out-of-stock');
         
-        if (maxStock === 0) {
-            stockText.textContent = 'Out of Stock';
-            stockDisplay.classList.add('out-of-stock');
-        } else if (maxStock <= 3) {
-            stockText.textContent = 'Low Stock';
-            stockDisplay.classList.add('low-stock');
-        } else {
-            stockText.textContent = 'In Stock';
-        }
+        const stockConfig = maxStock === 0 ? 
+            { text: 'Out of Stock', class: 'out-of-stock' } :
+            maxStock <= 3 ? 
+            { text: 'Low Stock', class: 'low-stock' } :
+            { text: 'In Stock', class: '' };
+            
+        stockText.textContent = stockConfig.text;
+        if (stockConfig.class) stockDisplay.classList.add(stockConfig.class);
     }
 
     showVideoInMain() {
-        console.log('showVideoInMain called');
-        
         const currentColorVariant = window.productData.variants.color[this.currentVariant.color];
-        console.log('currentColorVariant:', currentColorVariant);
-        
-        if (!currentColorVariant || !currentColorVariant.images) {
-            console.log('No currentColorVariant or images found');
-            return;
-        }
+        if (!currentColorVariant?.images) return;
 
         const videoData = currentColorVariant.images.find(img => img.id === 'product-video' && img.type === 'video');
-        console.log('videoData found:', videoData);
-        
-        if (!videoData) {
-            console.log('No video data found');
-            return;
-        }
+        if (!videoData) return;
 
         const mainImageContainer = document.getElementById('mainImageContainer');
         const mainImage = document.getElementById('mainImage');
-        
-        console.log('mainImageContainer:', mainImageContainer, 'mainImage:', mainImage);
-        
-        if (!mainImageContainer || !mainImage) {
-            console.log('Main image container or image not found');
-            return;
-        }
-
-        console.log('Trying local video:', videoData.url);
+        if (!mainImageContainer || !mainImage) return;
         
         const video = document.createElement('video');
-        video.src = videoData.url;
-        video.controls = true;
-        video.autoplay = true;
-        video.muted = true; // Muted for autoplay
-        video.loop = true;
-        video.style.width = '100%';
-        video.style.height = '100%';
-        video.style.objectFit = 'cover';
-        video.style.borderRadius = '8px';
-        video.style.backgroundColor = '#000';
+        Object.assign(video, {
+            src: videoData.url,
+            controls: true,
+            autoplay: true,
+            muted: true,
+            loop: true
+        });
         
-        video.addEventListener('loadstart', () => console.log('Video load started'));
-        video.addEventListener('loadeddata', () => console.log('Video data loaded'));
-        video.addEventListener('canplay', () => console.log('Video can play'));
-        video.addEventListener('error', (e) => console.error('Video error:', e));
+        Object.assign(video.style, {
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            borderRadius: '8px',
+            backgroundColor: '#000'
+        });
         
         mainImage.style.display = 'none';
         mainImageContainer.appendChild(video);
         
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        if (prevBtn) prevBtn.style.display = 'none';
-        if (nextBtn) nextBtn.style.display = 'none';
+        ['prevBtn', 'nextBtn'].forEach(id => {
+            const btn = document.getElementById(id);
+            if (btn) btn.style.display = 'none';
+        });
         
         this.currentVideo = video;
-        
+        this.createVideoCloseBtn(mainImageContainer);
+    }
+
+    createVideoCloseBtn(container) {
         const closeBtn = document.createElement('button');
         closeBtn.className = 'video-close-btn';
         closeBtn.innerHTML = '✕';
-        closeBtn.style.cssText = `
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: rgba(0,0,0,0.7);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            cursor: pointer;
-            z-index: 10;
-            font-size: 16px;
-        `;
-        
-        closeBtn.addEventListener('click', () => {
-            this.showImageInMain();
+        Object.assign(closeBtn.style, {
+            position: 'absolute',
+            top: '10px',
+            right: '10px',
+            background: 'rgba(0,0,0,0.7)',
+            color: 'white',
+            border: 'none',
+            borderRadius: '50%',
+            width: '30px',
+            height: '30px',
+            cursor: 'pointer',
+            zIndex: '10',
+            fontSize: '16px'
         });
-        
-        mainImageContainer.appendChild(closeBtn);
+        closeBtn.addEventListener('click', () => this.showImageInMain());
+        container.appendChild(closeBtn);
     }
 
     showImageInMain() {
         const mainImageContainer = document.getElementById('mainImageContainer');
         const mainImage = document.getElementById('mainImage');
-        
         if (!mainImageContainer || !mainImage) return;
 
         if (this.currentVideo) {
@@ -995,19 +965,16 @@ class Product {
         }
 
         const closeBtn = mainImageContainer.querySelector('.video-close-btn');
-        if (closeBtn) {
-            closeBtn.remove();
-        }
+        if (closeBtn) closeBtn.remove();
 
         mainImage.style.display = 'block';
-
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        if (prevBtn) prevBtn.style.display = 'block';
-        if (nextBtn) nextBtn.style.display = 'block';
+        ['prevBtn', 'nextBtn'].forEach(id => {
+            const btn = document.getElementById(id);
+            if (btn) btn.style.display = 'block';
+        });
 
         const currentColorVariant = window.productData.variants.color[this.currentVariant.color];
-        if (currentColorVariant && currentColorVariant.images) {
+        if (currentColorVariant?.images) {
             const firstImage = currentColorVariant.images.find(img => img.type === 'image') || currentColorVariant.images[0];
             if (firstImage) {
                 mainImage.src = firstImage.url;
@@ -1059,10 +1026,6 @@ class Product {
 
         if (window.cart) {
             window.cart.addItem(window.productData, variant, this.quantity);
-        }
-        
-        if (window.cartDrawer) {
-            window.cartDrawer.toggle();
         }
     }
 }

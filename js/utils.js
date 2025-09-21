@@ -5,24 +5,22 @@ const Utils = {
         notification.className = `notification notification--${type}`;
         notification.textContent = message;
         
-        notification.style.cssText = `
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            padding: 1rem 1.5rem;
-            background: ${type === 'success' ? 'var(--color-success)' : type === 'error' ? 'var(--color-danger)' : 'var(--color-accent)'};
-            color: white;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-lg);
-            z-index: 10000;
-            animation: slideIn 0.3s ease;
-        `;
+        const colors = { success: 'var(--color-success)', error: 'var(--color-danger)', info: 'var(--color-accent)' };
+        Object.assign(notification.style, {
+            position: 'fixed',
+            top: '20px',
+            right: '20px',
+            padding: '1rem 1.5rem',
+            background: colors[type] || colors.info,
+            color: 'white',
+            borderRadius: 'var(--border-radius)',
+            boxShadow: 'var(--shadow-lg)',
+            zIndex: '10000',
+            animation: 'slideIn 0.3s ease'
+        });
         
         document.body.appendChild(notification);
-        
-        setTimeout(() => {
-            notification.remove();
-        }, 3000);
+        setTimeout(() => notification.remove(), 3000);
     },
 
     handleImageError(img) {
@@ -30,10 +28,7 @@ const Utils = {
     },
 
     formatPrice(price) {
-        if (typeof price !== 'number' || isNaN(price)) {
-            return '$0.00';
-        }
-        
+        if (typeof price !== 'number' || isNaN(price)) return '$0.00';
         return new Intl.NumberFormat('en-US', {
             style: 'currency',
             currency: 'USD',
@@ -45,9 +40,7 @@ const Utils = {
     async loadTemplate(templatePath) {
         try {
             const response = await fetch(templatePath);
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
+            if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
             return await response.text();
         } catch (error) {
             console.error(`Error loading template from ${templatePath}:`, error);

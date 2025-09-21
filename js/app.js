@@ -17,81 +17,42 @@ class App {
     }
 
     async loadComponents() {
-        await this.loadHeader();
-        await this.loadNavigation();
-        await this.loadProduct();
-        await this.loadCart();
-        await this.loadFooter();
+        const components = [
+            { id: 'header-container', path: 'components/header/header.html' },
+            { id: 'navigation-container', path: 'components/navigation/navigation.html' },
+            { id: 'product-container', path: 'components/product/product.html' },
+            { id: 'cart-container', path: 'components/cart/cart.html' },
+            { id: 'footer-container', path: 'components/footer/footer.html' }
+        ];
+        
+        await Promise.all(components.map(async ({ id, path }) => {
+            const container = document.getElementById(id);
+            if (container) {
+                const html = await window.Utils.loadTemplate(path);
+                if (html) container.innerHTML = html;
+            }
+        }));
     }
 
-    async loadHeader() {
-        const container = document.getElementById('header-container');
-        if (container) {
-            const html = await window.Utils.loadTemplate('components/header/header.html');
-            if (html) container.innerHTML = html;
-        }
-    }
-
-    async loadNavigation() {
-        const container = document.getElementById('navigation-container');
-        if (container) {
-            const html = await window.Utils.loadTemplate('components/navigation/navigation.html');
-            if (html) container.innerHTML = html;
-        }
-    }
-
-    async loadProduct() {
-        const container = document.getElementById('product-container');
-        if (container) {
-            const html = await window.Utils.loadTemplate('components/product/product.html');
-            if (html) container.innerHTML = html;
-        }
-    }
-
-    async loadCart() {
-        const container = document.getElementById('cart-container');
-        if (container) {
-            const html = await window.Utils.loadTemplate('components/cart/cart.html');
-            if (html) container.innerHTML = html;
-        }
-    }
-
-    async loadFooter() {
-        const container = document.getElementById('footer-container');
-        if (container) {
-            const html = await window.Utils.loadTemplate('components/footer/footer.html');
-            if (html) container.innerHTML = html;
-        }
-    }
 
     initializeComponents() {
+        const components = [
+            { name: 'Cart', instance: 'cart' },
+            { name: 'CartDrawer', instance: 'cartDrawer' },
+            { name: 'Product', instance: 'product', required: true },
+            { name: 'Header', instance: 'header' },
+            { name: 'Navigation', instance: 'navigation' }
+        ];
+        
         try {
-            if (typeof Cart !== 'undefined') {
-                this.cart = new Cart();
-                window.cart = this.cart;
-            }
-            
-            if (typeof CartDrawer !== 'undefined') {
-                this.cartDrawer = new CartDrawer();
-                window.cartDrawer = this.cartDrawer;
-            }
-            
-            if (typeof Product !== 'undefined') {
-                this.product = new Product();
-                window.product = this.product;
-            } else {
-                console.error('Product class not found');
-            }
-            
-            if (typeof Header !== 'undefined') {
-                this.header = new Header();
-                window.header = this.header;
-            }
-            
-            if (typeof Navigation !== 'undefined') {
-                this.navigation = new Navigation();
-                window.navigation = this.navigation;
-            }
+            components.forEach(({ name, instance, required }) => {
+                if (typeof window[name] !== 'undefined') {
+                    this[instance] = new window[name]();
+                    window[instance] = this[instance];
+                } else if (required) {
+                    console.error(`${name} class not found`);
+                }
+            });
         } catch (error) {
             console.error('Error initializing components:', error);
         }
@@ -100,15 +61,13 @@ class App {
     setupGlobalEventListeners() {
         document.addEventListener('error', (e) => {
             if (e.target.tagName === 'IMG') {
-                if (window.Utils) {
-                    window.Utils.handleImageError(e.target);
-                }
+                window.Utils?.handleImageError(e.target);
             }
         }, true);
     }
 
     initializeDisplay() {
-        this.cart.updateCartDisplay();
+        this.cart?.updateCartDisplay();
     }
 }
 
