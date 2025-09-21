@@ -1,9 +1,6 @@
 const productData = {
     id: 'captain-boots-001',
     title: 'Captain Boots - Premium Leather Sneakers',
-    basePrice: 225.25,
-    currentPrice: 225.25,
-    discountPercentage: 0,
     description: 'Discover the Captain Boots collection - premium unisex leather sneakers that combine timeless style with modern comfort. Perfect for both men and women, crafted from the finest materials and built to last with exceptional attention to detail.',
     features: [
         'Premium full-grain leather upper',
@@ -88,23 +85,9 @@ const productData = {
                 productInfo: {
                     title: "Captain Boots - Black Leather Sneakers",
                     description: "The classic black Captain Boots feature premium full-grain leather construction with a sophisticated cap-toe design. Perfect for both professional and casual settings, these sneakers offer exceptional comfort and durability. The rich black leather develops a beautiful patina over time, making each pair uniquely yours.",
-                    image: "https://plus.unsplash.com/premium_photo-1674770380314-d1639a2d4b77?w=800&h=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmxhY2slMjBzbmVhayUyMHNob2VzfGVufDB8fDB8fHww"
+                    image: "https://images.unsplash.com/photo-1723375386859-1731f1518a9c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGJsYWNrJTIwc25lYWslMjBzaG9lc3xlbnwwfHwwfHx8MA%3D%3D"
                 },
-                pricing: {
-                    basePrice: 225.25,
-                    discount: 0,
-                    finalPrice: 225.25,
-                    promotion: "Free shipping on orders over $100",
-                    shippingInfo: "Ships within 2-3 business days"
-                },
-                features: [
-                    'Premium black leather construction',
-                    'Cap-toe design',
-                    'Durable welt construction',
-                    'Comfortable fit',
-                    'Classic styling',
-                    'Water-resistant finish'
-                ]
+                
             },
             pink: {
                 name: 'Pink',
@@ -171,22 +154,7 @@ const productData = {
                     title: "Captain Boots - Pink Leather Sneakers",
                     description: "Make a bold statement with our pink Captain Boots. Crafted from premium pink leather, these sneakers combine vibrant style with exceptional comfort. Perfect for those who love to stand out, the beautiful pink hue adds a touch of personality to any outfit while maintaining the same quality construction as all Captain Boots.",
                     image: "https://plus.unsplash.com/premium_photo-1673716788828-52948c8fd974?w=800&h=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cGluayUyMHNuZWFrJTIwc2hvZXN8ZW58MHx8MHx8fDA%3D"
-                },
-                pricing: {
-                    basePrice: 216.67,
-                    discount: 10,
-                    finalPrice: 195.00,
-                    promotion: "10% off + Free shipping",
-                    shippingInfo: "Ships within 1-2 business days"
-                },
-                features: [
-                    'Premium pink leather construction',
-                    'Cap-toe design',
-                    'Durable welt construction',
-                    'Comfortable fit',
-                    'Feminine styling',
-                    'Eye-catching color'
-                ]
+                }
             },
             yellow: {
                 name: 'Yellow',
@@ -253,22 +221,7 @@ const productData = {
                     title: "Captain Boots - Yellow Leather Sneakers",
                     description: "Brighten up your wardrobe with our vibrant yellow Captain Boots. Made from premium yellow leather, these sneakers are perfect for those who love to make a statement. The eye-catching yellow hue adds energy to any outfit while providing the same exceptional comfort and durability as all Captain Boots.",
                     image: "https://images.unsplash.com/photo-1657196084362-fa1ec1b97da5?w=800&h=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHllbGxvdyUyMHNuZWFrJTIwc2hvZXN8ZW58MHx8MHx8fDA%3D"
-                },
-                pricing: {
-                    basePrice: 220.83,
-                    discount: 5,
-                    finalPrice: 209.79,
-                    promotion: "5% off + Free shipping",
-                    shippingInfo: "Ships within 2-3 business days"
-                },
-                features: [
-                    'Premium yellow leather construction',
-                    'Cap-toe design',
-                    'Durable welt construction',
-                    'Comfortable fit',
-                    'Bold styling',
-                    'Eye-catching color'
-                ]
+                }
             },
             white: {
                 name: 'White',
@@ -335,22 +288,7 @@ const productData = {
                     title: "Captain Boots - White Leather Sneakers",
                     description: "Achieve clean, sophisticated style with our white Captain Boots. Made from premium white leather, these sneakers offer a fresh, modern look that pairs perfectly with any outfit. The pristine white hue creates a timeless appeal while maintaining the same exceptional quality and comfort as all Captain Boots.",
                     image: "https://images.unsplash.com/photo-1641188721482-d6da1d5b87bf?w=800&h=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8d2hpdGUlMjBzbmVhayUyMHNob2VzfGVufDB8fDB8fHww"
-                },
-                pricing: {
-                    basePrice: 233.33,
-                    discount: 15,
-                    finalPrice: 198.33,
-                    promotion: "15% off + Free shipping",
-                    shippingInfo: "Ships within 2-3 business days"
-                },
-                features: [
-                    'Premium white leather construction',
-                    'Cap-toe design',
-                    'Durable welt construction',
-                    'Comfortable fit',
-                    'Clean styling',
-                    'Easy to maintain finish'
-                ]
+                }
             }
         },
         size: {
@@ -369,12 +307,6 @@ const productData = {
                     yellow: { basePrice: 220.83, discount: 5, finalPrice: 209.79 },
                     white: { basePrice: 233.33, discount: 15, finalPrice: 198.33 }
                 },
-                shipping: {
-                    black: "Ships within 2-3 business days",
-                    pink: "Ships within 1-2 business days",
-                    yellow: "Ships within 2-3 business days",
-                    white: "Ships within 2-3 business days"
-                }
             },
             'size-36': { 
                 name: '36', 
@@ -391,12 +323,6 @@ const productData = {
                     yellow: { basePrice: 220.83, discount: 5, finalPrice: 209.79 },
                     white: { basePrice: 233.33, discount: 15, finalPrice: 198.33 }
                 },
-                shipping: {
-                    black: "Ships within 2-3 business days",
-                    pink: "Ships within 1-2 business days",
-                    yellow: "Ships within 2-3 business days",
-                    white: "Ships within 2-3 business days"
-                }
             },
             'size-37': { 
                 name: '37', 
@@ -413,12 +339,6 @@ const productData = {
                     yellow: { basePrice: 220.83, discount: 5, finalPrice: 209.79 },
                     white: { basePrice: 233.33, discount: 15, finalPrice: 198.33 }
                 },
-                shipping: {
-                    black: "Ships within 2-3 business days",
-                    pink: "Ships within 1-2 business days",
-                    yellow: "Ships within 2-3 business days",
-                    white: "Ships within 2-3 business days"
-                }
             },
             'size-38': { 
                 name: '38', 
@@ -435,12 +355,6 @@ const productData = {
                     yellow: { basePrice: 220.83, discount: 5, finalPrice: 209.79 },
                     white: { basePrice: 233.33, discount: 15, finalPrice: 198.33 }
                 },
-                shipping: {
-                    black: "Ships within 2-3 business days",
-                    pink: "Ships within 1-2 business days",
-                    yellow: "Ships within 2-3 business days",
-                    white: "Ships within 2-3 business days"
-                }
             },
             'size-39': { 
                 name: '39', 
@@ -457,12 +371,6 @@ const productData = {
                     yellow: { basePrice: 220.83, discount: 5, finalPrice: 209.79 },
                     white: { basePrice: 233.33, discount: 15, finalPrice: 198.33 }
                 },
-                shipping: {
-                    black: "Ships within 2-3 business days",
-                    pink: "Ships within 1-2 business days",
-                    yellow: "Ships within 2-3 business days",
-                    white: "Ships within 2-3 business days"
-                }
             },
             'size-40': { 
                 name: '40', 
@@ -479,12 +387,6 @@ const productData = {
                     yellow: { basePrice: 220.83, discount: 5, finalPrice: 209.79 },
                     white: { basePrice: 233.33, discount: 15, finalPrice: 198.33 }
                 },
-                shipping: {
-                    black: "Ships within 2-3 business days",
-                    pink: "Ships within 1-2 business days",
-                    yellow: "Ships within 2-3 business days",
-                    white: "Ships within 2-3 business days"
-                }
             },
             'size-41': { 
                 name: '41', 
@@ -501,12 +403,6 @@ const productData = {
                     yellow: { basePrice: 220.83, discount: 5, finalPrice: 209.79 },
                     white: { basePrice: 233.33, discount: 15, finalPrice: 198.33 }
                 },
-                shipping: {
-                    black: "Ships within 2-3 business days",
-                    pink: "Ships within 1-2 business days",
-                    yellow: "Ships within 2-3 business days",
-                    white: "Ships within 2-3 business days"
-                }
             },
             'size-42': { 
                 name: '42', 
@@ -523,45 +419,20 @@ const productData = {
                     yellow: { basePrice: 220.83, discount: 5, finalPrice: 209.79 },
                     white: { basePrice: 233.33, discount: 15, finalPrice: 198.33 }
                 },
-                shipping: {
-                    black: "Ships within 2-3 business days",
-                    pink: "Ships within 1-2 business days",
-                    yellow: "Ships within 2-3 business days",
-                    white: "Ships within 2-3 business days"
-                }
             }
         }
     },
-    features: [
-        'Premium leather construction',
-        'Cap-toe design',
-        'Durable welt construction',
-        'Comfortable fit',
-        'Classic styling'
-    ],
-    productInfo: {
-        title: "Captain Boots - Premium Leather Sneakers",
-        description: "Experience the perfect blend of style and comfort with our Captain Boots. Crafted from premium full-grain leather and featuring our signature cap-toe design, these sneakers are built to last. From the memory foam cushioned insole to the slip-resistant rubber outsole, every detail is designed for all-day comfort and exceptional durability.",
-        image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=800&h=600&fit=crop",
-        icon: "sneaker-icon"
-    },
+
     pricingPhilosophy: {
         title: "Premium Quality. Fair Prices.",
         description: "Our Captain Boots are crafted with the same premium materials and attention to detail as luxury sneaker brands that charge 2-3x more. We believe in honest pricing year-round - no gimmicks, no inflated retail markups. Every pair is handcrafted with full-grain leather, memory foam cushioning, and slip-resistant soles, offering exceptional value without compromising on quality.",
         productImage: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&h=300&fit=crop",
-        priceComparison: {
-            cost: 1.0,
-            ourPrice: 1.5,
-            typicalDTC: 2.5,
-            traditionalRetail: 4.0
-        },
         sellingPoints: [
             "No discount tricks or promo codes",
             "No seasonal sales", 
             "Best price offered year-round",
             "Direct-to-consumer pricing"
-        ],
-        readMoreLink: "#"
+        ]
     }
 };
 

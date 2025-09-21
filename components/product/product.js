@@ -630,8 +630,8 @@ class Product {
             const productInfo = currentColorVariant.productInfo || window.productData.productInfo;
             
             if (productInfo) {
-                const sizeInfo = `\n\nSize ${currentSizeVariant.name}: ${currentSizeVariant.description}`;
-                productInfoDescription.textContent = productInfo.description + sizeInfo;
+                const sizeInfo = `\n\n<strong>Size ${currentSizeVariant.description}:</strong>`;
+                productInfoDescription.innerHTML = productInfo.description + sizeInfo;
             }
         }
 

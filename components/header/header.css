@@ -133,6 +133,14 @@
     color: var(--color-primary);
 }
 
+.nav-link:focus {
+    outline: none;
+}
+
+.nav-link:active {
+    outline: none;
+}
+
 
 .search-toggle,
 .cart-toggle {
