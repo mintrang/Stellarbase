@@ -12,11 +12,100 @@ class Product {
     }
 
     init() {
+        this.loadProductData();
         this.setupEventListeners();
         this.updateDisplay();
         this.updateStockInfo();
         this.updateQuantityDisplay();
         this.updateAddToCartButton();
+    }
+
+    loadProductData() {
+        // Load product title
+        const productTitle = document.getElementById('productTitle');
+        if (productTitle && window.productData) {
+            productTitle.textContent = window.productData.title;
+        }
+
+        // Load product description
+        const productDescription = document.getElementById('productDescription');
+        if (productDescription && window.productData) {
+            productDescription.textContent = window.productData.description;
+        }
+
+        // Load main image
+        const mainImage = document.getElementById('mainImage');
+        if (mainImage && window.productData) {
+            const firstColorVariant = window.productData.variants.color[this.currentVariant.color];
+            if (firstColorVariant && firstColorVariant.images) {
+                const firstImage = firstColorVariant.images.find(img => img.type === 'image') || firstColorVariant.images[0];
+                if (firstImage) {
+                    mainImage.src = firstImage.url;
+                    mainImage.alt = firstImage.alt;
+                }
+            }
+        }
+
+        // Load initial color
+        const selectedColor = document.getElementById('selectedColor');
+        if (selectedColor && window.productData) {
+            const currentColorVariant = window.productData.variants.color[this.currentVariant.color];
+            if (currentColorVariant) {
+                selectedColor.textContent = currentColorVariant.name;
+            }
+        }
+
+        // Load initial size
+        const selectedSize = document.getElementById('selectedSize');
+        if (selectedSize && window.productData) {
+            const currentSizeVariant = window.productData.variants.size[this.currentVariant.size];
+            if (currentSizeVariant) {
+                selectedSize.textContent = currentSizeVariant.name;
+            }
+        }
+
+
+        // Load product features
+        this.loadProductFeatures();
+        
+        // Load shipping info
+        this.loadShippingInfo();
+    }
+
+    loadProductFeatures() {
+        if (!window.productData || !window.productData.features) return;
+        
+        const featuresList = document.querySelector('.product-features__list');
+        if (featuresList) {
+            // Clear existing content
+            featuresList.innerHTML = '';
+            
+            // Add features from data
+            window.productData.features.forEach(feature => {
+                const li = document.createElement('li');
+                li.className = 'product-features__item';
+                li.textContent = feature;
+                featuresList.appendChild(li);
+            });
+        }
+    }
+
+    loadShippingInfo() {
+        if (!window.productData || !window.productData.shipping) return;
+        
+        const shippingList = document.getElementById('shippingInfoList');
+        if (shippingList) {
+            // Clear existing content
+            shippingList.innerHTML = '';
+            
+            // Add shipping info from data
+            Object.values(window.productData.shipping).forEach(info => {
+                const li = document.createElement('li');
+                li.className = 'shipping-info__item';
+                li.textContent = info;
+                shippingList.appendChild(li);
+            });
+        }
     }
 
     setupEventListeners() {
@@ -503,8 +592,18 @@ class Product {
         const productInfo = currentColorVariant.productInfo || window.productData.productInfo;
 
         if (productInfo) {
-            productInfoImage.src = productInfo.image;
-            productInfoImage.alt = productInfo.title;
+            // Use image from current color variant instead of fixed image
+            if (currentColorVariant && currentColorVariant.images) {
+                const firstImage = currentColorVariant.images.find(img => img.type === 'image') || currentColorVariant.images[0];
+                if (firstImage) {
+                    productInfoImage.src = firstImage.url;
+                    productInfoImage.alt = firstImage.alt;
+                }
+            } else {
+                productInfoImage.src = productInfo.image;
+                productInfoImage.alt = productInfo.title;
+            }
+            
             productInfoTitle.textContent = productInfo.title;
             productInfoDescription.textContent = productInfo.description;
         }
@@ -527,8 +626,15 @@ class Product {
             return;
         }
 
-        // Update product image
-        if (pricingData.productImage) {
+        // Update product image - use current color variant image
+        const currentColorVariant = window.productData.variants.color[this.currentVariant.color];
+        if (currentColorVariant && currentColorVariant.images) {
+            const firstImage = currentColorVariant.images.find(img => img.type === 'image') || currentColorVariant.images[0];
+            if (firstImage) {
+                pricingProductImage.src = firstImage.url;
+                pricingProductImage.alt = firstImage.alt;
+            }
+        } else if (pricingData.productImage) {
             pricingProductImage.src = pricingData.productImage;
             pricingProductImage.alt = 'Product';
         }
@@ -1004,152 +1110,6 @@ class Product {
         });
         
         mainImageContainer.appendChild(closeBtn);
-    }
-
-    showYouTubeVideo(youtubeUrl, container, mainImage) {
-        console.log('Showing YouTube video:', youtubeUrl);
-        
-        // Extract video ID from YouTube URL
-        let videoId = '';
-        if (youtubeUrl.includes('youtube.com/watch?v=')) {
-            videoId = youtubeUrl.split('v=')[1].split('&')[0];
-        } else if (youtubeUrl.includes('youtu.be/')) {
-            videoId = youtubeUrl.split('youtu.be/')[1].split('?')[0];
-        }
-        
-        console.log('Extracted YouTube video ID:', videoId);
-        
-        if (!videoId) {
-            console.log('Could not extract YouTube video ID');
-            return;
-        }
-
-        // Create iframe for YouTube video
-        const iframe = document.createElement('iframe');
-        iframe.className = 'product__media-video';
-        iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}`;
-        iframe.frameBorder = '0';
-        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-        iframe.allowFullscreen = true;
-        iframe.style.width = '100%';
-        iframe.style.height = '100%';
-        iframe.style.borderRadius = '8px';
-        iframe.style.border = 'none';
-
-        // Replace image with video
-        mainImage.style.display = 'none';
-        container.appendChild(iframe);
-
-        // Store reference to video for cleanup
-        this.currentVideo = iframe;
-
-        // Add close button
-        const closeBtn = document.createElement('button');
-        closeBtn.className = 'video-close-btn';
-        closeBtn.innerHTML = '✕';
-        closeBtn.style.cssText = `
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: rgba(0,0,0,0.7);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            cursor: pointer;
-            z-index: 10;
-            font-size: 16px;
-        `;
-        
-        closeBtn.addEventListener('click', () => {
-            this.showImageInMain();
-        });
-        
-        container.appendChild(closeBtn);
-    }
-
-     showDirectVideo(videoUrl, container, mainImage) {
-        console.log('Showing direct video:', videoUrl);
-        
-        // Create video element
-        const video = document.createElement('video');
-        video.className = 'product__media-video';
-        video.controls = true;
-        video.autoplay = true;
-        video.muted = true; // Muted autoplay for better UX
-        video.loop = true;
-        video.style.width = '100%';
-        video.style.height = '100%';
-        video.style.objectFit = 'cover';
-        video.style.borderRadius = '8px';
-        
-        console.log('Video URL:', videoUrl);
-        
-        // Create source element
-        const source = document.createElement('source');
-        source.src = videoUrl;
-        source.type = 'video/mp4';
-        video.appendChild(source);
-
-        // Add fallback text
-        video.textContent = 'Your browser does not support the video tag.';
-
-        // Add event listeners for debugging
-        video.addEventListener('loadstart', () => console.log('Video load started'));
-        video.addEventListener('loadeddata', () => console.log('Video data loaded'));
-        video.addEventListener('canplay', () => console.log('Video can play'));
-        video.addEventListener('error', (e) => console.error('Video error:', e));
-        video.addEventListener('load', () => console.log('Video loaded'));
-
-        // Replace image with video
-        mainImage.style.display = 'none';
-        container.appendChild(video);
-        
-        console.log('Video element added to container:', video);
-        console.log('Container children:', container.children);
-
-        // Store reference to video for cleanup
-        this.currentVideo = video;
-
-        // Add click to play/pause functionality
-        video.addEventListener('click', () => {
-            if (video.paused) {
-                video.play();
-            } else {
-                video.pause();
-            }
-        });
-
-        // Add video ended event to switch back to image
-        video.addEventListener('ended', () => {
-            this.showImageInMain();
-        });
-
-        // Add close button
-        const closeBtn = document.createElement('button');
-        closeBtn.className = 'video-close-btn';
-        closeBtn.innerHTML = '✕';
-        closeBtn.style.cssText = `
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: rgba(0,0,0,0.7);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 30px;
-            height: 30px;
-            cursor: pointer;
-            z-index: 10;
-            font-size: 16px;
-        `;
-        
-        closeBtn.addEventListener('click', () => {
-            this.showImageInMain();
-        });
-        
-        container.appendChild(closeBtn);
     }
 
     showImageInMain() {

@@ -7,6 +7,19 @@ const productData = {
     onSale: false,
     discountPercentage: 0,
     description: 'Premium leather boots with cap-toe design. Built to last with quality craftsmanship and attention to detail.',
+    features: [
+        'Premium leather construction',
+        'Cap-toe design for durability',
+        'Comfortable padded insole',
+        'Slip-resistant rubber sole',
+        'Handcrafted quality'
+    ],
+    shipping: {
+        free: 'Free shipping on orders over $100',
+        express: 'Express delivery available',
+        returns: '30-day return policy',
+        warranty: '2-year manufacturer warranty'
+    },
     variants: {
         color: {
             black: {

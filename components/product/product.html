@@ -6,7 +6,7 @@
             </div>
             <div class="product__media-main">
                 <div class="product__media-container" id="mainImageContainer">
-                    <img id="mainImage" src="https://images.unsplash.com/photo-1549298916-b41d501d3772?w=800&h=800&fit=crop" alt="Captain boots" class="product__media-image">
+                    <img id="mainImage" src="" alt="" class="product__media-image">
                     <button class="product__media-nav product__media-nav--prev" id="prevBtn" aria-label="Previous image">
                         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
                             <path d="M12.5 15L7.5 10L12.5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -27,11 +27,11 @@
 
         <div class="product__info">
             <div class="product__header">
-                <h1 class="product__title" id="productTitle">Captain</h1>
+                <h1 class="product__title" id="productTitle"></h1>
                 <div class="product__price">
-                    <span class="price__current" id="currentPrice">5.406.000₫</span>
-                    <span class="price__original" id="originalPrice" style="display: none;">5.200.000₫</span>
-                    <span class="price__discount" id="discountPercentage" style="display: none;">Save 10%</span>
+                    <span class="price__current" id="currentPrice"></span>
+                    <span class="price__original" id="originalPrice" style="display: none;"></span>
+                    <span class="price__discount" id="discountPercentage" style="display: none;"></span>
                 </div>
                 <div class="product__guarantee">
                     <div class="guarantee-item">
@@ -51,7 +51,7 @@
 
             <form class="product-form" id="productForm">
                 <div class="product-form__group">
-                    <h2 class="product-form__section-title">Color: <span id="selectedColor">Black</span></h2>
+                    <h2 class="product-form__section-title">Color: <span id="selectedColor"></span></h2>
                     <div class="color-selector">
                         <!-- Color options will be rendered dynamically by JavaScript -->
                     </div>
@@ -128,7 +128,7 @@
 
                 <div class="product-form__actions">
                     <button type="submit" class="btn btn--primary btn--full" id="addToCartBtn" aria-label="Add to cart">
-                        <span class="btn__text">Add to cart 1</span>
+                        <span class="btn__text">Add to cart</span>
                     </button>
                 </div>
             </form>
@@ -147,20 +147,7 @@
                 <div class="product-features__content">
                     <div class="product-features__column">
                         <ul class="product-features__list">
-                            <li class="product-features__item">Brandy Hand-Finished Full-Grain Leather</li>
-                            <li class="product-features__item">Goodyear Welt Construction for Longevity</li>
-                            <li class="product-features__item">Fully Lined Supple Glove Leather Interior</li>
-                            <li class="product-features__item">Premium Flat Waxed Cotton Laces</li>
-                            <li class="product-features__item">Custom Developed Reinforced Eyelets</li>
-                        </ul>
-                    </div>
-                    <div class="product-features__column">
-                        <ul class="product-features__list">
-                            <li class="product-features__item">Poron® Antimicrobial Shock Absorbing Insoles</li>
-                            <li class="product-features__item">Cork-Bed Midsoles that Form to Your Feet</li>
-                            <li class="product-features__item">DuraEVA™ Comfort Strip</li>
-                            <li class="product-features__item">Durable Studded Rubber Outsoles</li>
-                            <li class="product-features__item">Handcrafted with Integrity</li>
+                            <!-- Features will be loaded dynamically from data.js -->
                         </ul>
                     </div>
                 </div>
@@ -172,10 +159,7 @@
                 <h2 class="shipping-info__title">Shipping Info</h2>
                 <div class="shipping-info__divider"></div>
                 <ul class="shipping-info__list" id="shippingInfoList">
-                    <li class="shipping-info__item">Free domestic U.S. ground shipping</li>
-                    <li class="shipping-info__item">Free domestic U.S. returns. <a href="#" class="shipping-info__link">See our full policy</a></li>
-                    <li class="shipping-info__item">International shipping available</li>
-                    <li class="shipping-info__item">Expedited shipping options available at checkout</li>
+                    <!-- Shipping info will be loaded dynamically from data.js -->
                 </ul>
             </div>
         </div>
