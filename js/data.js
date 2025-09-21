@@ -29,57 +29,57 @@ const productData = {
                 images: [
                     {
                         id: 'black-1',
-                        url: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=800&h=800&fit=crop',
-                        thumbnail: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=100&h=100&fit=crop',
+                        url: 'https://plus.unsplash.com/premium_photo-1674770380314-d1639a2d4b77?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmxhY2slMjBzbmVhayUyMHNob2VzfGVufDB8fDB8fHww',
+                        thumbnail: 'https://plus.unsplash.com/premium_photo-1674770380314-d1639a2d4b77?w=100&h=100&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmxhY2slMjBzbmVhayUyMHNob2VzfGVufDB8fDB8fHww',
                         alt: 'Captain boots front view - Black',
                         type: 'image'
                     },
                     {
                         id: 'black-2',
-                        url: 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=800&h=800&fit=crop',
-                        thumbnail: 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=100&h=100&fit=crop',
+                        url: 'https://images.unsplash.com/photo-1687511968900-7418e0fdc532?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmxhY2slMjBzbmVhayUyMHNob2VzfGVufDB8fDB8fHww',
+                        thumbnail: 'https://images.unsplash.com/photo-1687511968900-7418e0fdc532?w=100&h=100&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YmxhY2slMjBzbmVhayUyMHNob2VzfGVufDB8fDB8fHww',
                         alt: 'Captain boots side view - Black',
                         type: 'image'
                     },
                     {
                         id: 'black-3',
-                        url: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=800&h=800&fit=crop',
-                        thumbnail: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=100&h=100&fit=crop',
+                        url: 'https://images.unsplash.com/photo-1676838179247-6e60dba67d5c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YmxhY2slMjBzbmVhayUyMHNob2VzfGVufDB8fDB8fHww',
+                        thumbnail: 'https://images.unsplash.com/photo-1676838179247-6e60dba67d5c?w=100&h=100&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8YmxhY2slMjBzbmVhayUyMHNob2VzfGVufDB8fDB8fHww',
                         alt: 'Captain boots top view - Black',
                         type: 'image'
                     },
                     {
                         id: 'black-4',
-                        url: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=800&h=800&fit=crop',
-                        thumbnail: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=100&h=100&fit=crop',
+                        url: 'https://images.unsplash.com/photo-1687511845973-b6225ffec7e3?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YmxhY2slMjBzbmVhayUyMHNob2VzfGVufDB8fDB8fHww',
+                        thumbnail: 'https://images.unsplash.com/photo-1687511845973-b6225ffec7e3?w=100&h=100&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8YmxhY2slMjBzbmVhayUyMHNob2VzfGVufDB8fDB8fHww',
                         alt: 'Captain boots sole view - Black',
                         type: 'image'
                     },
                     {
                         id: 'black-5',
-                        url: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=800&h=800&fit=crop',
-                        thumbnail: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=100&h=100&fit=crop',
+                        url: 'https://images.unsplash.com/photo-1542729802-d98e74c2bb0d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8YmxhY2slMjBzbmVhayUyMHNob2VzfGVufDB8fDB8fHww',
+                        thumbnail: 'https://images.unsplash.com/photo-1542729802-d98e74c2bb0d?w=100&h=100&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8YmxhY2slMjBzbmVhayUyMHNob2VzfGVufDB8fDB8fHww',
                         alt: 'Captain boots detail view - Black',
                         type: 'image'
                     },
                     {
                         id: 'black-6',
-                        url: 'https://images.unsplash.com/photo-1484704849700-f032a568e944?w=800&h=800&fit=crop',
-                        thumbnail: 'https://images.unsplash.com/photo-1484704849700-f032a568e944?w=100&h=100&fit=crop',
+                        url: 'https://plus.unsplash.com/premium_photo-1695603437800-a679762b893e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGJsYWNrJTIwc25lYWslMjBzaG9lc3xlbnwwfHwwfHx8MA%3D%3D',
+                        thumbnail: 'https://plus.unsplash.com/premium_photo-1695603437800-a679762b893e?w=100&h=100&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGJsYWNrJTIwc25lYWslMjBzaG9lc3xlbnwwfHwwfHx8MA%3D%3D',
                         alt: 'Captain boots top down view - Black',
                         type: 'image'
                     },
                     {
                         id: 'black-7',
-                        url: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=800&h=800&fit=crop',
-                        thumbnail: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=100&h=100&fit=crop',
+                        url: 'https://images.unsplash.com/photo-1723375386859-1731f1518a9c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGJsYWNrJTIwc25lYWslMjBzaG9lc3xlbnwwfHwwfHx8MA%3D%3D',
+                        thumbnail: 'https://images.unsplash.com/photo-1723375386859-1731f1518a9c?w=100&h=100&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGJsYWNrJTIwc25lYWslMjBzaG9lc3xlbnwwfHwwfHx8MA%3D%3D',
                         alt: 'Captain boots close up - Black',
                         type: 'image'
                     },
                     {
                         id: 'product-video',
                         url: './assets/videos/sample_video.mp4',
-                        thumbnail: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=100&h=100&fit=crop',
+                        thumbnail: 'https://plus.unsplash.com/premium_photo-1674770380314-d1639a2d4b77?w=100&h=100&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmxhY2slMjBzbmVhayUyMHNob2VzfGVufDB8fDB8fHww',
                         alt: 'Captain boots video',
                         type: 'video'
                     }
@@ -87,7 +87,7 @@ const productData = {
                 productInfo: {
                     title: "Classic Black Leather Edition",
                     description: "Crafted from premium black leather, this edition offers timeless elegance with exceptional durability. The rich black hue maintains its sophisticated appearance over time, making it perfect for both formal and casual occasions. Features our signature Goodyear welt construction and premium leather lining for all-day comfort.",
-                    image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=800&h=600&fit=crop"
+                    image: "https://plus.unsplash.com/premium_photo-1674770380314-d1639a2d4b77?w=800&h=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmxhY2slMjBzbmVhayUyMHNob2VzfGVufDB8fDB8fHww"
                 },
                 pricing: {
                     basePrice: 5406000,
@@ -105,72 +105,72 @@ const productData = {
                     'Water-resistant finish'
                 ]
             },
-            brown: {
-                name: 'Brown',
+            pink: {
+                name: 'Pink',
                 price: 0,
                 stock: 8,
                 images: [
                     {
-                        id: 'brown-1',
-                        url: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=800&h=800&fit=crop',
-                        thumbnail: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=100&h=100&fit=crop',
-                        alt: 'Captain boots front view - Brown',
+                        id: 'pink-1',
+                        url: 'https://plus.unsplash.com/premium_photo-1673716788828-52948c8fd974?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cGluayUyMHNuZWFrJTIwc2hvZXN8ZW58MHx8MHx8fDA%3D',
+                        thumbnail: 'https://plus.unsplash.com/premium_photo-1673716788828-52948c8fd974?w=100&h=100&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cGluayUyMHNuZWFrJTIwc2hvZXN8ZW58MHx8MHx8fDA%3D',
+                        alt: 'Captain boots front view - Pink',
                         type: 'image'
                     },
                     {
-                        id: 'brown-2',
-                        url: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=800&h=800&fit=crop&sat=-50&hue=30',
-                        thumbnail: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=100&h=100&fit=crop&sat=-50&hue=30',
-                        alt: 'Captain boots side view - Brown',
+                        id: 'pink-2',
+                        url: 'https://images.unsplash.com/photo-1662749033862-e73c5afb4e7c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8cGluayUyMHNuZWFrJTIwc2hvZXN8ZW58MHx8MHx8fDA%3D',
+                        thumbnail: 'https://images.unsplash.com/photo-1662749033862-e73c5afb4e7c?w=100&h=100&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8cGluayUyMHNuZWFrJTIwc2hvZXN8ZW58MHx8MHx8fDA%3D',
+                        alt: 'Captain boots side view - Pink',
                         type: 'image'
                     },
                     {
-                        id: 'brown-3',
-                        url: 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=800&h=800&fit=crop&sat=-30&hue=20',
-                        thumbnail: 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=100&h=100&fit=crop&sat=-30&hue=20',
-                        alt: 'Captain boots top view - Brown',
+                        id: 'pink-3',
+                        url: 'https://images.unsplash.com/photo-1676149039309-d599769d7ab4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjN8fHBpbmslMjBzbmVhayUyMHNob2VzfGVufDB8fDB8fHww',
+                        thumbnail: 'https://images.unsplash.com/photo-1676149039309-d599769d7ab4?w=100&h=100&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjN8fHBpbmslMjBzbmVhayUyMHNob2VzfGVufDB8fDB8fHww',
+                        alt: 'Captain boots top view - Pink',
                         type: 'image'
                     },
                     {
-                        id: 'brown-4',
-                        url: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=800&h=800&fit=crop&sat=-40&hue=25',
-                        thumbnail: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=100&h=100&fit=crop&sat=-40&hue=25',
-                        alt: 'Captain boots sole view - Brown',
+                        id: 'pink-4',
+                        url: 'https://images.unsplash.com/photo-1582738412120-7f6baeff4da9?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTUxfHxwaW5rJTIwc25lYWslMjBzaG9lc3xlbnwwfHwwfHx8MA%3D%3D',
+                        thumbnail: 'https://images.unsplash.com/photo-1582738412120-7f6baeff4da9?w=100&h=100&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTUxfHxwaW5rJTIwc25lYWslMjBzaG9lc3xlbnwwfHwwfHx8MA%3D%3D',
+                        alt: 'Captain boots sole view - Pink',
                         type: 'image'
                     },
                     {
-                        id: 'brown-5',
-                        url: 'https://images.unsplash.com/photo-1484704849700-f032a568e944?w=800&h=800&fit=crop&sat=-35&hue=35',
-                        thumbnail: 'https://images.unsplash.com/photo-1484704849700-f032a568e944?w=100&h=100&fit=crop&sat=-35&hue=35',
-                        alt: 'Captain boots detail view - Brown',
+                        id: 'pink-5',
+                        url: 'https://images.unsplash.com/photo-1642756465008-301dc6f42b58?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjM4fHxwaW5rJTIwc25lYWslMjBzaG9lc3xlbnwwfHwwfHx8MA%3D%3D',
+                        thumbnail: 'https://images.unsplash.com/photo-1642756465008-301dc6f42b58?w=100&h=100&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjM4fHxwaW5rJTIwc25lYWslMjBzaG9lc3xlbnwwfHwwfHx8MA%3D%3D',
+                        alt: 'Captain boots detail view - Pink',
                         type: 'image'
                     },
                     {
-                        id: 'brown-6',
-                        url: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=800&h=800&fit=crop&sat=-45&hue=30',
-                        thumbnail: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=100&h=100&fit=crop&sat=-45&hue=30',
-                        alt: 'Captain boots top down view - Brown',
+                        id: 'pink-6',
+                        url: 'https://images.unsplash.com/photo-1592129706885-dc9986b30464?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjUzfHxwaW5rJTIwc25lYWslMjBzaG9lc3xlbnwwfHwwfHx8MA%3D%3D',
+                        thumbnail: 'https://images.unsplash.com/photo-1592129706885-dc9986b30464?w=100&h=100&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjUzfHxwaW5rJTIwc25lYWslMjBzaG9lc3xlbnwwfHwwfHx8MA%3D%3D',
+                        alt: 'Captain boots top down view - Pink',
                         type: 'image'
                     },
                     {
-                        id: 'brown-7',
-                        url: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=800&h=800&fit=crop&sat=-25&hue=40',
-                        thumbnail: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=100&h=100&fit=crop&sat=-25&hue=40',
-                        alt: 'Captain boots close up - Brown',
+                        id: 'pink-7',
+                        url: 'https://plus.unsplash.com/premium_photo-1673716788828-52948c8fd974?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cGluayUyMHNuZWFrJTIwc2hvZXN8ZW58MHx8MHx8fDA%3D',
+                        thumbnail: 'https://plus.unsplash.com/premium_photo-1673716788828-52948c8fd974?w=100&h=100&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cGluayUyMHNuZWFrJTIwc2hvZXN8ZW58MHx8MHx8fDA%3D',
+                        alt: 'Captain boots close up - Pink',
                         type: 'image'
                     },
                     {
                         id: 'product-video',
                         url: './assets/videos/sample_video.mp4',
-                        thumbnail: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=100&h=100&fit=crop&sat=-30&hue=30',
+                        thumbnail: 'https://plus.unsplash.com/premium_photo-1673716788828-52948c8fd974?w=100&h=100&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cGluayUyMHNuZWFrJTIwc2hvZXN8ZW58MHx8MHx8fDA%3D',
                         alt: 'Captain boots video',
                         type: 'video'
                     }
                 ],
                 productInfo: {
-                    title: "Classic Brown Leather Edition",
-                    description: "Crafted from premium brown leather, this edition offers timeless elegance with exceptional durability. The rich brown hue develops a beautiful patina over time, telling the story of your adventures. Features our signature Goodyear welt construction and premium leather lining for all-day comfort.",
-                    image: "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=800&h=600&fit=crop&sat=-30&hue=30"
+                    title: "Classic Pink Leather Edition",
+                    description: "Crafted from premium pink leather, this edition offers vibrant femininity with exceptional durability. The beautiful pink hue creates a bold and stylish statement while maintaining its elegant appearance over time. Features our signature Goodyear welt construction and premium leather lining for all-day comfort.",
+                    image: "https://plus.unsplash.com/premium_photo-1673716788828-52948c8fd974?w=800&h=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cGluayUyMHNuZWFrJTIwc2hvZXN8ZW58MHx8MHx8fDA%3D"
                 },
                 pricing: {
                     basePrice: 5200000,
@@ -180,80 +180,80 @@ const productData = {
                     shippingInfo: "Ships within 1-2 business days"
                 },
                 features: [
-                    'Premium brown leather construction',
+                    'Premium pink leather construction',
                     'Cap-toe design',
                     'Durable welt construction',
                     'Comfortable fit',
-                    'Classic styling',
-                    'Natural patina development'
+                    'Feminine styling',
+                    'Eye-catching color'
                 ]
             },
-            gray: {
-                name: 'Gray',
+            yellow: {
+                name: 'Yellow',
                 price: 0,
                 stock: 6,
                 images: [
                     {
-                        id: 'gray-1',
-                        url: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=800&h=800&fit=crop&sat=-60&hue=0',
-                        thumbnail: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=100&h=100&fit=crop&sat=-60&hue=0',
-                        alt: 'Captain boots front view - Gray',
+                        id: 'yellow-1',
+                        url: 'https://images.unsplash.com/photo-1657196084362-fa1ec1b97da5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHllbGxvdyUyMHNuZWFrJTIwc2hvZXN8ZW58MHx8MHx8fDA%3D',
+                        thumbnail: 'https://images.unsplash.com/photo-1657196084362-fa1ec1b97da5?w=100&h=100&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHllbGxvdyUyMHNuZWFrJTIwc2hvZXN8ZW58MHx8MHx8fDA%3D',
+                        alt: 'Captain boots front view - Yellow',
                         type: 'image'
                     },
                     {
-                        id: 'gray-2',
-                        url: 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=800&h=800&fit=crop&sat=-50&hue=0',
-                        thumbnail: 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=100&h=100&fit=crop&sat=-50&hue=0',
-                        alt: 'Captain boots side view - Gray',
+                        id: 'yellow-2',
+                        url: 'https://images.unsplash.com/photo-1657196086650-4de9197d4720?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHllbGxvdyUyMHNuZWFrJTIwc2hvZXN8ZW58MHx8MHx8fDA%3D',
+                        thumbnail: 'https://images.unsplash.com/photo-1657196086650-4de9197d4720?w=100&h=100&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fHllbGxvdyUyMHNuZWFrJTIwc2hvZXN8ZW58MHx8MHx8fDA%3D',
+                        alt: 'Captain boots side view - Yellow',
                         type: 'image'
                     },
                     {
-                        id: 'gray-3',
-                        url: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=800&h=800&fit=crop&sat=-40&hue=0',
-                        thumbnail: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=100&h=100&fit=crop&sat=-40&hue=0',
-                        alt: 'Captain boots top view - Gray',
+                        id: 'yellow-3',
+                        url: 'https://images.unsplash.com/photo-1657196085060-b7017835c2b6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fHllbGxvdyUyMHNuZWFrJTIwc2hvZXN8ZW58MHx8MHx8fDA%3D',
+                        thumbnail: 'https://images.unsplash.com/photo-1657196085060-b7017835c2b6?w=100&h=100&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fHllbGxvdyUyMHNuZWFrJTIwc2hvZXN8ZW58MHx8MHx8fDA%3D',
+                        alt: 'Captain boots top view - Yellow',
                         type: 'image'
                     },
                     {
-                        id: 'gray-4',
-                        url: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=800&h=800&fit=crop&sat=-45&hue=0',
-                        thumbnail: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=100&h=100&fit=crop&sat=-45&hue=0',
-                        alt: 'Captain boots sole view - Gray',
+                        id: 'yellow-4',
+                        url: 'https://images.unsplash.com/photo-1657196084373-8dd49a33a2a1?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjd8fHllbGxvdyUyMHNuZWFrJTIwc2hvZXN8ZW58MHx8MHx8fDA%3D',
+                        thumbnail: 'https://images.unsplash.com/photo-1657196084373-8dd49a33a2a1?w=100&h=100&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjd8fHllbGxvdyUyMHNuZWFrJTIwc2hvZXN8ZW58MHx8MHx8fDA%3D',
+                        alt: 'Captain boots sole view - Yellow',
                         type: 'image'
                     },
                     {
-                        id: 'gray-5',
-                        url: 'https://images.unsplash.com/photo-1484704849700-f032a568e944?w=800&h=800&fit=crop&sat=-35&hue=0',
-                        thumbnail: 'https://images.unsplash.com/photo-1484704849700-f032a568e944?w=100&h=100&fit=crop&sat=-35&hue=0',
-                        alt: 'Captain boots detail view - Gray',
+                        id: 'yellow-5',
+                        url: 'https://images.unsplash.com/photo-1657196084117-87f03087ab92?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzR8fHllbGxvdyUyMHNuZWFrJTIwc2hvZXN8ZW58MHx8MHx8fDA%3D',
+                        thumbnail: 'https://images.unsplash.com/photo-1657196084117-87f03087ab92?w=100&h=100&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MzR8fHllbGxvdyUyMHNuZWFrJTIwc2hvZXN8ZW58MHx8MHx8fDA%3D',
+                        alt: 'Captain boots detail view - Yellow',
                         type: 'image'
                     },
                     {
-                        id: 'gray-6',
-                        url: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=800&h=800&fit=crop&sat=-55&hue=0',
-                        thumbnail: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=100&h=100&fit=crop&sat=-55&hue=0',
-                        alt: 'Captain boots top down view - Gray',
+                        id: 'yellow-6',
+                        url: 'https://images.unsplash.com/photo-1631644181783-bb439cdb4fe9?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDJ8fHllbGxvdyUyMHNuZWFrJTIwc2hvZXN8ZW58MHx8MHx8fDA%3D',
+                        thumbnail: 'https://images.unsplash.com/photo-1631644181783-bb439cdb4fe9?w=100&h=100&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDJ8fHllbGxvdyUyMHNuZWFrJTIwc2hvZXN8ZW58MHx8MHx8fDA%3D',
+                        alt: 'Captain boots top down view - Yellow',
                         type: 'image'
                     },
                     {
-                        id: 'gray-7',
-                        url: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=800&h=800&fit=crop&sat=-30&hue=0',
-                        thumbnail: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=100&h=100&fit=crop&sat=-30&hue=0',
-                        alt: 'Captain boots close up - Gray',
+                        id: 'yellow-7',
+                        url: 'https://images.unsplash.com/photo-1657196084362-fa1ec1b97da5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHllbGxvdyUyMHNuZWFrJTIwc2hvZXN8ZW58MHx8MHx8fDA%3D',
+                        thumbnail: 'https://images.unsplash.com/photo-1657196084362-fa1ec1b97da5?w=100&h=100&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHllbGxvdyUyMHNuZWFrJTIwc2hvZXN8ZW58MHx8MHx8fDA%3D',
+                        alt: 'Captain boots close up - Yellow',
                         type: 'image'
                     },
                     {
                         id: 'product-video',
                         url: './assets/videos/sample_video.mp4',
-                        thumbnail: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=100&h=100&fit=crop&sat=-40&hue=0',
+                        thumbnail: 'https://images.unsplash.com/photo-1657196084362-fa1ec1b97da5?w=100&h=100&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHllbGxvdyUyMHNuZWFrJTIwc2hvZXN8ZW58MHx8MHx8fDA%3D',
                         alt: 'Captain boots video',
                         type: 'video'
                     }
                 ],
                 productInfo: {
-                    title: "Classic Gray Leather Edition",
-                    description: "Crafted from premium gray leather, this edition offers modern sophistication with exceptional durability. The versatile gray hue complements any outfit and maintains its elegant appearance over time. Features our signature Goodyear welt construction and premium leather lining for all-day comfort.",
-                    image: "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=800&h=600&fit=crop&sat=-40&hue=0"
+                    title: "Classic Yellow Leather Edition",
+                    description: "Crafted from premium yellow leather, this edition offers vibrant style with exceptional durability. The bright yellow hue creates a bold statement while maintaining its elegant appearance over time. Features our signature Goodyear welt construction and premium leather lining for all-day comfort.",
+                    image: "https://images.unsplash.com/photo-1657196084362-fa1ec1b97da5?w=800&h=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHllbGxvdyUyMHNuZWFrJTIwc2hvZXN8ZW58MHx8MHx8fDA%3D"
                 },
                 pricing: {
                     basePrice: 5300000,
@@ -263,95 +263,12 @@ const productData = {
                     shippingInfo: "Ships within 2-3 business days"
                 },
                 features: [
-                    'Premium gray leather construction',
+                    'Premium yellow leather construction',
                     'Cap-toe design',
                     'Durable welt construction',
                     'Comfortable fit',
-                    'Modern styling',
-                    'Versatile color matching'
-                ]
-            },
-            navy: {
-                name: 'Navy',
-                price: 0,
-                stock: 4,
-                images: [
-                    {
-                        id: 'navy-1',
-                        url: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=800&h=800&fit=crop&sat=-30&hue=240',
-                        thumbnail: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=100&h=100&fit=crop&sat=-30&hue=240',
-                        alt: 'Captain boots front view - Navy',
-                        type: 'image'
-                    },
-                    {
-                        id: 'navy-2',
-                        url: 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=800&h=800&fit=crop&sat=-25&hue=240',
-                        thumbnail: 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=100&h=100&fit=crop&sat=-25&hue=240',
-                        alt: 'Captain boots side view - Navy',
-                        type: 'image'
-                    },
-                    {
-                        id: 'navy-3',
-                        url: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=800&h=800&fit=crop&sat=-20&hue=240',
-                        thumbnail: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=100&h=100&fit=crop&sat=-20&hue=240',
-                        alt: 'Captain boots top view - Navy',
-                        type: 'image'
-                    },
-                    {
-                        id: 'navy-4',
-                        url: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=800&h=800&fit=crop&sat=-35&hue=240',
-                        thumbnail: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=100&h=100&fit=crop&sat=-35&hue=240',
-                        alt: 'Captain boots sole view - Navy',
-                        type: 'image'
-                    },
-                    {
-                        id: 'navy-5',
-                        url: 'https://images.unsplash.com/photo-1484704849700-f032a568e944?w=800&h=800&fit=crop&sat=-15&hue=240',
-                        thumbnail: 'https://images.unsplash.com/photo-1484704849700-f032a568e944?w=100&h=100&fit=crop&sat=-15&hue=240',
-                        alt: 'Captain boots detail view - Navy',
-                        type: 'image'
-                    },
-                    {
-                        id: 'navy-6',
-                        url: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=800&h=800&fit=crop&sat=-40&hue=240',
-                        thumbnail: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=100&h=100&fit=crop&sat=-40&hue=240',
-                        alt: 'Captain boots top down view - Navy',
-                        type: 'image'
-                    },
-                    {
-                        id: 'navy-7',
-                        url: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=800&h=800&fit=crop&sat=-10&hue=240',
-                        thumbnail: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=100&h=100&fit=crop&sat=-10&hue=240',
-                        alt: 'Captain boots close up - Navy',
-                        type: 'image'
-                    },
-                    {
-                        id: 'product-video',
-                        url: './assets/videos/sample_video.mp4',
-                        thumbnail: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=100&h=100&fit=crop&sat=-20&hue=240',
-                        alt: 'Captain boots video',
-                        type: 'video'
-                    }
-                ],
-                productInfo: {
-                    title: "Classic Navy Leather Edition",
-                    description: "Crafted from premium navy leather, this edition offers sophisticated elegance with exceptional durability. The rich navy hue provides a professional yet stylish appearance that pairs perfectly with both formal and casual attire. Features our signature Goodyear welt construction and premium leather lining for all-day comfort.",
-                    image: "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=800&h=600&fit=crop&sat=-20&hue=240"
-                },
-                pricing: {
-                    basePrice: 5500000,
-                    discount: 0,
-                    finalPrice: 5500000,
-                    promotion: "Free shipping on orders over $100",
-                    shippingInfo: "Ships within 3-4 business days"
-                },
-                features: [
-                    'Premium navy leather construction',
-                    'Cap-toe design',
-                    'Durable welt construction',
-                    'Comfortable fit',
-                    'Professional styling',
-                    'Rich color depth'
+                    'Bold styling',
+                    'Eye-catching color'
                 ]
             },
             white: {
@@ -361,57 +278,57 @@ const productData = {
                 images: [
                     {
                         id: 'white-1',
-                        url: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=800&h=800&fit=crop&sat=0&hue=0&brightness=120',
-                        thumbnail: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=100&h=100&fit=crop&sat=0&hue=0&brightness=120',
+                        url: 'https://images.unsplash.com/photo-1641188721482-d6da1d5b87bf?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8d2hpdGUlMjBzbmVhayUyMHNob2VzfGVufDB8fDB8fHww',
+                        thumbnail: 'https://images.unsplash.com/photo-1641188721482-d6da1d5b87bf?w=100&h=100&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8d2hpdGUlMjBzbmVhayUyMHNob2VzfGVufDB8fDB8fHww',
                         alt: 'Captain boots front view - White',
                         type: 'image'
                     },
                     {
                         id: 'white-2',
-                        url: 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=800&h=800&fit=crop&sat=0&hue=0&brightness=115',
-                        thumbnail: 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=100&h=100&fit=crop&sat=0&hue=0&brightness=115',
+                        url: 'https://images.unsplash.com/photo-1627361673902-c80df14aecdd?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8d2hpdGUlMjBzbmVhayUyMHNob2VzfGVufDB8fDB8fHww',
+                        thumbnail: 'https://images.unsplash.com/photo-1627361673902-c80df14aecdd?w=100&h=100&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8d2hpdGUlMjBzbmVhayUyMHNob2VzfGVufDB8fDB8fHww',
                         alt: 'Captain boots side view - White',
                         type: 'image'
                     },
                     {
                         id: 'white-3',
-                        url: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=800&h=800&fit=crop&sat=0&hue=0&brightness=110',
-                        thumbnail: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=100&h=100&fit=crop&sat=0&hue=0&brightness=110',
+                        url: 'https://images.unsplash.com/photo-1579632265758-674f6e1513b0?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHdoaXRlJTIwc25lYWslMjBzaG9lc3xlbnwwfHwwfHx8MA%3D%3D',
+                        thumbnail: 'https://images.unsplash.com/photo-1579632265758-674f6e1513b0?w=100&h=100&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHdoaXRlJTIwc25lYWslMjBzaG9lc3xlbnwwfHwwfHx8MA%3D%3D',
                         alt: 'Captain boots top view - White',
                         type: 'image'
                     },
                     {
                         id: 'white-4',
-                        url: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=800&h=800&fit=crop&sat=0&hue=0&brightness=125',
-                        thumbnail: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=100&h=100&fit=crop&sat=0&hue=0&brightness=125',
+                        url: 'https://images.unsplash.com/photo-1650071151779-da3ae8e09686?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHdoaXRlJTIwc25lYWslMjBzaG9lc3xlbnwwfHwwfHx8MA%3D%3D',
+                        thumbnail: 'https://images.unsplash.com/photo-1650071151779-da3ae8e09686?w=100&h=100&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHdoaXRlJTIwc25lYWslMjBzaG9lc3xlbnwwfHwwfHx8MA%3D%3D',
                         alt: 'Captain boots sole view - White',
                         type: 'image'
                     },
                     {
                         id: 'white-5',
-                        url: 'https://images.unsplash.com/photo-1484704849700-f032a568e944?w=800&h=800&fit=crop&sat=0&hue=0&brightness=105',
-                        thumbnail: 'https://images.unsplash.com/photo-1484704849700-f032a568e944?w=100&h=100&fit=crop&sat=0&hue=0&brightness=105',
+                        url: 'https://images.unsplash.com/photo-1687840704850-7d85b0387587?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjJ8fHdoaXRlJTIwc25lYWslMjBzaG9lc3xlbnwwfHwwfHx8MA%3D%3D',
+                        thumbnail: 'https://images.unsplash.com/photo-1687840704850-7d85b0387587?w=100&h=100&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjJ8fHdoaXRlJTIwc25lYWslMjBzaG9lc3xlbnwwfHwwfHx8MA%3D%3D',
                         alt: 'Captain boots detail view - White',
                         type: 'image'
                     },
                     {
                         id: 'white-6',
-                        url: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=800&h=800&fit=crop&sat=0&hue=0&brightness=130',
-                        thumbnail: 'https://images.unsplash.com/photo-1549298916-b41d501d3772?w=100&h=100&fit=crop&sat=0&hue=0&brightness=130',
+                        url: 'https://images.unsplash.com/photo-1608380272894-b3617f04b463?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjN8fHdoaXRlJTIwc25lYWslMjBzaG9lc3xlbnwwfHwwfHx8MA%3D%3D',
+                        thumbnail: 'https://images.unsplash.com/photo-1608380272894-b3617f04b463?w=100&h=100&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjN8fHdoaXRlJTIwc25lYWslMjBzaG9lc3xlbnwwfHwwfHx8MA%3D%3D',
                         alt: 'Captain boots top down view - White',
                         type: 'image'
                     },
                     {
                         id: 'white-7',
-                        url: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=800&h=800&fit=crop&sat=0&hue=0&brightness=100',
-                        thumbnail: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=100&h=100&fit=crop&sat=0&hue=0&brightness=100',
+                        url: 'https://images.unsplash.com/photo-1641188721482-d6da1d5b87bf?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8d2hpdGUlMjBzbmVhayUyMHNob2VzfGVufDB8fDB8fHww',
+                        thumbnail: 'https://images.unsplash.com/photo-1641188721482-d6da1d5b87bf?w=100&h=100&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8d2hpdGUlMjBzbmVhayUyMHNob2VzfGVufDB8fDB8fHww',
                         alt: 'Captain boots close up - White',
                         type: 'image'
                     },
                     {
                         id: 'product-video',
                         url: './assets/videos/sample_video.mp4',
-                        thumbnail: 'https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=100&h=100&fit=crop&sat=0&hue=0&brightness=110',
+                        thumbnail: 'https://images.unsplash.com/photo-1641188721482-d6da1d5b87bf?w=100&h=100&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8d2hpdGUlMjBzbmVhayUyMHNob2VzfGVufDB8fDB8fHww',
                         alt: 'Captain boots video',
                         type: 'video'
                     }
@@ -419,7 +336,7 @@ const productData = {
                 productInfo: {
                     title: "Classic White Leather Edition",
                     description: "Crafted from premium white leather, this edition offers clean sophistication with exceptional durability. The pristine white hue creates a fresh, modern look that stands out while maintaining its elegant appearance with proper care. Features our signature Goodyear welt construction and premium leather lining for all-day comfort.",
-                    image: "https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?w=800&h=600&fit=crop&sat=0&hue=0&brightness=110"
+                    image: "https://images.unsplash.com/photo-1641188721482-d6da1d5b87bf?w=800&h=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8d2hpdGUlMjBzbmVhayUyMHNob2VzfGVufDB8fDB8fHww"
                 },
                 pricing: {
                     basePrice: 5600000,
@@ -443,25 +360,22 @@ const productData = {
                 name: '35', 
                 stock: {
                     black: 0,
-                    brown: 0,
-                    gray: 0,
-                    navy: 0,
+                    pink: 0,
+                    yellow: 0,
                     white: 0
                 },
                 description: "Size 35 - Perfect for smaller feet with narrow width",
                 features: ["Narrow last", "Comfortable fit", "Premium leather"],
                 pricing: {
                     black: { basePrice: 5406000, discount: 0, finalPrice: 5406000 },
-                    brown: { basePrice: 5200000, discount: 10, finalPrice: 4680000 },
-                    gray: { basePrice: 5300000, discount: 5, finalPrice: 5035000 },
-                    navy: { basePrice: 5500000, discount: 0, finalPrice: 5500000 },
+                    pink: { basePrice: 5200000, discount: 10, finalPrice: 4680000 },
+                    yellow: { basePrice: 5300000, discount: 5, finalPrice: 5035000 },
                     white: { basePrice: 5600000, discount: 15, finalPrice: 4760000 }
                 },
                 shipping: {
                     black: "Ships within 2-3 business days",
-                    brown: "Ships within 1-2 business days",
-                    gray: "Ships within 2-3 business days",
-                    navy: "Ships within 3-4 business days",
+                    pink: "Ships within 1-2 business days",
+                    yellow: "Ships within 2-3 business days",
                     white: "Ships within 2-3 business days"
                 }
             },
@@ -469,25 +383,22 @@ const productData = {
                 name: '36', 
                 stock: {
                     black: 2,
-                    brown: 1,
-                    gray: 1,
-                    navy: 0,
+                    pink: 1,
+                    yellow: 1,
                     white: 0
                 },
                 description: "Size 36 - Ideal for smaller feet with standard width",
                 features: ["Standard last", "Comfortable fit", "Premium leather"],
                 pricing: {
                     black: { basePrice: 5406000, discount: 0, finalPrice: 5406000 },
-                    brown: { basePrice: 5200000, discount: 10, finalPrice: 4680000 },
-                    gray: { basePrice: 5300000, discount: 5, finalPrice: 5035000 },
-                    navy: { basePrice: 5500000, discount: 0, finalPrice: 5500000 },
+                    pink: { basePrice: 5200000, discount: 10, finalPrice: 4680000 },
+                    yellow: { basePrice: 5300000, discount: 5, finalPrice: 5035000 },
                     white: { basePrice: 5600000, discount: 15, finalPrice: 4760000 }
                 },
                 shipping: {
                     black: "Ships within 2-3 business days",
-                    brown: "Ships within 1-2 business days",
-                    gray: "Ships within 2-3 business days",
-                    navy: "Ships within 3-4 business days",
+                    pink: "Ships within 1-2 business days",
+                    yellow: "Ships within 2-3 business days",
                     white: "Ships within 2-3 business days"
                 }
             },
@@ -495,25 +406,22 @@ const productData = {
                 name: '37', 
                 stock: {
                     black: 3,
-                    brown: 2,
-                    gray: 2,
-                    navy: 1,
+                    pink: 2,
+                    yellow: 2,
                     white: 1
                 },
                 description: "Size 37 - Great for medium feet with standard width",
                 features: ["Standard last", "Comfortable fit", "Premium leather"],
                 pricing: {
                     black: { basePrice: 5406000, discount: 0, finalPrice: 5406000 },
-                    brown: { basePrice: 5200000, discount: 10, finalPrice: 4680000 },
-                    gray: { basePrice: 5300000, discount: 5, finalPrice: 5035000 },
-                    navy: { basePrice: 5500000, discount: 0, finalPrice: 5500000 },
+                    pink: { basePrice: 5200000, discount: 10, finalPrice: 4680000 },
+                    yellow: { basePrice: 5300000, discount: 5, finalPrice: 5035000 },
                     white: { basePrice: 5600000, discount: 15, finalPrice: 4760000 }
                 },
                 shipping: {
                     black: "Ships within 2-3 business days",
-                    brown: "Ships within 1-2 business days",
-                    gray: "Ships within 2-3 business days",
-                    navy: "Ships within 3-4 business days",
+                    pink: "Ships within 1-2 business days",
+                    yellow: "Ships within 2-3 business days",
                     white: "Ships within 2-3 business days"
                 }
             },
@@ -522,24 +430,21 @@ const productData = {
                 stock: {
                     black: 8,
                     brown: 6,
-                    gray: 4,
-                    navy: 3,
+                    yellow: 4,
                     white: 2
                 },
                 description: "Size 38 - Most popular size with perfect proportions",
                 features: ["Standard last", "Comfortable fit", "Premium leather", "Best seller"],
                 pricing: {
                     black: { basePrice: 5406000, discount: 0, finalPrice: 5406000 },
-                    brown: { basePrice: 5200000, discount: 10, finalPrice: 4680000 },
-                    gray: { basePrice: 5300000, discount: 5, finalPrice: 5035000 },
-                    navy: { basePrice: 5500000, discount: 0, finalPrice: 5500000 },
+                    pink: { basePrice: 5200000, discount: 10, finalPrice: 4680000 },
+                    yellow: { basePrice: 5300000, discount: 5, finalPrice: 5035000 },
                     white: { basePrice: 5600000, discount: 15, finalPrice: 4760000 }
                 },
                 shipping: {
                     black: "Ships within 2-3 business days",
-                    brown: "Ships within 1-2 business days",
-                    gray: "Ships within 2-3 business days",
-                    navy: "Ships within 3-4 business days",
+                    pink: "Ships within 1-2 business days",
+                    yellow: "Ships within 2-3 business days",
                     white: "Ships within 2-3 business days"
                 }
             },
@@ -548,24 +453,21 @@ const productData = {
                 stock: {
                     black: 10,
                     brown: 8,
-                    gray: 6,
-                    navy: 4,
+                    yellow: 6,
                     white: 3
                 },
                 description: "Size 39 - Excellent for larger feet with standard width",
                 features: ["Standard last", "Comfortable fit", "Premium leather"],
                 pricing: {
                     black: { basePrice: 5406000, discount: 0, finalPrice: 5406000 },
-                    brown: { basePrice: 5200000, discount: 10, finalPrice: 4680000 },
-                    gray: { basePrice: 5300000, discount: 5, finalPrice: 5035000 },
-                    navy: { basePrice: 5500000, discount: 0, finalPrice: 5500000 },
+                    pink: { basePrice: 5200000, discount: 10, finalPrice: 4680000 },
+                    yellow: { basePrice: 5300000, discount: 5, finalPrice: 5035000 },
                     white: { basePrice: 5600000, discount: 15, finalPrice: 4760000 }
                 },
                 shipping: {
                     black: "Ships within 2-3 business days",
-                    brown: "Ships within 1-2 business days",
-                    gray: "Ships within 2-3 business days",
-                    navy: "Ships within 3-4 business days",
+                    pink: "Ships within 1-2 business days",
+                    yellow: "Ships within 2-3 business days",
                     white: "Ships within 2-3 business days"
                 }
             },
@@ -574,24 +476,21 @@ const productData = {
                 stock: {
                     black: 6,
                     brown: 4,
-                    gray: 3,
-                    navy: 2,
+                    yellow: 3,
                     white: 1
                 },
                 description: "Size 40 - Perfect for larger feet with wide width",
                 features: ["Wide last", "Comfortable fit", "Premium leather"],
                 pricing: {
                     black: { basePrice: 5406000, discount: 0, finalPrice: 5406000 },
-                    brown: { basePrice: 5200000, discount: 10, finalPrice: 4680000 },
-                    gray: { basePrice: 5300000, discount: 5, finalPrice: 5035000 },
-                    navy: { basePrice: 5500000, discount: 0, finalPrice: 5500000 },
+                    pink: { basePrice: 5200000, discount: 10, finalPrice: 4680000 },
+                    yellow: { basePrice: 5300000, discount: 5, finalPrice: 5035000 },
                     white: { basePrice: 5600000, discount: 15, finalPrice: 4760000 }
                 },
                 shipping: {
                     black: "Ships within 2-3 business days",
-                    brown: "Ships within 1-2 business days",
-                    gray: "Ships within 2-3 business days",
-                    navy: "Ships within 3-4 business days",
+                    pink: "Ships within 1-2 business days",
+                    yellow: "Ships within 2-3 business days",
                     white: "Ships within 2-3 business days"
                 }
             },
@@ -599,25 +498,22 @@ const productData = {
                 name: '41', 
                 stock: {
                     black: 2,
-                    brown: 1,
-                    gray: 1,
-                    navy: 0,
+                    pink: 1,
+                    yellow: 1,
                     white: 0
                 },
                 description: "Size 41 - Great for extra large feet with wide width",
                 features: ["Wide last", "Comfortable fit", "Premium leather"],
                 pricing: {
                     black: { basePrice: 5406000, discount: 0, finalPrice: 5406000 },
-                    brown: { basePrice: 5200000, discount: 10, finalPrice: 4680000 },
-                    gray: { basePrice: 5300000, discount: 5, finalPrice: 5035000 },
-                    navy: { basePrice: 5500000, discount: 0, finalPrice: 5500000 },
+                    pink: { basePrice: 5200000, discount: 10, finalPrice: 4680000 },
+                    yellow: { basePrice: 5300000, discount: 5, finalPrice: 5035000 },
                     white: { basePrice: 5600000, discount: 15, finalPrice: 4760000 }
                 },
                 shipping: {
                     black: "Ships within 2-3 business days",
-                    brown: "Ships within 1-2 business days",
-                    gray: "Ships within 2-3 business days",
-                    navy: "Ships within 3-4 business days",
+                    pink: "Ships within 1-2 business days",
+                    yellow: "Ships within 2-3 business days",
                     white: "Ships within 2-3 business days"
                 }
             },
@@ -625,25 +521,22 @@ const productData = {
                 name: '42', 
                 stock: {
                     black: 1,
-                    brown: 0,
-                    gray: 0,
-                    navy: 0,
+                    pink: 0,
+                    yellow: 0,
                     white: 0
                 },
                 description: "Size 42 - Largest size with wide width for maximum comfort",
                 features: ["Wide last", "Comfortable fit", "Premium leather", "Limited edition"],
                 pricing: {
                     black: { basePrice: 5406000, discount: 0, finalPrice: 5406000 },
-                    brown: { basePrice: 5200000, discount: 10, finalPrice: 4680000 },
-                    gray: { basePrice: 5300000, discount: 5, finalPrice: 5035000 },
-                    navy: { basePrice: 5500000, discount: 0, finalPrice: 5500000 },
+                    pink: { basePrice: 5200000, discount: 10, finalPrice: 4680000 },
+                    yellow: { basePrice: 5300000, discount: 5, finalPrice: 5035000 },
                     white: { basePrice: 5600000, discount: 15, finalPrice: 4760000 }
                 },
                 shipping: {
                     black: "Ships within 2-3 business days",
-                    brown: "Ships within 1-2 business days",
-                    gray: "Ships within 2-3 business days",
-                    navy: "Ships within 3-4 business days",
+                    pink: "Ships within 1-2 business days",
+                    yellow: "Ships within 2-3 business days",
                     white: "Ships within 2-3 business days"
                 }
             }

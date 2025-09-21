@@ -29,6 +29,13 @@ class Cart {
             } else {
                 existingItem.quantity = newQuantity;
             }
+            
+            // Update image to match current color selection
+            const colorVariant = product.variants.color[variant.color];
+            const firstImage = colorVariant.images ? colorVariant.images.find(img => img.type === 'image') : null;
+            if (firstImage) {
+                existingItem.image = firstImage.url;
+            }
         } else {
             // Check if we can add this quantity
             if (quantity > maxQuantity) {
