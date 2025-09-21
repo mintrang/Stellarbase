@@ -560,16 +560,8 @@ class Product {
         const productInfo = currentColorVariant.productInfo || window.productData.productInfo;
 
         if (productInfo) {
-            if (currentColorVariant && currentColorVariant.images) {
-                const firstImage = currentColorVariant.images.find(img => img.type === 'image') || currentColorVariant.images[0];
-                if (firstImage) {
-                    productInfoImage.src = firstImage.url;
-                    productInfoImage.alt = firstImage.alt;
-                }
-            } else {
-                productInfoImage.src = productInfo.image;
-                productInfoImage.alt = productInfo.title;
-            }
+            productInfoImage.src = productInfo.image;
+            productInfoImage.alt = productInfo.title;
             
             productInfoTitle.textContent = productInfo.title;
             productInfoDescription.textContent = productInfo.description;
@@ -630,7 +622,7 @@ class Product {
             const productInfo = currentColorVariant.productInfo || window.productData.productInfo;
             
             if (productInfo) {
-                const sizeInfo = `\n\n<strong>Size ${currentSizeVariant.description}:</strong>`;
+                const sizeInfo = `\n\n<strong>${currentSizeVariant.description}:</strong>`;
                 productInfoDescription.innerHTML = productInfo.description + sizeInfo;
             }
         }

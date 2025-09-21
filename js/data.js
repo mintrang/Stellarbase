@@ -85,7 +85,7 @@ const productData = {
                 productInfo: {
                     title: "Captain Boots - Black Leather Sneakers",
                     description: "The classic black Captain Boots feature premium full-grain leather construction with a sophisticated cap-toe design. Perfect for both professional and casual settings, these sneakers offer exceptional comfort and durability. The rich black leather develops a beautiful patina over time, making each pair uniquely yours.",
-                    image: "https://images.unsplash.com/photo-1723375386859-1731f1518a9c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fGJsYWNrJTIwc25lYWslMjBzaG9lc3xlbnwwfHwwfHx8MA%3D%3D"
+                    image: "https://plus.unsplash.com/premium_photo-1695603437800-a679762b893e?w=800&h=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fGJsYWNrJTIwc25lYWslMjBzaG9lc3xlbnwwfHwwfHx8MA%3D%3D"
                 },
                 
             },
@@ -153,7 +153,7 @@ const productData = {
                 productInfo: {
                     title: "Captain Boots - Pink Leather Sneakers",
                     description: "Make a bold statement with our pink Captain Boots. Crafted from premium pink leather, these sneakers combine vibrant style with exceptional comfort. Perfect for those who love to stand out, the beautiful pink hue adds a touch of personality to any outfit while maintaining the same quality construction as all Captain Boots.",
-                    image: "https://plus.unsplash.com/premium_photo-1673716788828-52948c8fd974?w=800&h=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cGluayUyMHNuZWFrJTIwc2hvZXN8ZW58MHx8MHx8fDA%3D"
+                    image: "https://images.unsplash.com/photo-1582738412120-7f6baeff4da9?w=800&h=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTUxfHxwaW5rJTIwc25lYWslMjBzaG9lc3xlbnwwfHwwfHx8MA%3D%3D"
                 }
             },
             yellow: {
@@ -220,7 +220,7 @@ const productData = {
                 productInfo: {
                     title: "Captain Boots - Yellow Leather Sneakers",
                     description: "Brighten up your wardrobe with our vibrant yellow Captain Boots. Made from premium yellow leather, these sneakers are perfect for those who love to make a statement. The eye-catching yellow hue adds energy to any outfit while providing the same exceptional comfort and durability as all Captain Boots.",
-                    image: "https://images.unsplash.com/photo-1657196084362-fa1ec1b97da5?w=800&h=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHllbGxvdyUyMHNuZWFrJTIwc2hvZXN8ZW58MHx8MHx8fDA%3D"
+                    image: "https://images.unsplash.com/photo-1657196084373-8dd49a33a2a1?w=800&h=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjd8fHllbGxvdyUyMHNuZWFrJTIwc2hvZXN8ZW58MHx8MHx8fDA%3D"
                 }
             },
             white: {
@@ -287,7 +287,7 @@ const productData = {
                 productInfo: {
                     title: "Captain Boots - White Leather Sneakers",
                     description: "Achieve clean, sophisticated style with our white Captain Boots. Made from premium white leather, these sneakers offer a fresh, modern look that pairs perfectly with any outfit. The pristine white hue creates a timeless appeal while maintaining the same exceptional quality and comfort as all Captain Boots.",
-                    image: "https://images.unsplash.com/photo-1641188721482-d6da1d5b87bf?w=800&h=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8d2hpdGUlMjBzbmVhayUyMHNob2VzfGVufDB8fDB8fHww"
+                    image: "https://images.unsplash.com/photo-1627361673902-c80df14aecdd?w=800&h=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8d2hpdGUlMjBzbmVhayUyMHNob2VzfGVufDB8fDB8fHww"
                 }
             }
         },
