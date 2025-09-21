@@ -3,7 +3,6 @@ const productData = {
     title: 'Captain Boots - Premium Leather Sneakers',
     basePrice: 225.25,
     currentPrice: 225.25,
-    onSale: false,
     discountPercentage: 0,
     description: 'Discover the Captain Boots collection - premium unisex leather sneakers that combine timeless style with modern comfort. Perfect for both men and women, crafted from the finest materials and built to last with exceptional attention to detail.',
     features: [
@@ -27,7 +26,6 @@ const productData = {
         color: {
             black: {
                 name: 'Black',
-                price: 0,
                 stock: 10,
                 images: [
                     {
@@ -110,7 +108,6 @@ const productData = {
             },
             pink: {
                 name: 'Pink',
-                price: 0,
                 stock: 8,
                 images: [
                     {
@@ -193,7 +190,6 @@ const productData = {
             },
             yellow: {
                 name: 'Yellow',
-                price: 0,
                 stock: 6,
                 images: [
                     {
@@ -276,7 +272,6 @@ const productData = {
             },
             white: {
                 name: 'White',
-                price: 0,
                 stock: 3,
                 images: [
                     {
@@ -368,7 +363,6 @@ const productData = {
                     white: 0
                 },
                 description: "Size 35 - Perfect for smaller feet with narrow width",
-                features: ["Narrow last", "Comfortable fit", "Premium leather"],
                 pricing: {
                     black: { basePrice: 225.25, discount: 0, finalPrice: 225.25 },
                     pink: { basePrice: 216.67, discount: 10, finalPrice: 195.00 },
@@ -391,7 +385,6 @@ const productData = {
                     white: 0
                 },
                 description: "Size 36 - Ideal for smaller feet with standard width",
-                features: ["Standard last", "Comfortable fit", "Premium leather"],
                 pricing: {
                     black: { basePrice: 225.25, discount: 0, finalPrice: 225.25 },
                     pink: { basePrice: 216.67, discount: 10, finalPrice: 195.00 },
@@ -414,7 +407,6 @@ const productData = {
                     white: 1
                 },
                 description: "Size 37 - Great for medium feet with standard width",
-                features: ["Standard last", "Comfortable fit", "Premium leather"],
                 pricing: {
                     black: { basePrice: 225.25, discount: 0, finalPrice: 225.25 },
                     pink: { basePrice: 216.67, discount: 10, finalPrice: 195.00 },
@@ -437,7 +429,6 @@ const productData = {
                     white: 2
                 },
                 description: "Size 38 - Most popular size with perfect proportions",
-                features: ["Standard last", "Comfortable fit", "Premium leather", "Best seller"],
                 pricing: {
                     black: { basePrice: 225.25, discount: 0, finalPrice: 225.25 },
                     pink: { basePrice: 216.67, discount: 10, finalPrice: 195.00 },
@@ -460,7 +451,6 @@ const productData = {
                     white: 3
                 },
                 description: "Size 39 - Excellent for larger feet with standard width",
-                features: ["Standard last", "Comfortable fit", "Premium leather"],
                 pricing: {
                     black: { basePrice: 225.25, discount: 0, finalPrice: 225.25 },
                     pink: { basePrice: 216.67, discount: 10, finalPrice: 195.00 },
@@ -483,7 +473,6 @@ const productData = {
                     white: 1
                 },
                 description: "Size 40 - Perfect for larger feet with wide width",
-                features: ["Wide last", "Comfortable fit", "Premium leather"],
                 pricing: {
                     black: { basePrice: 225.25, discount: 0, finalPrice: 225.25 },
                     pink: { basePrice: 216.67, discount: 10, finalPrice: 195.00 },
@@ -506,7 +495,6 @@ const productData = {
                     white: 0
                 },
                 description: "Size 41 - Great for extra large feet with wide width",
-                features: ["Wide last", "Comfortable fit", "Premium leather"],
                 pricing: {
                     black: { basePrice: 225.25, discount: 0, finalPrice: 225.25 },
                     pink: { basePrice: 216.67, discount: 10, finalPrice: 195.00 },
@@ -529,7 +517,6 @@ const productData = {
                     white: 0
                 },
                 description: "Size 42 - Largest size with wide width for maximum comfort",
-                features: ["Wide last", "Comfortable fit", "Premium leather", "Limited edition"],
                 pricing: {
                     black: { basePrice: 225.25, discount: 0, finalPrice: 225.25 },
                     pink: { basePrice: 216.67, discount: 10, finalPrice: 195.00 },

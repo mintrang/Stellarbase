@@ -31,6 +31,7 @@ class Product {
             productDescription.textContent = window.productData.description;
         }
 
+
         const mainImage = document.getElementById('mainImage');
         if (mainImage && window.productData) {
             const firstColorVariant = window.productData.variants.color[this.currentVariant.color];
@@ -634,32 +635,7 @@ class Product {
             }
         }
 
-        const productFeatures = document.querySelector('.product__features-list');
-        if (productFeatures && currentSizeVariant.features) {
-            const sizeFeatures = currentSizeVariant.features.map(feature => 
-                `<li class="product__feature-item">${feature}</li>`
-            ).join('');
-            
-            let sizeFeaturesContainer = document.querySelector('.size-specific-features');
-            if (!sizeFeaturesContainer) {
-                sizeFeaturesContainer = document.createElement('div');
-                sizeFeaturesContainer.className = 'size-specific-features';
-                sizeFeaturesContainer.innerHTML = `
-                    <h4 class="product__features-subtitle">Size ${currentSizeVariant.name} Features:</h4>
-                    <ul class="product__features-list size-features-list">${sizeFeatures}</ul>
-                `;
-                productFeatures.parentNode.appendChild(sizeFeaturesContainer);
-            } else {
-                const subtitle = sizeFeaturesContainer.querySelector('.product__features-subtitle');
-                const featuresList = sizeFeaturesContainer.querySelector('.size-features-list');
-                if (subtitle) subtitle.textContent = `Size ${currentSizeVariant.name} Features:`;
-                if (featuresList) featuresList.innerHTML = sizeFeatures;
-            }
-        }
-
         this.updateSizeStockInfo(currentSizeVariant);
-        
-        this.updateShippingInfo(currentSizeVariant);
     }
 
     updateSizeOnly() {
@@ -672,24 +648,6 @@ class Product {
         this.updateStockDisplay();
     }
 
-    updateShippingInfo(sizeVariant) {
-        const currentColorVariant = window.productData.variants.color[this.currentVariant.color];
-        if (!sizeVariant || !currentColorVariant) return;
-
-        const shippingInfo = sizeVariant.shipping[this.currentVariant.color];
-        const shippingInfoList = document.getElementById('shippingInfoList');
-        
-        if (shippingInfo && shippingInfoList) {
-            const baseShippingItems = [
-                'Free domestic U.S. ground shipping',
-                'Free domestic U.S. returns. <a href="#" class="shipping-info__link">See our full policy</a>',
-                'International shipping available',
-                'Expedited shipping options available at checkout'
-            ];
-            
-            
-        }
-    }
 
     updateSizeStockInfo(sizeVariant) {
         const stockInfo = document.querySelector('.product__stock-info');
