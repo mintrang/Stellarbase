@@ -1,24 +1,28 @@
 // Product Data Structure
 const productData = {
     id: 'captain-boots-001',
-    title: 'Captain',
-    basePrice: 5406000,
-    currentPrice: 5406000,
+    title: 'Captain Boots - Premium Leather Sneakers',
+    basePrice: 225.25,
+    currentPrice: 225.25,
     onSale: false,
     discountPercentage: 0,
-    description: 'Premium leather boots with cap-toe design. Built to last with quality craftsmanship and attention to detail.',
+    description: 'Discover the Captain Boots collection - premium unisex leather sneakers that combine timeless style with modern comfort. Perfect for both men and women, crafted from the finest materials and built to last with exceptional attention to detail.',
     features: [
-        'Premium leather construction',
-        'Cap-toe design for durability',
-        'Comfortable padded insole',
-        'Slip-resistant rubber sole',
-        'Handcrafted quality'
+        'Premium full-grain leather upper',
+        'Classic cap-toe design for durability',
+        'Memory foam cushioned insole',
+        'Slip-resistant rubber outsole',
+        'Handcrafted with attention to detail',
+        'Breathable leather lining',
+        'True to size fit guarantee'
     ],
     shipping: {
         free: 'Free shipping on orders over $100',
         express: 'Express delivery available',
-        returns: '30-day return policy',
-        warranty: '2-year manufacturer warranty'
+        returns: '30-day return policy for unworn shoes',
+        warranty: '2-year craftsmanship warranty',
+        sizing: 'Free size exchange within 30 days',
+        care: 'Complimentary leather care guide included'
     },
     variants: {
         color: {
@@ -85,14 +89,14 @@ const productData = {
                     }
                 ],
                 productInfo: {
-                    title: "Classic Black Leather Edition",
-                    description: "Crafted from premium black leather, this edition offers timeless elegance with exceptional durability. The rich black hue maintains its sophisticated appearance over time, making it perfect for both formal and casual occasions. Features our signature Goodyear welt construction and premium leather lining for all-day comfort.",
+                    title: "Captain Boots - Black Leather Sneakers",
+                    description: "The classic black Captain Boots feature premium full-grain leather construction with a sophisticated cap-toe design. Perfect for both professional and casual settings, these sneakers offer exceptional comfort and durability. The rich black leather develops a beautiful patina over time, making each pair uniquely yours.",
                     image: "https://plus.unsplash.com/premium_photo-1674770380314-d1639a2d4b77?w=800&h=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8YmxhY2slMjBzbmVhayUyMHNob2VzfGVufDB8fDB8fHww"
                 },
                 pricing: {
-                    basePrice: 5406000,
+                    basePrice: 225.25,
                     discount: 0,
-                    finalPrice: 5406000,
+                    finalPrice: 225.25,
                     promotion: "Free shipping on orders over $100",
                     shippingInfo: "Ships within 2-3 business days"
                 },
@@ -168,14 +172,14 @@ const productData = {
                     }
                 ],
                 productInfo: {
-                    title: "Classic Pink Leather Edition",
-                    description: "Crafted from premium pink leather, this edition offers vibrant femininity with exceptional durability. The beautiful pink hue creates a bold and stylish statement while maintaining its elegant appearance over time. Features our signature Goodyear welt construction and premium leather lining for all-day comfort.",
+                    title: "Captain Boots - Pink Leather Sneakers",
+                    description: "Make a bold statement with our pink Captain Boots. Crafted from premium pink leather, these sneakers combine vibrant style with exceptional comfort. Perfect for those who love to stand out, the beautiful pink hue adds a touch of personality to any outfit while maintaining the same quality construction as all Captain Boots.",
                     image: "https://plus.unsplash.com/premium_photo-1673716788828-52948c8fd974?w=800&h=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8cGluayUyMHNuZWFrJTIwc2hvZXN8ZW58MHx8MHx8fDA%3D"
                 },
                 pricing: {
-                    basePrice: 5200000,
+                    basePrice: 216.67,
                     discount: 10,
-                    finalPrice: 4680000,
+                    finalPrice: 195.00,
                     promotion: "10% off + Free shipping",
                     shippingInfo: "Ships within 1-2 business days"
                 },
@@ -251,14 +255,14 @@ const productData = {
                     }
                 ],
                 productInfo: {
-                    title: "Classic Yellow Leather Edition",
-                    description: "Crafted from premium yellow leather, this edition offers vibrant style with exceptional durability. The bright yellow hue creates a bold statement while maintaining its elegant appearance over time. Features our signature Goodyear welt construction and premium leather lining for all-day comfort.",
+                    title: "Captain Boots - Yellow Leather Sneakers",
+                    description: "Brighten up your wardrobe with our vibrant yellow Captain Boots. Made from premium yellow leather, these sneakers are perfect for those who love to make a statement. The eye-catching yellow hue adds energy to any outfit while providing the same exceptional comfort and durability as all Captain Boots.",
                     image: "https://images.unsplash.com/photo-1657196084362-fa1ec1b97da5?w=800&h=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHllbGxvdyUyMHNuZWFrJTIwc2hvZXN8ZW58MHx8MHx8fDA%3D"
                 },
                 pricing: {
-                    basePrice: 5300000,
+                    basePrice: 220.83,
                     discount: 5,
-                    finalPrice: 5035000,
+                    finalPrice: 209.79,
                     promotion: "5% off + Free shipping",
                     shippingInfo: "Ships within 2-3 business days"
                 },
@@ -334,14 +338,14 @@ const productData = {
                     }
                 ],
                 productInfo: {
-                    title: "Classic White Leather Edition",
-                    description: "Crafted from premium white leather, this edition offers clean sophistication with exceptional durability. The pristine white hue creates a fresh, modern look that stands out while maintaining its elegant appearance with proper care. Features our signature Goodyear welt construction and premium leather lining for all-day comfort.",
+                    title: "Captain Boots - White Leather Sneakers",
+                    description: "Achieve clean, sophisticated style with our white Captain Boots. Made from premium white leather, these sneakers offer a fresh, modern look that pairs perfectly with any outfit. The pristine white hue creates a timeless appeal while maintaining the same exceptional quality and comfort as all Captain Boots.",
                     image: "https://images.unsplash.com/photo-1641188721482-d6da1d5b87bf?w=800&h=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8d2hpdGUlMjBzbmVhayUyMHNob2VzfGVufDB8fDB8fHww"
                 },
                 pricing: {
-                    basePrice: 5600000,
+                    basePrice: 233.33,
                     discount: 15,
-                    finalPrice: 4760000,
+                    finalPrice: 198.33,
                     promotion: "15% off + Free shipping",
                     shippingInfo: "Ships within 2-3 business days"
                 },
@@ -367,10 +371,10 @@ const productData = {
                 description: "Size 35 - Perfect for smaller feet with narrow width",
                 features: ["Narrow last", "Comfortable fit", "Premium leather"],
                 pricing: {
-                    black: { basePrice: 5406000, discount: 0, finalPrice: 5406000 },
-                    pink: { basePrice: 5200000, discount: 10, finalPrice: 4680000 },
-                    yellow: { basePrice: 5300000, discount: 5, finalPrice: 5035000 },
-                    white: { basePrice: 5600000, discount: 15, finalPrice: 4760000 }
+                    black: { basePrice: 225.25, discount: 0, finalPrice: 225.25 },
+                    pink: { basePrice: 216.67, discount: 10, finalPrice: 195.00 },
+                    yellow: { basePrice: 220.83, discount: 5, finalPrice: 209.79 },
+                    white: { basePrice: 233.33, discount: 15, finalPrice: 198.33 }
                 },
                 shipping: {
                     black: "Ships within 2-3 business days",
@@ -390,10 +394,10 @@ const productData = {
                 description: "Size 36 - Ideal for smaller feet with standard width",
                 features: ["Standard last", "Comfortable fit", "Premium leather"],
                 pricing: {
-                    black: { basePrice: 5406000, discount: 0, finalPrice: 5406000 },
-                    pink: { basePrice: 5200000, discount: 10, finalPrice: 4680000 },
-                    yellow: { basePrice: 5300000, discount: 5, finalPrice: 5035000 },
-                    white: { basePrice: 5600000, discount: 15, finalPrice: 4760000 }
+                    black: { basePrice: 225.25, discount: 0, finalPrice: 225.25 },
+                    pink: { basePrice: 216.67, discount: 10, finalPrice: 195.00 },
+                    yellow: { basePrice: 220.83, discount: 5, finalPrice: 209.79 },
+                    white: { basePrice: 233.33, discount: 15, finalPrice: 198.33 }
                 },
                 shipping: {
                     black: "Ships within 2-3 business days",
@@ -413,10 +417,10 @@ const productData = {
                 description: "Size 37 - Great for medium feet with standard width",
                 features: ["Standard last", "Comfortable fit", "Premium leather"],
                 pricing: {
-                    black: { basePrice: 5406000, discount: 0, finalPrice: 5406000 },
-                    pink: { basePrice: 5200000, discount: 10, finalPrice: 4680000 },
-                    yellow: { basePrice: 5300000, discount: 5, finalPrice: 5035000 },
-                    white: { basePrice: 5600000, discount: 15, finalPrice: 4760000 }
+                    black: { basePrice: 225.25, discount: 0, finalPrice: 225.25 },
+                    pink: { basePrice: 216.67, discount: 10, finalPrice: 195.00 },
+                    yellow: { basePrice: 220.83, discount: 5, finalPrice: 209.79 },
+                    white: { basePrice: 233.33, discount: 15, finalPrice: 198.33 }
                 },
                 shipping: {
                     black: "Ships within 2-3 business days",
@@ -436,10 +440,10 @@ const productData = {
                 description: "Size 38 - Most popular size with perfect proportions",
                 features: ["Standard last", "Comfortable fit", "Premium leather", "Best seller"],
                 pricing: {
-                    black: { basePrice: 5406000, discount: 0, finalPrice: 5406000 },
-                    pink: { basePrice: 5200000, discount: 10, finalPrice: 4680000 },
-                    yellow: { basePrice: 5300000, discount: 5, finalPrice: 5035000 },
-                    white: { basePrice: 5600000, discount: 15, finalPrice: 4760000 }
+                    black: { basePrice: 225.25, discount: 0, finalPrice: 225.25 },
+                    pink: { basePrice: 216.67, discount: 10, finalPrice: 195.00 },
+                    yellow: { basePrice: 220.83, discount: 5, finalPrice: 209.79 },
+                    white: { basePrice: 233.33, discount: 15, finalPrice: 198.33 }
                 },
                 shipping: {
                     black: "Ships within 2-3 business days",
@@ -459,10 +463,10 @@ const productData = {
                 description: "Size 39 - Excellent for larger feet with standard width",
                 features: ["Standard last", "Comfortable fit", "Premium leather"],
                 pricing: {
-                    black: { basePrice: 5406000, discount: 0, finalPrice: 5406000 },
-                    pink: { basePrice: 5200000, discount: 10, finalPrice: 4680000 },
-                    yellow: { basePrice: 5300000, discount: 5, finalPrice: 5035000 },
-                    white: { basePrice: 5600000, discount: 15, finalPrice: 4760000 }
+                    black: { basePrice: 225.25, discount: 0, finalPrice: 225.25 },
+                    pink: { basePrice: 216.67, discount: 10, finalPrice: 195.00 },
+                    yellow: { basePrice: 220.83, discount: 5, finalPrice: 209.79 },
+                    white: { basePrice: 233.33, discount: 15, finalPrice: 198.33 }
                 },
                 shipping: {
                     black: "Ships within 2-3 business days",
@@ -482,10 +486,10 @@ const productData = {
                 description: "Size 40 - Perfect for larger feet with wide width",
                 features: ["Wide last", "Comfortable fit", "Premium leather"],
                 pricing: {
-                    black: { basePrice: 5406000, discount: 0, finalPrice: 5406000 },
-                    pink: { basePrice: 5200000, discount: 10, finalPrice: 4680000 },
-                    yellow: { basePrice: 5300000, discount: 5, finalPrice: 5035000 },
-                    white: { basePrice: 5600000, discount: 15, finalPrice: 4760000 }
+                    black: { basePrice: 225.25, discount: 0, finalPrice: 225.25 },
+                    pink: { basePrice: 216.67, discount: 10, finalPrice: 195.00 },
+                    yellow: { basePrice: 220.83, discount: 5, finalPrice: 209.79 },
+                    white: { basePrice: 233.33, discount: 15, finalPrice: 198.33 }
                 },
                 shipping: {
                     black: "Ships within 2-3 business days",
@@ -505,10 +509,10 @@ const productData = {
                 description: "Size 41 - Great for extra large feet with wide width",
                 features: ["Wide last", "Comfortable fit", "Premium leather"],
                 pricing: {
-                    black: { basePrice: 5406000, discount: 0, finalPrice: 5406000 },
-                    pink: { basePrice: 5200000, discount: 10, finalPrice: 4680000 },
-                    yellow: { basePrice: 5300000, discount: 5, finalPrice: 5035000 },
-                    white: { basePrice: 5600000, discount: 15, finalPrice: 4760000 }
+                    black: { basePrice: 225.25, discount: 0, finalPrice: 225.25 },
+                    pink: { basePrice: 216.67, discount: 10, finalPrice: 195.00 },
+                    yellow: { basePrice: 220.83, discount: 5, finalPrice: 209.79 },
+                    white: { basePrice: 233.33, discount: 15, finalPrice: 198.33 }
                 },
                 shipping: {
                     black: "Ships within 2-3 business days",
@@ -528,10 +532,10 @@ const productData = {
                 description: "Size 42 - Largest size with wide width for maximum comfort",
                 features: ["Wide last", "Comfortable fit", "Premium leather", "Limited edition"],
                 pricing: {
-                    black: { basePrice: 5406000, discount: 0, finalPrice: 5406000 },
-                    pink: { basePrice: 5200000, discount: 10, finalPrice: 4680000 },
-                    yellow: { basePrice: 5300000, discount: 5, finalPrice: 5035000 },
-                    white: { basePrice: 5600000, discount: 15, finalPrice: 4760000 }
+                    black: { basePrice: 225.25, discount: 0, finalPrice: 225.25 },
+                    pink: { basePrice: 216.67, discount: 10, finalPrice: 195.00 },
+                    yellow: { basePrice: 220.83, discount: 5, finalPrice: 209.79 },
+                    white: { basePrice: 233.33, discount: 15, finalPrice: 198.33 }
                 },
                 shipping: {
                     black: "Ships within 2-3 business days",
@@ -550,14 +554,14 @@ const productData = {
         'Classic styling'
     ],
     productInfo: {
-        title: "Rugged & Resilient™ StormKing® Outsole Edition",
-        description: "Built for the men who wear their boots hard. The Rugged & Resilient matte leather upper, sourced exclusively from Tier 1 USA cattle hides, was custom created to look great with years of hard wear and minimal care. This Captain also features our proprietary StormKing® rubber lug outsole for added traction and durability. From the Kevlar® blend laces to the durable steel shank, every material was carefully created so that you can go the extra mile with confidence.",
+        title: "Captain Boots - Premium Leather Sneakers",
+        description: "Experience the perfect blend of style and comfort with our Captain Boots. Crafted from premium full-grain leather and featuring our signature cap-toe design, these sneakers are built to last. From the memory foam cushioned insole to the slip-resistant rubber outsole, every detail is designed for all-day comfort and exceptional durability.",
         image: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=800&h=600&fit=crop",
-        icon: "boot-icon"
+        icon: "sneaker-icon"
     },
     pricingPhilosophy: {
-        title: "Highest Quality. Honest Prices.",
-        description: "Our products are handcrafted alongside similar products from other brands that charge customers 2-3x more. We make zero compromises in terms of quality materials, manufacturing, or business ethics, and we price our products honestly year-round. We simply believe that offering customers a great value is the foundation to long-term business success and is the right thing to do.",
+        title: "Premium Quality. Fair Prices.",
+        description: "Our Captain Boots are crafted with the same premium materials and attention to detail as luxury sneaker brands that charge 2-3x more. We believe in honest pricing year-round - no gimmicks, no inflated retail markups. Every pair is handcrafted with full-grain leather, memory foam cushioning, and slip-resistant soles, offering exceptional value without compromising on quality.",
         productImage: "https://images.unsplash.com/photo-1549298916-b41d501d3772?w=400&h=300&fit=crop",
         priceComparison: {
             cost: 1.0,
@@ -567,8 +571,9 @@ const productData = {
         },
         sellingPoints: [
             "No discount tricks or promo codes",
-            "No holiday sales", 
-            "Best price offered year-round"
+            "No seasonal sales", 
+            "Best price offered year-round",
+            "Direct-to-consumer pricing"
         ],
         readMoreLink: "#"
     }

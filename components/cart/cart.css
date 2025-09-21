@@ -294,24 +294,26 @@
 }
 
 .checkout-btn {
-    background: #20c997;
-    color: white;
-    border: none;
+    background: var(--color-primary);
+    color: var(--color-white);
+    border: 1px solid var(--color-primary);
     padding: 16px 24px;
-    border-radius: 8px;
+    border-radius: var(--border-radius);
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
-    transition: all 0.2s ease;
+    transition: var(--transition);
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 8px;
     width: 100%;
+    min-height: 48px;
 }
 
-.checkout-btn:hover {
-    background: #1ba085;
+.checkout-btn:hover:not(:disabled) {
+    background: var(--color-gray-800);
+    border-color: var(--color-gray-800);
     transform: translateY(-1px);
 }
 

@@ -76,19 +76,16 @@
     text-decoration: none;
 }
 
-.logo-svg {
+.logo-image {
     height: 40px;
     width: auto;
     max-width: 120px;
     transition: var(--transition);
+    object-fit: contain;
 }
 
-.logo-svg:hover {
+.logo-image:hover {
     transform: scale(1.05);
-}
-
-.logo-svg text {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 .logo-link {

@@ -34,6 +34,21 @@ const Utils = {
     // Handle image loading errors
     handleImageError(img) {
         img.src = 'https://via.placeholder.com/800x800/f8f9fa/666?text=Image+Not+Available';
+    },
+
+    // Format price for display
+    formatPrice(price) {
+        if (typeof price !== 'number' || isNaN(price)) {
+            return '$0.00';
+        }
+        
+        // Convert to USD format
+        return new Intl.NumberFormat('en-US', {
+            style: 'currency',
+            currency: 'USD',
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        }).format(price);
     }
 };
 

@@ -184,10 +184,11 @@ class Cart {
     }
 
     formatPrice(price) {
-        return new Intl.NumberFormat('vi-VN', {
+        return new Intl.NumberFormat('en-US', {
             style: 'currency',
-            currency: 'VND',
-            minimumFractionDigits: 0
+            currency: 'USD',
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
         }).format(price);
     }
 
