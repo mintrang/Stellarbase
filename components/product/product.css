@@ -611,6 +611,24 @@
     margin: 0;
 }
 
+.size-tip__button {
+    background: none;
+    border: 1px solid #333;
+    color: #333;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-top: 4px;
+}
+
+.size-tip__button:hover {
+    background: #333;
+    color: #fff;
+}
+
 .size-selector__summary {
     padding: 16px 20px;
     background: #f8f9fa;
