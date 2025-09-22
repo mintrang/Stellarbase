@@ -28,6 +28,9 @@ Designed to be **functional, maintainable, and SEO-friendly**.
   - Shows variant, quantity, price, total  
   - Update quantity / remove items  
 
+- **Responsive Design**
+  - Works on desktop, tablet, and mobile devices
+
 ---
 
 ## 🛠️ Technical Details
