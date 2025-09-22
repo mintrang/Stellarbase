@@ -94,6 +94,10 @@ class Product {
 
     setupEventListeners() {
         document.addEventListener('click', (e) => {
+            if (e.target.closest('#sizeDropdown') || e.target.closest('#sizeCloseButton')) {
+                return;
+            }
+            
             if (e.target.closest('.color-option')) {
                 const colorOption = e.target.closest('.color-option');
                 const color = colorOption.dataset.color;
@@ -102,12 +106,14 @@ class Product {
         });
 
         document.addEventListener('click', (e) => {
+            if (e.target.closest('#sizeDropdown') || e.target.closest('#sizeCloseButton')) {
+                return;
+            }
+            
             console.log('Click detected on:', e.target);
             if (e.target.closest('.product__media-thumbnail')) {
                 const thumbnail = e.target.closest('.product__media-thumbnail');
-                console.log('Thumbnail clicked:', thumbnail);
-                console.log('Thumbnail dataset:', thumbnail.dataset);
-                
+                    
                 if (thumbnail.dataset.image) {
                     this.showImageInMain();
                     
@@ -126,8 +132,12 @@ class Product {
         });
 
         document.addEventListener('click', (e) => {
-            console.log('Mobile click detected on:', e.target);
-            if (e.target.closest('.product__media-thumbnail-mobile')) {
+            // Không xử lý nếu click vào dropdown size
+            if (e.target.closest('#sizeDropdown') || e.target.closest('#sizeCloseButton')) {
+                return;
+            }
+            
+             if (e.target.closest('.product__media-thumbnail-mobile')) {
                 const thumbnail = e.target.closest('.product__media-thumbnail-mobile');
                 console.log('Mobile thumbnail clicked:', thumbnail);
                 console.log('Mobile thumbnail dataset:', thumbnail.dataset);
@@ -176,8 +186,12 @@ class Product {
         }
 
         if (sizeCloseButton) {
-            sizeCloseButton.addEventListener('click', () => {
+            sizeCloseButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                e.stopImmediatePropagation();
                 this.closeSizeDropdown();
+                return false;
             });
         }
 
@@ -186,6 +200,7 @@ class Product {
                 this.closeSizeDropdown();
             });
         }
+
 
         const quantityMinusBtn = document.getElementById('quantityMinusBtn');
         const quantityPlusBtn = document.getElementById('quantityPlusBtn');
@@ -748,7 +763,9 @@ class Product {
             option.addEventListener('click', (e) => {
                 if (!option.dataset.disabled) {
                     const sizeKey = option.dataset.size;
-                    this.updateVariant('size', sizeKey);
+                    // Cập nhật state ngay lập tức khi chọn size
+                    this.currentVariant.size = sizeKey;
+                    this.updateSizeOnly();
                     this.closeSizeDropdown();
                 }
             });
@@ -820,6 +837,10 @@ class Product {
         const overlay = document.getElementById('sizeOverlay');
         
         if (dropdown && overlay) {
+            // Lưu trữ state hiện tại trước khi mở dropdown
+            this.savedVariant = { ...this.currentVariant };
+            this.savedQuantity = this.quantity;
+            
             this.updateSizeDropdown();
             
             overlay.classList.add('size-selector__overlay--open');
@@ -836,6 +857,10 @@ class Product {
             overlay.classList.remove('size-selector__overlay--open');
             dropdown.classList.remove('size-selector__dropdown--open');
             document.body.style.overflow = '';
+            
+            // Xóa saved state
+            this.savedVariant = null;
+            this.savedQuantity = null;
         }
     }
 
