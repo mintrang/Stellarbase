@@ -6,8 +6,13 @@
     top: 0;
     left: 0;
     right: 0;
-    z-index: 100;
+    z-index: 9999;
     width: 100%;
+    /* Safari compatibility for fixed positioning */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 
 .header-wrapper {
@@ -186,4 +191,22 @@
     font-size: var(--font-size-xs);
     font-weight: 600;
     transform: translate(25%, -25%);
+}
+
+/* Safari-specific fixes for fixed positioning */
+@supports (-webkit-appearance: none) {
+    .site-header {
+        /* Ensure fixed positioning works correctly on Safari */
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        z-index: 9999 !important;
+        /* Force new stacking context */
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+        /* Prevent Safari from moving the header */
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+    }
 }
