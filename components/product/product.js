@@ -132,7 +132,6 @@ class Product {
         });
 
         document.addEventListener('click', (e) => {
-            // Không xử lý nếu click vào dropdown size
             if (e.target.closest('#sizeDropdown') || e.target.closest('#sizeCloseButton')) {
                 return;
             }
@@ -720,7 +719,6 @@ class Product {
             return;
         }
 
-        this.updateStockSummary();
 
         const sizes = Object.keys(window.productData.variants.size);
         sizeOptions.innerHTML = sizes.map(sizeKey => {
@@ -772,40 +770,6 @@ class Product {
         });
     }
 
-    updateStockSummary() {
-        const sizeSummary = document.getElementById('sizeSummary');
-        if (!sizeSummary) return;
-
-        const sizes = Object.values(window.productData.variants.size);
-        let inStock = 0, lowStock = 0, outOfStock = 0;
-        const currentColor = this.currentVariant.color;
-
-        sizes.forEach(variant => {
-            const stock = variant.stock[currentColor] || 0;
-            if (stock === 0) {
-                outOfStock++;
-            } else if (stock <= 3) {
-                lowStock++;
-            } else {
-                inStock++;
-            }
-        });
-
-        sizeSummary.innerHTML = `
-            <div class="size-summary__item">
-                <span class="size-summary__dot size-summary__dot--in"></span>
-                <span>${inStock} in stock</span>
-            </div>
-            <div class="size-summary__item">
-                <span class="size-summary__dot size-summary__dot--low"></span>
-                <span>${lowStock} few left</span>
-            </div>
-            <div class="size-summary__item">
-                <span class="size-summary__dot size-summary__dot--out"></span>
-                <span>${outOfStock} out of stock</span>
-            </div>
-        `;
-    }
 
     getStockStatus(stock) {
         if (stock === 0) {
@@ -837,7 +801,6 @@ class Product {
         const overlay = document.getElementById('sizeOverlay');
         
         if (dropdown && overlay) {
-            // Lưu trữ state hiện tại trước khi mở dropdown
             this.savedVariant = { ...this.currentVariant };
             this.savedQuantity = this.quantity;
             
@@ -858,7 +821,6 @@ class Product {
             dropdown.classList.remove('size-selector__dropdown--open');
             document.body.style.overflow = '';
             
-            // Xóa saved state
             this.savedVariant = null;
             this.savedQuantity = null;
         }
