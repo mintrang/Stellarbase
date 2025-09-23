@@ -5,13 +5,12 @@ const Utils = {
         notification.className = `notification notification--${type}`;
         notification.textContent = message;
         
-        const colors = { success: 'var(--color-success)', error: 'var(--color-danger)', info: 'var(--color-accent)' };
         Object.assign(notification.style, {
             position: 'fixed',
             top: '20px',
             right: '20px',
             padding: '1rem 1.5rem',
-            background: colors[type] || colors.info,
+            background: 'var(--color-primary)',
             color: 'white',
             borderRadius: 'var(--border-radius)',
             boxShadow: 'var(--shadow-lg)',

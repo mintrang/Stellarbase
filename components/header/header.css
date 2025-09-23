@@ -332,8 +332,8 @@
 
 .cart-count {
     position: absolute;
-    top: 0;
-    right: 0;
+    top: 10px;
+    right: 5px;
     background: var(--color-danger);
     color: var(--color-white);
     border-radius: 50%;
